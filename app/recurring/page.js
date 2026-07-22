@@ -45,7 +45,7 @@ export default function RecurringPage() {
     const monthlyTotal = items.filter(r => r.cycle === 'monthly').reduce((s, r) => s + r.amount, 0);
 
     return (
-        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
                 <div className='lbl'>Automatic</div>
                 <div className='h1'>Recurring</div>

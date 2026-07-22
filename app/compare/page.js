@@ -45,7 +45,7 @@ export default function ComparePage() {
         .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
 
     return (
-        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '26px' }}>
+        <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '26px' }}>
             <div>
                 <div className='lbl'>{monthShort(prevMonth)} → {monthShort(thisMonth)} {now.getFullYear()}</div>
                 <div className='h1'>Compared</div>

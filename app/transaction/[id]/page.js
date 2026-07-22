@@ -41,7 +41,7 @@ export default function TransactionDetail() {
     const date = new Date(tx.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
     return (
-        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px', minHeight: '100dvh' }}>
+        <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px', minHeight: '100dvh' }}>
             <div className='flex justify-between'>
                 <Link href='/dashboard' style={{ fontSize: '15px', color: '#6a6a6a' }}>‹ Back</Link>
                 <Link href={`/transaction/${id}/edit`} style={{ fontSize: '15px', color: '#6a6a6a' }}>Edit</Link>

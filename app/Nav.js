@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { useAddEntry } from "./AddEntrySheet"
+import { activeShadow } from "./tabStyle"
 
 const TABS_LEFT = [
     {href: '/dashboard', label: 'Home'},
@@ -17,7 +18,8 @@ export default function Nav() {
     const { openAddEntry } = useAddEntry();
 
     function tabStyle(href) {
-        return pathname === href ? { color: '#1a1a1a', fontWeight: 600 } : { color: '#b0ada7', fontWeight: 400 };
+        const active = pathname === href;
+        return { color: active ? '#1a1a1a' : '#b0ada7', textShadow: activeShadow(active) };
     }
 
     return (
@@ -29,11 +31,12 @@ export default function Nav() {
                 ))}
                 <button onClick={openAddEntry} aria-label="Add entry"
                     style={{
-                        width: '48px', height: '48px', borderRadius: '24px', background: '#1a1a1a', color: '#faf9f7',
-                        fontFamily: 'var(--font-serif), serif', fontSize: '30px', display: 'flex', alignItems: 'center',
-                        justifyContent: 'center', paddingBottom: '3px',
+                        position: 'relative', width: '56px', height: '56px', borderRadius: '28px', background: '#1a1a1a',
+                        transform: 'translateY(-14px)', boxShadow: '0 8px 20px rgba(26,26,26,.28)',
+                        flex: 'none',
                     }}>
-                    +
+                    <span style={{ position: 'absolute', top: '50%', left: '50%', width: '18px', height: '2px', background: '#faf9f7', transform: 'translate(-50%,-50%)', borderRadius: '1px' }} />
+                    <span style={{ position: 'absolute', top: '50%', left: '50%', width: '2px', height: '18px', background: '#faf9f7', transform: 'translate(-50%,-50%)', borderRadius: '1px' }} />
                 </button>
                 {TABS_RIGHT.map((t) => (
                     <Link key={t.href} href={t.href} style={{ fontSize: '13px', ...tabStyle(t.href) }}>{t.label}</Link>

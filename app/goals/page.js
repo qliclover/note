@@ -36,7 +36,7 @@ export default function GoalsPage() {
     const barColors = ['#2f6b52', '#5e6b73', '#a5735a', '#7a5c66'];
 
     return (
-        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+        <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <div>
                 <div className='lbl'>Toward the future</div>
                 <div className='h1'>Goals</div>

@@ -1,6 +1,7 @@
 'use client'
 import { createContext, useContext, useState, useEffect } from 'react'
 import { colorForIndex } from './categoryColor'
+import { activeShadow } from './tabStyle'
 
 const AddEntryContext = createContext(null);
 
@@ -74,8 +75,8 @@ export function AddEntryProvider({ children }) {
                         </div>
 
                         <div className="flex" style={{ gap: '26px', marginBottom: '22px', borderBottom: '1px solid #e2dfd8' }}>
-                            <button onClick={() => setType('expense')} style={{ fontSize: '16px', paddingBottom: '10px', fontWeight: type === 'expense' ? 600 : 400, borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
-                            <button onClick={() => setType('income')} style={{ fontSize: '16px', paddingBottom: '10px', fontWeight: type === 'income' ? 600 : 400, borderBottom: type === 'income' ? '2px solid #1a1a1a' : '2px solid transparent', color: type === 'income' ? '#1a1a1a' : '#a3a09a' }}>Income</button>
+                            <button onClick={() => setType('expense')} style={{ fontSize: '16px', paddingBottom: '10px', textShadow: activeShadow(type === 'expense'), borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
+                            <button onClick={() => setType('income')} style={{ fontSize: '16px', paddingBottom: '10px', textShadow: activeShadow(type === 'income'), borderBottom: type === 'income' ? '2px solid #1a1a1a' : '2px solid transparent', color: type === 'income' ? '#1a1a1a' : '#a3a09a' }}>Income</button>
                         </div>
 
                         <div style={{ textAlign: 'center', marginBottom: '22px' }}>
@@ -88,7 +89,7 @@ export function AddEntryProvider({ children }) {
                             <div className="flex overflow-x-auto" style={{ gap: '20px', marginBottom: '18px', paddingBottom: '2px', borderBottom: '1px solid #e2dfd8', fontSize: '14px' }}>
                                 {shownCategories.map((c, i) => (
                                     <button key={c.id} onClick={() => setCategoryId(String(c.id))} className="flex items-center flex-none"
-                                        style={{ gap: '7px', paddingBottom: '12px', fontWeight: categoryId === String(c.id) ? 600 : 400, borderBottom: categoryId === String(c.id) ? '2px solid #1a1a1a' : '2px solid transparent', color: categoryId === String(c.id) ? '#1a1a1a' : '#a3a09a', whiteSpace: 'nowrap' }}>
+                                        style={{ gap: '7px', paddingBottom: '12px', textShadow: activeShadow(categoryId === String(c.id)), borderBottom: categoryId === String(c.id) ? '2px solid #1a1a1a' : '2px solid transparent', color: categoryId === String(c.id) ? '#1a1a1a' : '#a3a09a', whiteSpace: 'nowrap' }}>
                                         <span className="dot" style={{ background: colorForIndex(i) }} />{c.name}
                                     </button>
                                 ))}

@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { activeShadow } from './tabStyle'
 
 export const INSIGHTS_TABS = [
     { href: '/stats', label: 'Stats' },
@@ -28,7 +29,7 @@ export default function SubTabs({ tabs }) {
                 const active = pathname === t.href;
                 return (
                     <Link key={t.href} href={t.href} style={{
-                        fontWeight: active ? 600 : 400,
+                        textShadow: activeShadow(active),
                         color: active ? '#1a1a1a' : '#a3a09a',
                         borderBottom: active ? '2px solid #1a1a1a' : '2px solid transparent',
                         paddingBottom: '2px',

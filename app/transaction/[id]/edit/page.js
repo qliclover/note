@@ -4,6 +4,7 @@ import { useParams } from "next/navigation"
 import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import { activeShadow } from "@/app/tabStyle"
 
 export default function EditEntry() {
     const {id} = useParams();
@@ -43,7 +44,7 @@ export default function EditEntry() {
     }
 
     return (
-        <div className="max-w-md mx-auto" style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '22px' }}>
+        <div className="max-w-md mx-auto" style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div className="flex items-center justify-between">
                 <Link href={`/transaction/${id}`} style={{ fontSize: '15px', color: '#6a6a6a' }}>Cancel</Link>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px' }}>Edit</div>
@@ -60,8 +61,8 @@ export default function EditEntry() {
                 <div className="field">
                     <div className="flabel">Type</div>
                     <div className="flex" style={{ gap: '20px', fontSize: '16px' }}>
-                        <button type="button" onClick={() => setType('expense')} style={{ fontWeight: type === 'expense' ? 600 : 400, borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
-                        <button type="button" onClick={() => setType('income')} style={{ fontWeight: type === 'income' ? 600 : 400, borderBottom: type === 'income' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'income' ? '#1a1a1a' : '#a3a09a' }}>Income</button>
+                        <button type="button" onClick={() => setType('expense')} style={{ textShadow: activeShadow(type === 'expense'), borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
+                        <button type="button" onClick={() => setType('income')} style={{ textShadow: activeShadow(type === 'income'), borderBottom: type === 'income' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'income' ? '#1a1a1a' : '#a3a09a' }}>Income</button>
                     </div>
                 </div>
 

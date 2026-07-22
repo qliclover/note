@@ -50,7 +50,7 @@ export default function CategoriesPage() {
     }
 
     return (
-        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '22px' }}>
+        <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div>
                 <div className='lbl'>Manage</div>
                 <div className='h1'>Categories</div>

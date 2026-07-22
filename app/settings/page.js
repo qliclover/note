@@ -25,7 +25,7 @@ export default function SettingsPage() {
   if (!user) return <p className='p-8' style={{ color: '#a3a09a' }}>Loading...</p>;
 
   return (
-    <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+    <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
       <SubTabs tabs={MANAGE_TABS} />
 
       <div className='flex items-center' style={{ gap: '14px' }}>

@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Nav from '@/app/Nav'
 import { categoryColor } from '@/app/categoryColor'
+import { activeShadow } from '@/app/tabStyle'
 
 function fmtDate(iso) {
     const d = new Date(iso);
@@ -53,7 +54,7 @@ export default function Dashboard() {
     const monthLabel = new Date(month + '-02').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
     return (
-        <div className='max-w-md mx-auto' style={{ padding: '64px 26px 24px', display: 'flex', flexDirection: 'column', gap: '26px' }}>
+        <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '26px' }}>
             <div className='flex items-baseline justify-between'>
                 <label className='lbl' style={{ position: 'relative' }}>
                     {monthLabel}
@@ -86,9 +87,9 @@ export default function Dashboard() {
             </div>
 
             <div className='flex items-center overflow-x-auto' style={{ gap: '18px', borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '12px 0', fontSize: '14px' }}>
-                <button onClick={() => setFilter('all')} className='flex-none' style={{ whiteSpace: 'nowrap', fontWeight: filter === 'all' ? 600 : 400, color: filter === 'all' ? '#1a1a1a' : '#a3a09a', borderBottom: filter === 'all' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px' }}>All</button>
+                <button onClick={() => setFilter('all')} className='flex-none' style={{ whiteSpace: 'nowrap', textShadow: activeShadow(filter === 'all'), color: filter === 'all' ? '#1a1a1a' : '#a3a09a', borderBottom: filter === 'all' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px' }}>All</button>
                 {categories.map((c) => (
-                    <button key={c.id} onClick={() => setFilter(String(c.id))} className='flex-none' style={{ whiteSpace: 'nowrap', fontWeight: filter === String(c.id) ? 600 : 400, color: filter === String(c.id) ? '#1a1a1a' : '#a3a09a', borderBottom: filter === String(c.id) ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px' }}>{c.name}</button>
+                    <button key={c.id} onClick={() => setFilter(String(c.id))} className='flex-none' style={{ whiteSpace: 'nowrap', textShadow: activeShadow(filter === String(c.id)), color: filter === String(c.id) ? '#1a1a1a' : '#a3a09a', borderBottom: filter === String(c.id) ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px' }}>{c.name}</button>
                 ))}
             </div>
 

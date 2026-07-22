@@ -45,7 +45,7 @@ export default function StatsPage() {
     const avgDay = dayTotals.reduce((s, v) => s + v, 0) / 7;
 
     return (
-        <div className="max-w-md mx-auto" style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '28px' }}>
+        <div className="max-w-md mx-auto" style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '28px' }}>
             <div>
                 <div className="lbl">{monthLabel}</div>
                 <div className="h1">Statistics</div>
