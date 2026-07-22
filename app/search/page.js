@@ -27,15 +27,15 @@ export default function SearchPage() {
     const total = results.reduce((s, t) => s + t.amount, 0);
 
     return (
-        <div className="max-w-md mx-auto p-6 pb-24">
-            <div className="flex justify-between items-baseline mb-6">
+        <div className="max-w-md mx-auto px-5 pt-5 pb-24">
+            <div className="flex justify-between items-baseline mb-4">
                 <h1 className="font-serif text-4xl">Search</h1>
                 <Link href='/dashboard' className="text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900">Home</Link>
             </div>
 
             <input type="text" placeholder="coffee, salary..." value={query} onChange={(e) => setQuery(e.target.value)} className="bg-transparent border-b border-neutral-300 py-2 w-full mb-4 focus:outline-none focus:border-neutral-900"/>
 
-            <div className="flex gap-2 mb-6 text-xs uppercase tracking-wide">
+            <div className="flex gap-2 mb-4 text-xs uppercase tracking-wide">
                 {['all', 'expense', 'income'].map((f) => (
                     <button key={f} onClick={() => setTypeFilter(f)} className={`border rounded-full px-3 py-1 ${typeFilter === f ? 'bg-neutral-900 text-white border-neutral-900' : 'border-neutral-300 text-neutral-500'}`}>
                         {f}

@@ -34,14 +34,14 @@ export default function StatsPage() {
         .sort((a, b) => b.value - a.value);
     
         return (
-            <div className="max-w-md mx-auto p-6 pb-24">
+            <div className="max-w-md mx-auto px-5 pt-5 pb-24">
                 <div className="flex justify-between items-baseline mb-1">
                     <p className="text-xs uppercase tracking-widest text-neutral-500">{month}</p>
                     <Link href='/dashboard' className="text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900">
                     Home</Link>
                 </div>
-                <h1 className="font-serif text-4xl mb-8">Statistics</h1>
-                <div className="flex justify-between items-baseline border-b border-neutral-300 pb-4 mb-6">
+                <h1 className="font-serif text-4xl mb-4">Statistics</h1>
+                <div className="flex justify-between items-baseline border-b border-neutral-300 pb-4 mb-4">
                     <p className="text-xs uppercase tracking-widest text-neutral-500">Spent this month</p>
                     <p className="font-serif text-3xl">${spent}</p>
                 </div>

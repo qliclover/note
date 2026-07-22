@@ -43,14 +43,14 @@ export default function EditEntry() {
     }
 
     return (
-        <div className="max-w-md mx-auto p-6">
-            <div className="flex justify-between items-baseline mb-8">
+        <div className="max-w-md mx-auto px-5 py-5">
+            <div className="flex justify-between items-baseline mb-6">
                 <Link href={`/transaction/${id}`} className="text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900">Cancel</Link>
                 <h1 className="font-serif text-2xl">Edit</h1>
                 <button onClick={handleSave} className="text-xs uppercase tracking-wide text-[#5f7a5f] hover:text-neutral-900">Save</button>
             </div>
 
-            <form onSubmit={handleSave} className="flex flex-col gap-5">
+            <form onSubmit={handleSave} className="flex flex-col gap-4">
                 <div>
                     <label className="text-xs uppercase tracking-widest text-neutral-500">Amount</label>
                     <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} className="bg-transparent border-b border-neutral-300 py-2 w-full font-serif text-2xl focus:outline-none focus:border-neutral-900" required/>

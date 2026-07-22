@@ -43,11 +43,11 @@ export default function BudgetsPage() {
   }
 
   return (
-    <div className='max-w-md mx-auto p-6 pb-24'>
+    <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
       <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>{month}</p>
-      <h1 className='font-serif text-4xl mb-8'>Budgets</h1>
+      <h1 className='font-serif text-4xl mb-4'>Budgets</h1>
 
-      <div className='flex flex-col gap-5 mb-8'>
+      <div className='flex flex-col gap-5 mb-4'>
         {budgets.map((b) => {
           const spent = spentFor(b.categoryId);
           const percent = b.amount ? Math.min(100, Math.round((spent / b.amount) * 100)) : 0;

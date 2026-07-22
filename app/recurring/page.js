@@ -35,16 +35,16 @@ export default function RecurringPage() {
     const monthlyTotal = items.filter(r => r.cycle === 'monthly').reduce((s, r) => s + r.amount, 0);
 
     return (
-        <div className='max-w-md mx-auto p-6 pb-24'>
+        <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
         <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Automatic</p>
-        <h1 className='font-serif text-4xl mb-6'>Recurring</h1>
+        <h1 className='font-serif text-4xl mb-4'>Recurring</h1>
 
-        <div className='border-b border-neutral-300 pb-6 mb-6'>
+        <div className='border-b border-neutral-300 pb-4 mb-4'>
             <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Monthly commitments</p>
             <p className='font-serif text-4xl'>${monthlyTotal.toFixed(2)}<span className='text-base text-neutral-400'>/mo</span></p>
         </div>
 
-        <div className='flex flex-col mb-8'>
+        <div className='flex flex-col mb-4'>
             {items.map((r) => (
             <div key={r.id} className='flex justify-between items-center border-b border-neutral-200 py-3'>
                 <div>

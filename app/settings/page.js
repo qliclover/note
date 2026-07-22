@@ -24,11 +24,11 @@ export default function SettingsPage() {
   if (!user) return <p className='p-8 text-neutral-500'>Loading...</p>;
 
   return (
-    <div className='max-w-md mx-auto p-6 pb-24'>
-      <h1 className='font-serif text-4xl mb-8'>Settings</h1>
+    <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
+      <h1 className='font-serif text-4xl mb-4'>Settings</h1>
 
       {/* user's card */}
-      <div className='flex items-center gap-4 border-b border-neutral-300 pb-6 mb-6'>
+      <div className='flex items-center gap-4 border-b border-neutral-300 pb-4 mb-4'>
         <div className='w-12 h-12 rounded-full bg-neutral-900 text-white flex items-center justify-center font-serif text-xl'>
           {(user.name || user.email)[0].toUpperCase()}
         </div>
@@ -39,7 +39,7 @@ export default function SettingsPage() {
       </div>
 
       <p className='text-xs uppercase tracking-widest text-neutral-500 mb-2'>Preferences</p>
-      <div className='flex flex-col mb-8'>
+      <div className='flex flex-col mb-4'>
         <Row label='Currency' value='USD $' />
         <Row label='Monthly start day' value='1st' />
         <Row label='Appearance' value='Light' />

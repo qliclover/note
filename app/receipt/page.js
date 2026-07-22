@@ -42,8 +42,8 @@ export default function ReceiptPage() {
     }
 
     return (
-        <div className='max-w-md mx-auto p-6'>
-            <div className='flex justify-between items-baseline mb-8'>
+        <div className='max-w-md mx-auto px-5 py-5'>
+            <div className='flex justify-between items-baseline mb-6'>
                 <h1 className='font-serif text-3xl'>Scan Receipt</h1>
                 <Link href='/dashboard' className='text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900'>Back</Link>
             </div>

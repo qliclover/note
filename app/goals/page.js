@@ -33,11 +33,11 @@ export default function GoalsPage() {
     }
 
     return (
-        <div className='max-w-md mx-auto p-6 pb-24'>
+        <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
         <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Toward the future</p>
-        <h1 className='font-serif text-4xl mb-8'>Goals</h1>
+        <h1 className='font-serif text-4xl mb-4'>Goals</h1>
 
-        <div className='flex flex-col gap-6 mb-8'>
+        <div className='flex flex-col gap-6 mb-4'>
             {goals.map((g) => {
             const percent = g.target ? Math.min(100, Math.round((g.saved / g.target) * 100)) : 0;
             return (

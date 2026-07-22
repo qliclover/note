@@ -31,16 +31,16 @@ export default function TransactionDetail() {
     const date = new Date(tx.date).toLocaleDateString();
 
     return (
-        <div className='max-w-md mx-auto p-6'>
+        <div className='max-w-md mx-auto px-5 py-5'>
             <div className='flex justify-between items-baseline'>
                 <Link href='/dashboard' className='text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900'>Back</Link>
                 <Link href={`/transaction/${id}/edit`} className='text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900'>Edit</Link>
             </div>
-            <div className='text-center my-10'>
+            <div className='text-center my-6'>
                 <p className='text-xs uppercase tracking-widest text-neutral-500 mb-3'>
                     {tx.category ? tx.category.name:(isIncome ? 'Income' : 'Expense')}
                 </p>
-                <p className={`font-serif text-5xl ${isIncome ? 'text-[#5f7a5f]' : 'text-[#a3492f]'}`}>
+                <p className={`font-serif text-4xl ${isIncome ? 'text-[#5f7a5f]' : 'text-[#a3492f]'}`}>
                     {isIncome ? '+' : '-'}${tx.amount}
                 </p>
                 {tx.note && <p className='text-neutral-600 mt-2'>{tx.note}</p>}

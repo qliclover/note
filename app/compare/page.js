@@ -45,14 +45,14 @@ export default function ComparePage() {
         .sort((a,b) => Math.abs(b.delta) - Math.abs(a.delta));
 
     return (
-        <div className='max-w-md mx-auto p-6 pb-24'>
+        <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
         <div className='flex justify-between items-baseline mb-1'>
             <p className='text-xs uppercase tracking-widest text-neutral-500'>{prevMonth} → {thisMonth}</p>
             <Link href='/dashboard' className='text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900'>Home</Link>
         </div>
-        <h1 className='font-serif text-4xl mb-8'>Compared</h1>
+        <h1 className='font-serif text-4xl mb-4'>Compared</h1>
 
-        <div className='border-b border-neutral-300 pb-6 mb-6'>
+        <div className='border-b border-neutral-300 pb-4 mb-4'>
             <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>You spent this month</p>
             <p className='font-serif text-4xl'>${thisTotal}</p>
             <p className={`text-sm mt-2 ${diff <= 0 ? 'text-[#5f7a5f]' : 'text-[#a3492f]'}`}>

@@ -35,16 +35,16 @@ export default function AccountsPage() {
   const netWorth = accounts.reduce((s, a) => s + a.balance, 0);
 
   return (
-    <div className='max-w-md mx-auto p-6 pb-24'>
+    <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
       <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Where your money lives</p>
-      <h1 className='font-serif text-4xl mb-8'>Accounts</h1>
+      <h1 className='font-serif text-4xl mb-4'>Accounts</h1>
 
-      <div className='border-b border-neutral-300 pb-6 mb-6'>
+      <div className='border-b border-neutral-300 pb-4 mb-4'>
         <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Net worth</p>
-        <p className='font-serif text-5xl'>${netWorth.toFixed(2)}</p>
+        <p className='font-serif text-4xl'>${netWorth.toFixed(2)}</p>
       </div>
 
-      <div className='flex flex-col mb-8'>
+      <div className='flex flex-col mb-4'>
         {accounts.map((a) => (
           <div key={a.id} className='flex justify-between items-center border-b border-neutral-200 py-3'>
             <div>

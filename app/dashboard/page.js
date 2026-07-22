@@ -119,8 +119,8 @@ export default function Dashboard() {
     const pieData = Object.entries(expenseByCategory).map(([name, value]) => ({ name, value }));
 
    return (
-    <div className='max-w-md mx-auto p-6 pb-24'>
-      <div className='flex justify-between items-baseline mb-6'>
+    <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
+      <div className='flex justify-between items-baseline mb-4'>
         <h1 className='font-serif text-3xl'>My Note</h1>
         <div className='flex items-center gap-4 text-xs uppercase tracking-wide text-neutral-500'>
           <Link href='/receipt' className='hover:text-neutral-900'>Scan</Link>
@@ -129,16 +129,16 @@ export default function Dashboard() {
       </div>
 
       {/* ★ 月份選擇：改變它，下面所有數字/圖表/列表都只算這個月 */}
-      <div className='mb-6 flex items-center gap-3'>
+      <div className='mb-4 flex items-center gap-3'>
         <label className='text-xs uppercase tracking-widest text-neutral-500'>Month</label>
         <input type='month' value={month} onChange={(e) => setMonth(e.target.value)}
           className='bg-transparent border-b border-neutral-300 py-1 flex-1 focus:outline-none focus:border-neutral-900' />
       </div>
 
       {/* 結餘摘要 */}
-      <div className='border-b border-neutral-300 pb-6 mb-6'>
+      <div className='border-b border-neutral-300 pb-4 mb-4'>
         <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Balance</p>
-        <p className='font-serif text-5xl'>${balance}</p>
+        <p className='font-serif text-4xl'>${balance}</p>
         <div className='flex gap-6 mt-3 text-sm'>
           <span className='text-[#5f7a5f]'>+${income} in</span>
           <span className='text-[#a3492f]'>-${expense} out</span>
@@ -147,7 +147,7 @@ export default function Dashboard() {
 
       {/* 花費分布長條圖：有支出資料才顯示 */}
       {pieData.length > 0 && (
-        <div className='border-b border-neutral-300 pb-6 mb-6'>
+        <div className='border-b border-neutral-300 pb-4 mb-4'>
           <p className='text-xs uppercase tracking-widest text-neutral-500 mb-4'>Expense by category</p>
           <div className='flex flex-col gap-3'>
             {pieData.map((c, i) => {
@@ -184,7 +184,7 @@ export default function Dashboard() {
 
       {/* 分類管理：每個分類一個標籤，帶 Edit / Del 文字按鈕 */}
       {categories.length > 0 && (
-        <div className='flex flex-wrap gap-x-5 gap-y-2 mb-8 text-sm'>
+        <div className='flex flex-wrap gap-x-5 gap-y-2 mb-6 text-sm'>
           {categories.map((c) => (
             <span key={c.id} className='inline-flex items-center gap-2'>
               <span>{c.name}</span>
@@ -196,7 +196,7 @@ export default function Dashboard() {
       )}
 
       {/* 新增交易表單 */}
-      <form onSubmit={handleAdd} className='flex flex-col gap-4 mb-8'>
+      <form onSubmit={handleAdd} className='flex flex-col gap-4 mb-6'>
         <div className='flex gap-3'>
           <select value={type} onChange={(e) => setType(e.target.value)}
             className='bg-transparent border-b border-neutral-300 py-2 flex-1 focus:outline-none focus:border-neutral-900'>
