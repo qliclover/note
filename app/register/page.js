@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function RegisterPage() {
     const [name, setName] = useState('');
@@ -13,11 +14,10 @@ export default function RegisterPage() {
         e.preventDefault();
         setError('');
 
-        // call Register API
         const res = await fetch('/api/auth/register', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({name, email, password})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, password })
         })
 
         if (res.ok) {
@@ -29,29 +29,23 @@ export default function RegisterPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm space-y-4">
-                <h1 className="text-2xl font-bold text-center">Register</h1>
-                {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-                <input
-                    type="text" placeholder="Name" value = {name}
+        <div className="max-w-md mx-auto min-h-screen flex flex-col justify-center p-8">
+            <p className="text-xs uppercase tracking-widest text-neutral-500 mb-2">Ledger · Est 2026</p>
+            <h1 className="font-serif text-4xl mb-8">Create account</h1>
+            {error && <p className="text-[#a3492f] text-sm mb-4">{error}</p>}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <input type="text" placeholder="Name" value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2"
-                />
-                <input 
-                    type="email" placeholder="Email" value={email}
+                    className="bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900" />
+                <input type="email" placeholder="Email" value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2" required
-                />
-                <input
-                    type="password" placeholder="Password" value={password}
+                    className="bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900" required />
+                <input type="password" placeholder="Password" value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2" required
-                />
-                <button type="submit" className="w-full bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700">
-                    Register
-                </button>
+                    className="bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900" required />
+                <button type="submit" className="bg-neutral-900 text-white rounded-full py-3 mt-2">Get started</button>
             </form>
+            <Link href="/login" className="text-center text-sm text-neutral-500 hover:text-neutral-900 mt-6">I already have an account</Link>
         </div>
     )
 }

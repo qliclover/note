@@ -1,6 +1,7 @@
 'use client'
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function LoginPage() {
     const [email, setEmail] = useState('');
@@ -12,11 +13,10 @@ export default function LoginPage() {
         e.preventDefault();
         setError('');
 
-        // call Login API
         const res = await fetch('/api/auth/login', {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
         })
 
         if (res.ok) {
@@ -28,24 +28,20 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
-            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm space-y-4">
-                <h1 className="text-2xl font-bold text-center">Login</h1>
-                {error && <p className="text-red-500 text-sm text-center">{error}</p>}
-                <input 
-                    type="email" placeholder="Email" value={email}
+        <div className="max-w-md mx-auto min-h-screen flex flex-col justify-center p-8">
+            <p className="text-xs uppercase tracking-widest text-neutral-500 mb-2">Welcome back</p>
+            <h1 className="font-serif text-4xl mb-8">Sign in</h1>
+            {error && <p className="text-[#a3492f] text-sm mb-4">{error}</p>}
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+                <input type="email" placeholder="Email" value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2" required
-                />
-                <input
-                    type="password" placeholder="Password" value={password}
+                    className="bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900" required />
+                <input type="password" placeholder="Password" value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full border rounded-lg px-3 py-2" required
-                />
-                <button type="submit" className="w-full bg-blue-600 text-white rounded-lg py-2 hover:bg-blue-700">
-                    Login
-                </button>
+                    className="bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900" required />
+                <button type="submit" className="bg-neutral-900 text-white rounded-full py-3 mt-2">Sign in</button>
             </form>
+            <Link href="/register" className="text-center text-sm text-neutral-500 hover:text-neutral-900 mt-6">Create an account</Link>
         </div>
     )
 }
