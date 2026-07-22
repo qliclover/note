@@ -14,10 +14,10 @@ const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'];
 
 function SmallCameraIcon() {
     return (
-        <div style={{ position: 'relative', width: '26px', height: '22px' }}>
-            <div style={{ position: 'absolute', inset: 0, borderRadius: '5px', border: '1.3px solid #6a6a6a' }} />
-            <div style={{ position: 'absolute', top: '-4px', left: '7px', width: '9px', height: '4px', borderRadius: '1px 1px 0 0', border: '1.3px solid #6a6a6a', borderBottom: 'none', background: '#f4f2ee' }} />
-            <div style={{ position: 'absolute', top: '50%', left: '50%', width: '9px', height: '9px', borderRadius: '50%', border: '1.3px solid #6a6a6a', transform: 'translate(-50%,-50%)' }} />
+        <div style={{ position: 'relative', width: '19px', height: '16px', flex: 'none' }}>
+            <div style={{ position: 'absolute', inset: 0, borderRadius: '4px', border: '1.2px solid #6a6a6a' }} />
+            <div style={{ position: 'absolute', top: '-3px', left: '5px', width: '7px', height: '3px', borderRadius: '1px 1px 0 0', border: '1.2px solid #6a6a6a', borderBottom: 'none', background: '#f4f2ee' }} />
+            <div style={{ position: 'absolute', top: '50%', left: '50%', width: '7px', height: '7px', borderRadius: '50%', border: '1.2px solid #6a6a6a', transform: 'translate(-50%,-50%)' }} />
         </div>
     );
 }
@@ -115,26 +115,27 @@ export function AddEntryProvider({ children }) {
                         <div style={{ width: '40px', height: '5px', borderRadius: '5px', background: '#d9d6cf', margin: '0 auto 16px' }} />
                         <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
                             <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '30px' }}>New entry</div>
-                            <div className="flex items-center" style={{ gap: '18px' }}>
-                                <label style={{ cursor: 'pointer', opacity: scanning ? .5 : 1 }} aria-label="Scan a receipt">
-                                    <SmallCameraIcon />
-                                    <input type="file" accept="image/*" capture="environment" onChange={scanReceipt} disabled={scanning} style={{ display: 'none' }} />
-                                </label>
-                                <button onClick={closeAddEntry} style={{ fontSize: '24px', color: '#a3a09a' }}>×</button>
-                            </div>
+                            <button onClick={closeAddEntry} style={{ fontSize: '24px', color: '#a3a09a' }}>×</button>
                         </div>
-                        {scanning && <div style={{ fontSize: '13px', color: '#a3a09a', marginBottom: '12px' }}>Reading receipt…</div>}
-                        {scanError && <div style={{ fontSize: '13px', color: '#c15b4a', marginBottom: '12px' }}>{scanError}</div>}
 
                         <div className="flex" style={{ gap: '26px', marginBottom: '22px', borderBottom: '1px solid #e2dfd8' }}>
                             <button onClick={() => setType('expense')} style={{ fontSize: '16px', paddingBottom: '10px', textShadow: activeShadow(type === 'expense'), borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
                             <button onClick={() => setType('income')} style={{ fontSize: '16px', paddingBottom: '10px', textShadow: activeShadow(type === 'income'), borderBottom: type === 'income' ? '2px solid #1a1a1a' : '2px solid transparent', color: type === 'income' ? '#1a1a1a' : '#a3a09a' }}>Income</button>
                         </div>
 
-                        <div style={{ textAlign: 'center', marginBottom: '22px' }}>
+                        <div style={{ textAlign: 'center', marginBottom: '10px' }}>
                             <span style={{ fontFamily: 'var(--font-serif), serif', fontSize: '66px', letterSpacing: '-1px', color: amount ? '#1a1a1a' : '#c9c5bc' }}>
                                 $<span style={{ color: amount ? '#1a1a1a' : '#c9c5bc' }}>{amount || '0'}</span>
                             </span>
+                        </div>
+
+                        <div style={{ textAlign: 'center', marginBottom: '22px' }}>
+                            <label className="flex items-center justify-center" style={{ gap: '7px', cursor: 'pointer', opacity: scanning ? .5 : 1, display: 'inline-flex' }}>
+                                <SmallCameraIcon />
+                                <span style={{ fontSize: '14px', color: '#6a6a6a' }}>{scanning ? 'Reading receipt…' : 'or scan a receipt'}</span>
+                                <input type="file" accept="image/*" capture="environment" onChange={scanReceipt} disabled={scanning} style={{ display: 'none' }} />
+                            </label>
+                            {scanError && <div style={{ fontSize: '13px', color: '#c15b4a', marginTop: '8px' }}>{scanError}</div>}
                         </div>
 
                         {type === 'expense' && (
