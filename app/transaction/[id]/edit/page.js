@@ -5,15 +5,16 @@ import { useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { activeShadow } from "@/app/tabStyle"
+import { useData } from "@/app/DataContext"
 
 export default function EditEntry() {
     const {id} = useParams();
     const router = useRouter();
+    const { categories, ensureLoaded, refetch } = useData();
     const [amount, setAmount] = useState('');
     const [type, setType] = useState('expense');
     const [note, setNote] = useState('');
     const [categoryId, setCategoryId] = useState('');
-    const [categories, setCategories] = useState([]);
 
     useEffect(() => {
         fetch(`/api/transactions/${id}`)
@@ -27,10 +28,8 @@ export default function EditEntry() {
                     setCategoryId(t.categoryId ? String(t.categoryId) : '');
                 }
             });
-
-        fetch('/api/categories')
-            .then((res) => res.ok ? res.json() : null)
-            .then((data) => {if (data) setCategories(data.categories);});
+        ensureLoaded();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id, router]);
 
     async function handleSave(e) {
@@ -40,6 +39,7 @@ export default function EditEntry() {
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({amount, type, note, categoryId}),
         });
+        refetch();
         router.push(`/transaction/${id}`);
     }
 

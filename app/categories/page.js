@@ -1,32 +1,17 @@
 'use client'
 import {useState, useEffect} from 'react'
-import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
 import SubTabs, { MANAGE_TABS } from '@/app/SubTabs'
+import { useData } from '@/app/DataContext'
 import { colorForIndex } from '@/app/categoryColor'
 
 export default function CategoriesPage() {
-    const [categories, setCategories] = useState([]);
-    const [transactions, setTransactions] = useState([]);
+    const { categories, transactions, ensureLoaded, refetch } = useData();
     const [newCatName, setNewCatName] = useState('');
     const [newCatType, setNewCatType] = useState('expense');
-    const router = useRouter();
 
-    async function loadCategories() {
-        const res = await fetch('/api/categories');
-        if (res.status === 401) {
-            router.push('/login');
-            return;
-        }
-        const data = await res.json();
-        setCategories(data.categories);
-    }
-
-    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
-    useEffect(() => {
-        loadCategories();
-        fetch('/api/transactions').then((r) => (r.ok ? r.json() : null)).then((d) => { if (d) setTransactions(d.transactions); });
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => { ensureLoaded(); }, []);
 
     async function handleAddCategory(e) {
         e.preventDefault();
@@ -37,12 +22,12 @@ export default function CategoriesPage() {
             body: JSON.stringify({ name: newCatName, type: newCatType }),
         });
         setNewCatName('');
-        loadCategories();
+        refetch();
     }
 
     async function handleDeleteCategory(id) {
         await fetch(`/api/categories/${id}`, { method: 'DELETE' });
-        loadCategories();
+        refetch();
     }
 
     function countFor(id) {

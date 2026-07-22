@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import { colorForIndex } from './categoryColor'
 import { activeShadow } from './tabStyle'
+import { useData } from './DataContext'
 
 const AddEntryContext = createContext(null);
 
@@ -13,11 +14,11 @@ const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'];
 
 export function AddEntryProvider({ children }) {
     const [open, setOpen] = useState(false);
-    const [categories, setCategories] = useState([]);
     const [type, setType] = useState('expense');
     const [amount, setAmount] = useState('');
     const [categoryId, setCategoryId] = useState('');
     const [note, setNote] = useState('');
+    const { categories, ensureLoaded, refetch } = useData();
 
     function openAddEntry() {
         setType('expense');
@@ -25,13 +26,7 @@ export function AddEntryProvider({ children }) {
         setCategoryId('');
         setNote('');
         setOpen(true);
-        fetch('/api/categories')
-            .then((res) => (res.ok ? res.json() : null))
-            .then((data) => {
-                if (!data) return;
-                setCategories(data.categories);
-                setCategoryId((prev) => prev || (data.categories[0] ? String(data.categories[0].id) : ''));
-            });
+        ensureLoaded();
     }
 
     function closeAddEntry() {
@@ -56,10 +51,15 @@ export function AddEntryProvider({ children }) {
             body: JSON.stringify({ amount: amt, type, note, categoryId: type === 'income' ? '' : categoryId }),
         });
         setOpen(false);
-        window.location.reload();
+        refetch();
     }
 
     const shownCategories = categories.filter((c) => c.type === type);
+
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    useEffect(() => {
+        if (open && !categoryId && shownCategories[0]) setCategoryId(String(shownCategories[0].id));
+    }, [open, categoryId, shownCategories]);
 
     return (
         <AddEntryContext.Provider value={{ openAddEntry, closeAddEntry }}>

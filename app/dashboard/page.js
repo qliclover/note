@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import Nav from '@/app/Nav'
+import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
 import { activeShadow } from '@/app/tabStyle'
 
@@ -17,28 +18,13 @@ function fmtDate(iso) {
 }
 
 export default function Dashboard() {
-    const [transactions, setTransactions] = useState([]);
-    const [categories, setCategories] = useState([]);
+    const { transactions, categories, ensureLoaded } = useData();
     const [month, setMonth] = useState(() => new Date().toISOString().slice(0, 7));
     const [filter, setFilter] = useState('all');
     const router = useRouter();
 
-    async function loadTransactions() {
-        const res = await fetch('/api/transactions');
-        if (res.status === 401) { router.push('/login'); return; }
-        const data = await res.json();
-        setTransactions(data.transactions);
-    }
-
-    async function loadCategories() {
-        const res = await fetch('/api/categories');
-        if (res.status === 401) { router.push('/login'); return; }
-        const data = await res.json();
-        setCategories(data.categories);
-    }
-
-    // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
-    useEffect(() => { loadTransactions(); loadCategories(); }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => { ensureLoaded(); }, []);
 
     async function handleLogout() {
         await fetch('/api/auth/logout', { method: 'POST' });

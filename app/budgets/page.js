@@ -3,26 +3,24 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
 import SubTabs, { PLANNING_TABS } from '@/app/SubTabs'
+import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
 
 export default function BudgetsPage() {
+  const { transactions, categories, ensureLoaded } = useData();
   const [budgets, setBudgets] = useState([]);
-  const [transactions, setTransactions] = useState([]);
-  const [categories, setCategories] = useState([]);
   const [categoryId, setCategoryId] = useState('');
   const [amount, setAmount] = useState('');
   const router = useRouter();
 
-  async function loadAll() {
+  async function loadBudgets() {
     const res = await fetch('/api/budgets');
     if (res.status === 401) { router.push('/login'); return; }
     setBudgets((await res.json()).budgets);
-    setTransactions((await (await fetch('/api/transactions')).json()).transactions);
-    setCategories((await (await fetch('/api/categories')).json()).categories);
   }
 
   // eslint-disable-next-line react-hooks/set-state-in-effect, react-hooks/exhaustive-deps
-  useEffect(() => { loadAll(); }, []);
+  useEffect(() => { loadBudgets(); ensureLoaded(); }, []);
 
   async function handleAdd(e) {
     e.preventDefault();
@@ -33,7 +31,7 @@ export default function BudgetsPage() {
       body: JSON.stringify({ categoryId, amount }),
     });
     setCategoryId(''); setAmount('');
-    loadAll();
+    loadBudgets();
   }
 
   const month = new Date().toISOString().slice(0, 7);

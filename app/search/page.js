@@ -1,9 +1,9 @@
 'use client'
 import { useState, useEffect } from "react"
-import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Nav from '@/app/Nav'
 import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
+import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
 
 const FILTERS = [
@@ -14,20 +14,12 @@ const FILTERS = [
 ];
 
 export default function SearchPage() {
-    const [transactions, setTransactions] = useState([]);
-    const [categories, setCategories] = useState([]);
+    const { transactions, categories, ensureLoaded } = useData();
     const [query, setQuery] = useState('');
     const [active, setActive] = useState([]);
-    const router = useRouter();
 
-    useEffect(() => {
-        fetch('/api/transactions')
-            .then((res) => { if (res.status === 401) { router.push('/login'); return null; } return res.json(); })
-            .then((data) => { if (data) setTransactions(data.transactions); });
-        fetch('/api/categories')
-            .then((res) => (res.ok ? res.json() : null))
-            .then((data) => { if (data) setCategories(data.categories); });
-    }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => { ensureLoaded(); }, []);
 
     function toggle(id) {
         setActive((a) => (a.includes(id) ? a.filter((x) => x !== id) : [...a, id]));

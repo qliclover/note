@@ -1,23 +1,15 @@
 'use client'
-import { useEffect, useState } from "react"
-import { useRouter } from "next/navigation"
+import { useEffect } from "react"
 import Nav from '@/app/Nav'
 import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
+import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
 
 export default function StatsPage() {
-    const [transactions, setTransactions] = useState([]);
-    const [categories, setCategories] = useState([]);
-    const router = useRouter();
+    const { transactions, categories, ensureLoaded } = useData();
 
-    useEffect(() => {
-        fetch('/api/transactions')
-            .then((res) => { if (res.status === 401) { router.push('/login'); return null; } return res.json(); })
-            .then((data) => { if (data) setTransactions(data.transactions); });
-        fetch('/api/categories')
-            .then((res) => (res.ok ? res.json() : null))
-            .then((data) => { if (data) setCategories(data.categories); });
-    }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => { ensureLoaded(); }, []);
 
     const month = new Date().toISOString().slice(0, 7);
     const monthLabel = new Date(month + '-02').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });

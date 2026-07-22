@@ -1,20 +1,14 @@
 'use client'
-import {useState, useEffect} from 'react'
-import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 import Nav from '@/app/Nav'
 import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
+import { useData } from '@/app/DataContext'
 
 export default function ComparePage() {
-    const [transactions, setTransactions] = useState([]);
-    const router = useRouter();
+    const { transactions, ensureLoaded } = useData();
 
-    useEffect(() => {
-        fetch('/api/transactions')
-            .then((res) => {if (res.status === 401) {
-                router.push('/login'); return null;
-            } return res.json();})
-            .then((data) => {if (data) setTransactions(data.transactions);});
-    }, [router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => { ensureLoaded(); }, []);
 
     const now = new Date();
     const thisMonth = now.toISOString().slice(0, 7);

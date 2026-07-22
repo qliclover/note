@@ -1,6 +1,7 @@
 import { Geist_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { AddEntryProvider } from "./AddEntrySheet";
+import { DataProvider } from "./DataContext";
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -32,7 +33,9 @@ export default function RootLayout({ children }) {
       className={`${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <AddEntryProvider>{children}</AddEntryProvider>
+        <DataProvider>
+          <AddEntryProvider>{children}</AddEntryProvider>
+        </DataProvider>
       </body>
     </html>
   );

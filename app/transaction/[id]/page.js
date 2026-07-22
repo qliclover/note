@@ -2,10 +2,12 @@
 import {useState, useEffect} from 'react'
 import {useParams, useRouter} from 'next/navigation'
 import Link from 'next/link'
+import { useData } from '@/app/DataContext'
 
 export default function TransactionDetail() {
     const {id} = useParams();
     const router = useRouter();
+    const { refetch } = useData();
     const [tx, setTx] = useState(null);
     const [notFound, setNotFound] = useState(false);
 
@@ -21,6 +23,7 @@ export default function TransactionDetail() {
 
     async function handleDelete() {
         await fetch(`/api/transactions/${id}`, {method: 'DELETE'});
+        refetch();
         router.push('/dashboard');
     }
 
@@ -31,6 +34,7 @@ export default function TransactionDetail() {
             body: JSON.stringify({ amount: tx.amount, type: tx.type, note: tx.note, categoryId: tx.categoryId || '' }),
         });
         const data = await res.json();
+        refetch();
         router.push(`/transaction/${data.transaction.id}`);
     }
 
