@@ -49,7 +49,6 @@ export default function Dashboard() {
                 </label>
                 <div className='flex items-center' style={{ gap: '18px' }}>
                     <Link href='/search' aria-label='Search' style={{ fontSize: '17px', color: '#6a6a6a' }}>⌕</Link>
-                    <Link href='/receipt' style={{ fontSize: '13px', color: '#6a6a6a' }}>Scan</Link>
                     <button onClick={handleLogout} style={{ fontSize: '13px', color: '#6a6a6a' }}>Log out</button>
                 </div>
             </div>

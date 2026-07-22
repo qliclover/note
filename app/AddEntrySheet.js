@@ -12,12 +12,24 @@ export function useAddEntry() {
 
 const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '.', '0', '⌫'];
 
+function SmallCameraIcon() {
+    return (
+        <div style={{ position: 'relative', width: '26px', height: '22px' }}>
+            <div style={{ position: 'absolute', inset: 0, borderRadius: '5px', border: '1.3px solid #6a6a6a' }} />
+            <div style={{ position: 'absolute', top: '-4px', left: '7px', width: '9px', height: '4px', borderRadius: '1px 1px 0 0', border: '1.3px solid #6a6a6a', borderBottom: 'none', background: '#f4f2ee' }} />
+            <div style={{ position: 'absolute', top: '50%', left: '50%', width: '9px', height: '9px', borderRadius: '50%', border: '1.3px solid #6a6a6a', transform: 'translate(-50%,-50%)' }} />
+        </div>
+    );
+}
+
 export function AddEntryProvider({ children }) {
     const [open, setOpen] = useState(false);
     const [type, setType] = useState('expense');
     const [amount, setAmount] = useState('');
     const [categoryId, setCategoryId] = useState('');
     const [note, setNote] = useState('');
+    const [scanning, setScanning] = useState(false);
+    const [scanError, setScanError] = useState('');
     const { categories, ensureLoaded, refetch } = useData();
 
     function openAddEntry() {
@@ -25,8 +37,40 @@ export function AddEntryProvider({ children }) {
         setAmount('');
         setCategoryId('');
         setNote('');
+        setScanError('');
         setOpen(true);
         ensureLoaded();
+    }
+
+    async function scanReceipt(e) {
+        const file = e.target.files[0];
+        e.target.value = '';
+        if (!file) return;
+        setScanError('');
+        setScanning(true);
+        try {
+            const image = await new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result);
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
+            const res = await fetch('/api/receipt', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ image }),
+            });
+            if (!res.ok) throw new Error();
+            const { receipt } = await res.json();
+            setType('expense');
+            setAmount(receipt.total ? String(receipt.total) : '');
+            setNote(receipt.merchant || '');
+            const match = categories.find((c) => c.type === 'expense' && c.name.toLowerCase() === (receipt.merchant || '').toLowerCase());
+            if (match) setCategoryId(String(match.id));
+        } catch {
+            setScanError('Could not read that receipt — try again or enter it manually.');
+        }
+        setScanning(false);
     }
 
     function closeAddEntry() {
@@ -71,8 +115,16 @@ export function AddEntryProvider({ children }) {
                         <div style={{ width: '40px', height: '5px', borderRadius: '5px', background: '#d9d6cf', margin: '0 auto 16px' }} />
                         <div className="flex items-center justify-between" style={{ marginBottom: '20px' }}>
                             <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '30px' }}>New entry</div>
-                            <button onClick={closeAddEntry} style={{ fontSize: '24px', color: '#a3a09a' }}>×</button>
+                            <div className="flex items-center" style={{ gap: '18px' }}>
+                                <label style={{ cursor: 'pointer', opacity: scanning ? .5 : 1 }} aria-label="Scan a receipt">
+                                    <SmallCameraIcon />
+                                    <input type="file" accept="image/*" capture="environment" onChange={scanReceipt} disabled={scanning} style={{ display: 'none' }} />
+                                </label>
+                                <button onClick={closeAddEntry} style={{ fontSize: '24px', color: '#a3a09a' }}>×</button>
+                            </div>
                         </div>
+                        {scanning && <div style={{ fontSize: '13px', color: '#a3a09a', marginBottom: '12px' }}>Reading receipt…</div>}
+                        {scanError && <div style={{ fontSize: '13px', color: '#c15b4a', marginBottom: '12px' }}>{scanError}</div>}
 
                         <div className="flex" style={{ gap: '26px', marginBottom: '22px', borderBottom: '1px solid #e2dfd8' }}>
                             <button onClick={() => setType('expense')} style={{ fontSize: '16px', paddingBottom: '10px', textShadow: activeShadow(type === 'expense'), borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
