@@ -1,0 +1,106 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// user table 
+model User {
+  id            Int          @id @default(autoincrement())
+  email         String       @unique
+  password      String
+  name          String?
+  createdAt     DateTime     @default(now())
+
+  transactions  Transaction[]
+  categories    Category[]
+  goals          Goal[] 
+  recurrings    Recurring[]
+  budgets       Budget[]
+  accounts      Account[]
+}
+
+// category table 
+model Category {
+  id            Int          @id @default(autoincrement())
+  name          String 
+  icon          String?
+  type          String
+
+  userId        Int
+  user          User          @relation(fields: [userId], references: [id])
+
+  transactions  Transaction[]
+  budgets       Budget[]
+}
+
+// transaction table
+model Transaction {
+  id            Int            @id @default(autoincrement())
+  amount        Float 
+  type          String
+  note          String?
+  date          DateTime       @default(now())
+
+  userId        Int
+  user          User           @relation(fields: [userId], references: [id])
+
+  categoryId    Int? 
+  category      Category?      @relation(fields: [categoryId], references: [id])
+}
+
+
+model Goal {
+  id            Int            @id @default(autoincrement())
+  name          String                                  
+  target        Float                                   
+  saved         Float          @default(0)                    
+  targetDate    String?                                 
+  createdAt     DateTime       @default(now())
+
+  userId        Int
+  user          User           @relation(fields: [userId], references: [id])
+}
+
+model Recurring {
+  id            Int            @id @default(autoincrement())
+  name          String                                  
+  amount        Float
+  cycle         String         @default("monthly")            // monthly / yearly / weekly
+  nextDate      String?                                
+  createdAt     DateTime       @default(now())
+
+  userId        Int
+  user          User           @relation(fields: [userId], references: [id])
+}
+
+model Budget {
+  id            Int            @id @default(autoincrement())
+  amount        Float                                   // budget max limit
+  createdAt     DateTime       @default(now())
+
+  userId        Int
+  user          User           @relation(fields: [userId], references: [id])
+
+  categoryId    Int
+  category      Category       @relation(fields: [categoryId], references: [id])
+}
+
+model Account {
+  id            Int            @id @default(autoincrement())
+  name          String                                  // Cash, Bank card, Credit card
+  type          String         @default("bank")               // cash / bank / credit
+  balance       Float          @default(0)                     // 餘額（信用卡可為負）
+  createdAt     DateTime       @default(now())
+
+  userId        Int
+  user          User           @relation(fields: [userId], references: [id])
+}
