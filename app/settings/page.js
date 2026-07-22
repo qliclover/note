@@ -21,42 +21,48 @@ export default function SettingsPage() {
     router.push('/');
   }
 
-  if (!user) return <p className='p-8 text-neutral-500'>Loading...</p>;
+  if (!user) return <p className='p-8' style={{ color: '#a3a09a' }}>Loading...</p>;
 
   return (
-    <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
-      <h1 className='font-serif text-4xl mb-4'>Settings</h1>
-
-      {/* user's card */}
-      <div className='flex items-center gap-4 border-b border-neutral-300 pb-4 mb-4'>
-        <div className='w-12 h-12 rounded-full bg-neutral-900 text-white flex items-center justify-center font-serif text-xl'>
+    <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <div className='flex items-center' style={{ gap: '14px' }}>
+        <div style={{ width: '52px', height: '52px', borderRadius: '26px', background: '#1a1a1a', color: '#faf9f7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-serif), serif', fontSize: '24px' }}>
           {(user.name || user.email)[0].toUpperCase()}
         </div>
         <div>
-          <p className='font-serif text-xl'>{user.name || 'No name'}</p>
-          <p className='text-sm text-neutral-500'>{user.email}</p>
+          <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '26px' }}>{user.name || 'No name'}</div>
+          <div style={{ fontSize: '13px', color: '#a3a09a' }}>{user.email}</div>
         </div>
       </div>
 
-      <p className='text-xs uppercase tracking-widest text-neutral-500 mb-2'>Preferences</p>
-      <div className='flex flex-col mb-4'>
-        <Row label='Currency' value='USD $' />
-        <Row label='Monthly start day' value='1st' />
-        <Row label='Appearance' value='Light' />
+      <div>
+        <div className='lbl' style={{ marginBottom: '4px' }}>Preferences</div>
+        <Row label='Currency' value='USD $ ›' />
+        <Row label='Monthly start day' value='1st ›' />
+        <Row label='Appearance' value='Light ›' last />
       </div>
 
-      <button onClick={handleLogout} className='text-[#a3492f] text-sm'>Log out</button>
-
+      <div>
+        <div className='lbl' style={{ marginBottom: '4px' }}>Security &amp; data</div>
+        <Row label='Face ID lock' value='On' valueColor='#2f6b52' />
+        <Row label='iCloud sync' value='On' valueColor='#2f6b52' />
+        <Row label='Export CSV / PDF' value='›' />
+        <div className='row' style={{ borderBottom: 'none' }}>
+          <button onClick={handleLogout} style={{ color: '#c15b4a' }}>Log out</button>
+          <span />
+        </div>
+      </div>
+      <div style={{ height: '80px' }} />
       <Nav />
     </div>
   );
 }
 
-function Row({ label, value }) {
+function Row({ label, value, valueColor, last }) {
   return (
-    <div className='flex justify-between border-b border-neutral-200 py-3'>
+    <div className='row' style={last ? { borderBottom: 'none' } : undefined}>
       <span>{label}</span>
-      <span className='text-neutral-500'>{value}</span>
+      <span style={{ color: valueColor || '#a3a09a' }}>{value}</span>
     </div>
   );
 }

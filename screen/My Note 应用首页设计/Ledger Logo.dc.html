@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#e6e2d8;font-family:-apple-system,system-ui,sans-serif;color:#1a1a1a}
+  .wrap{padding:56px;display:flex;flex-wrap:wrap;gap:56px;align-items:flex-start}
+  .col{display:flex;flex-direction:column;gap:16px;align-items:center}
+  .cap{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#8f8b82}
+  .serif{font-family:'Instrument Serif',serif}
+</style>
+</helmet>
+
+<div class="wrap">
+
+  <!-- App icon (rounded squircle) -->
+  <div class="col">
+    <div id="icon" style="width:320px;height:320px;border-radius:74px;background:#1a1a1a;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(26,26,26,.28)">
+      <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 78% 8%, rgba(255,255,255,.09), transparent 55%)"></div>
+      <div class="serif" style="font-size:210px;line-height:1;color:#faf9f7;position:relative;padding-bottom:20px">N<span style="font-style:italic;color:#c9a35a">.</span></div>
+    </div>
+    <div class="cap">App icon · 320×320</div>
+  </div>
+
+  <!-- Icon light variant -->
+  <div class="col">
+    <div id="icon2" style="width:320px;height:320px;border-radius:74px;background:#faf9f7;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;box-shadow:0 24px 60px rgba(26,26,26,.16);border:1px solid #e6e2d8">
+      <div class="serif" style="font-size:210px;line-height:1;color:#1a1a1a;position:relative;padding-bottom:20px">N<span style="font-style:italic;color:#a5735a">.</span></div>
+    </div>
+    <div class="cap">App icon · light</div>
+  </div>
+
+  <!-- Wordmark -->
+  <div class="col">
+    <div id="wordmark" style="width:520px;height:320px;background:#faf9f7;border-radius:36px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;border:1px solid #e6e2d8">
+      <div style="display:flex;align-items:center;gap:20px">
+        <div style="width:70px;height:70px;border-radius:18px;background:#1a1a1a;display:flex;align-items:center;justify-content:center">
+          <div class="serif" style="font-size:50px;color:#faf9f7;padding-bottom:6px">N<span style="font-style:italic;color:#c9a35a">.</span></div>
+        </div>
+        <div class="serif" style="font-size:76px;line-height:1;letter-spacing:-1px">Nook</div>
+      </div>
+      <div style="font-size:13px;letter-spacing:4px;text-transform:uppercase;color:#a3a09a">Keep a beautiful record</div>
+    </div>
+    <div class="cap">Wordmark lockup</div>
+  </div>
+
+</div>
+</x-dc>
+</body>
+</html>

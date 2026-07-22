@@ -26,7 +26,7 @@ export default function EditEntry() {
                     setCategoryId(t.categoryId ? String(t.categoryId) : '');
                 }
             });
-        
+
         fetch('/api/categories')
             .then((res) => res.ok ? res.json() : null)
             .then((data) => {if (data) setCategories(data.categories);});
@@ -43,39 +43,44 @@ export default function EditEntry() {
     }
 
     return (
-        <div className="max-w-md mx-auto px-5 py-5">
-            <div className="flex justify-between items-baseline mb-6">
-                <Link href={`/transaction/${id}`} className="text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900">Cancel</Link>
-                <h1 className="font-serif text-2xl">Edit</h1>
-                <button onClick={handleSave} className="text-xs uppercase tracking-wide text-[#5f7a5f] hover:text-neutral-900">Save</button>
+        <div className="max-w-md mx-auto" style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '22px' }}>
+            <div className="flex items-center justify-between">
+                <Link href={`/transaction/${id}`} style={{ fontSize: '15px', color: '#6a6a6a' }}>Cancel</Link>
+                <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px' }}>Edit</div>
+                <button onClick={handleSave} style={{ fontSize: '15px', fontWeight: 600 }}>Save</button>
             </div>
 
-            <form onSubmit={handleSave} className="flex flex-col gap-4">
-                <div>
-                    <label className="text-xs uppercase tracking-widest text-neutral-500">Amount</label>
-                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)} className="bg-transparent border-b border-neutral-300 py-2 w-full font-serif text-2xl focus:outline-none focus:border-neutral-900" required/>
+            <form onSubmit={handleSave} className="flex flex-col" style={{ gap: '22px' }}>
+                <div className="field">
+                    <div className="flabel">Amount</div>
+                    <input type="number" value={amount} onChange={(e) => setAmount(e.target.value)}
+                        style={{ fontFamily: 'var(--font-serif), serif', fontSize: '38px', background: 'transparent', border: 'none', outline: 'none', width: '100%' }} required />
                 </div>
-                <div>
-                    <label className="text-xs uppercase tracking-widest text-neutral-500">Type</label>
-                    <select value={type} onChange={(e) => setType(e.target.value)} className="bg-transparent border-b border-neutral-300 py-2 w-full focus:outline-none focus:border-neutral-900">
-                        <option value="expense">Expense</option>
-                        <option value='income'>Income</option>
-                    </select>
+
+                <div className="field">
+                    <div className="flabel">Type</div>
+                    <div className="flex" style={{ gap: '20px', fontSize: '16px' }}>
+                        <button type="button" onClick={() => setType('expense')} style={{ fontWeight: type === 'expense' ? 600 : 400, borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
+                        <button type="button" onClick={() => setType('income')} style={{ fontWeight: type === 'income' ? 600 : 400, borderBottom: type === 'income' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'income' ? '#1a1a1a' : '#a3a09a' }}>Income</button>
+                    </div>
                 </div>
-                
-                <div>
-                    <label className="text-xs uppercase tracking-widest text-neutral-500">Category</label>
-                    <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className="bg-transparent border-b border-neutral-300 py-2 w-full focus:outline-none focus:border-neutral-900">
+
+                <div className="field">
+                    <div className="flabel">Category</div>
+                    <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)}
+                        style={{ fontSize: '16px', background: 'transparent', border: 'none', outline: 'none', width: '100%' }}>
                         <option value="">No category</option>
                         {categories.map((c) => (<option key={c.id} value={c.id}>{c.name}</option>))}
                     </select>
                 </div>
 
-                <div>
-                    <label className="text-xs uppercase tracking-widest text-neutral-500">Note</label>
-                    <input type="text" value={note} onChange={(e) => setNote(e.target.value)} className="bg-transparent border-b border-neutral-300 py-2 w-full focus:outline-none focus:border-neutral-900"/>
+                <div className="field">
+                    <div className="flabel">Note</div>
+                    <input type="text" value={note} onChange={(e) => setNote(e.target.value)}
+                        style={{ fontSize: '16px', background: 'transparent', border: 'none', outline: 'none', width: '100%' }} />
                 </div>
-                <button type="submit" className="bg-neutral-900 text-white rounded-full py-3 mt-4">Save changes</button>
+
+                <button type="submit" className="btn" style={{ background: '#1a1a1a', color: '#faf9f7', marginTop: '8px' }}>Save changes</button>
             </form>
         </div>
     )

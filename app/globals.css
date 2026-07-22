@@ -1,20 +1,81 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f1ea;  
-  --foreground: #1c1a17;
+  --background: #faf9f7;
+  --foreground: #1a1a1a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-fraunces);
+  --font-serif: var(--font-instrument-serif);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
+/* body is a flex column; without this, mx-auto's auto margins win over
+   stretch and these containers shrink to content width instead of filling
+   up to max-width. */
+.max-w-md {
+  width: 100%;
+}
+
+/* Shared Ledger design-system primitives (see screen/ mockups) */
+.lbl {
+  font-size: 11px;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #a3a09a;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #eeece7;
+}
+.row:last-child {
+  border-bottom: none;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  flex: none;
+  display: inline-block;
+}
+
+.btn {
+  height: 52px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.field {
+  border-bottom: 1px solid #d9d6cf;
+  padding: 9px 0;
+}
+
+.flabel {
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #a3a09a;
+  margin-bottom: 5px;
+}
+
+.h1 {
+  font: 400 42px/1 var(--font-serif), serif;
+  letter-spacing: -0.5px;
 }

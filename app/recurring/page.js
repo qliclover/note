@@ -32,44 +32,60 @@ export default function RecurringPage() {
         load();
     }
 
+    function daysUntil(dateStr) {
+        if (!dateStr) return null;
+        const diff = Math.ceil((new Date(dateStr) - new Date()) / 86400000);
+        if (diff < 0) return null;
+        if (diff === 0) return 'today';
+        if (diff === 1) return 'tomorrow';
+        return `in ${diff} days`;
+    }
+
     const monthlyTotal = items.filter(r => r.cycle === 'monthly').reduce((s, r) => s + r.amount, 0);
 
     return (
-        <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
-        <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Automatic</p>
-        <h1 className='font-serif text-4xl mb-4'>Recurring</h1>
+        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+                <div className='lbl'>Automatic</div>
+                <div className='h1'>Recurring</div>
+            </div>
 
-        <div className='border-b border-neutral-300 pb-4 mb-4'>
-            <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Monthly commitments</p>
-            <p className='font-serif text-4xl'>${monthlyTotal.toFixed(2)}<span className='text-base text-neutral-400'>/mo</span></p>
-        </div>
-
-        <div className='flex flex-col mb-4'>
-            {items.map((r) => (
-            <div key={r.id} className='flex justify-between items-center border-b border-neutral-200 py-3'>
-                <div>
-                <p>{r.name}</p>
-                <p className='text-xs uppercase tracking-wide text-neutral-400'>{r.cycle}{r.nextDate ? ' · next ' + r.nextDate : ''}</p>
+            <div style={{ borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '16px 0' }}>
+                <div style={{ fontSize: '13px', color: '#9a9791' }}>Monthly commitments</div>
+                <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '40px' }}>
+                    ${monthlyTotal.toFixed(2)}<span style={{ fontSize: '18px', color: '#a3a09a' }}>/mo</span>
                 </div>
-                <span className='font-serif text-lg text-[#a3492f]'>-${r.amount}</span>
             </div>
-            ))}
-            {items.length === 0 && <p className='text-neutral-500 text-sm'>No recurring items.</p>}
-        </div>
 
-        <form onSubmit={handleAdd} className='flex flex-col gap-3 border-t border-neutral-300 pt-6'>
-            <input type='text' placeholder='Name (Rent, Netflix...)' value={name} onChange={(e) => setName(e.target.value)}
-            className='bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900' />
-            <div className='flex gap-3'>
-            <input type='number' placeholder='Amount' value={amount} onChange={(e) => setAmount(e.target.value)}
-                className='bg-transparent border-b border-neutral-300 py-2 flex-1 focus:outline-none focus:border-neutral-900' />
-            <input type='date' value={nextDate} onChange={(e) => setNextDate(e.target.value)}
-                className='bg-transparent border-b border-neutral-300 py-2 flex-1 focus:outline-none focus:border-neutral-900' />
+            <div>
+                {items.map((r) => (
+                    <div key={r.id} className='row'>
+                        <div>
+                            <div style={{ fontSize: '16px' }}>{r.name}</div>
+                            <div style={{ fontSize: '12px', color: '#a3a09a' }}>{r.cycle}{r.nextDate ? ' · ' + r.nextDate : ''}</div>
+                        </div>
+                        <div style={{ textAlign: 'right' }}>
+                            <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>−${r.amount}</div>
+                            {daysUntil(r.nextDate) && <div style={{ fontSize: '11px', color: '#a3a09a' }}>{daysUntil(r.nextDate)}</div>}
+                        </div>
+                    </div>
+                ))}
+                {items.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No recurring items.</p>}
             </div>
-            <button type='submit' className='bg-neutral-900 text-white rounded-full py-3 mt-2'>+ Add recurring</button>
-        </form>
 
-        <Nav />
+            <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+                <input type='text' placeholder='Name (Rent, Netflix...)' value={name} onChange={(e) => setName(e.target.value)}
+                    className='field' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
+                <div className='flex' style={{ gap: '12px' }}>
+                    <input type='number' placeholder='Amount' value={amount} onChange={(e) => setAmount(e.target.value)}
+                        className='field flex-1' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
+                    <input type='date' value={nextDate} onChange={(e) => setNextDate(e.target.value)}
+                        className='field flex-1' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
+                </div>
+                <button type='submit' className='btn' style={{ background: '#1a1a1a', color: '#faf9f7', marginTop: '6px' }}>+ Add recurring</button>
+            </form>
+            <div style={{ height: '80px' }} />
+            <Nav />
         </div>
     );
 }

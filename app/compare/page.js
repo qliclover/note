@@ -1,7 +1,6 @@
 'use client'
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
-import Link from 'next/link'
 import Nav from '@/app/Nav'
 
 export default function ComparePage() {
@@ -18,8 +17,9 @@ export default function ComparePage() {
 
     const now = new Date();
     const thisMonth = now.toISOString().slice(0, 7);
-    const prev = new Date(now.getFullYear(),now.getMonth() - 1, 1);
-    const prevMonth = prev.toISOString().slice(0,7);
+    const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
+    const prevMonth = prev.toISOString().slice(0, 7);
+    const monthShort = (ym) => new Date(ym + '-02').toLocaleDateString('en-US', { month: 'short' });
 
     function expenseByCat(ym) {
         const map = {};
@@ -29,51 +29,51 @@ export default function ComparePage() {
                 const key = t.category ? t.category.name : 'Uncategorized';
                 map[key] = (map[key] || 0) + t.amount;
             });
-            return map;
+        return map;
     }
     const thisCat = expenseByCat(thisMonth);
     const prevCat = expenseByCat(prevMonth);
 
-    const thisTotal = Object.values(thisCat).reduce((s,v) => s + v, 0);
+    const thisTotal = Object.values(thisCat).reduce((s, v) => s + v, 0);
     const prevTotal = Object.values(prevCat).reduce((s, v) => s + v, 0);
     const diff = thisTotal - prevTotal;
 
-    // all categories in two months
     const allCats = [...new Set([...Object.keys(thisCat), ...Object.keys(prevCat)])];
     const rows = allCats
-        .map((name) => ({name, delta: (thisCat[name] || 0) - (prevCat[name] || 0)}))
-        .sort((a,b) => Math.abs(b.delta) - Math.abs(a.delta));
+        .map((name) => ({ name, delta: (thisCat[name] || 0) - (prevCat[name] || 0) }))
+        .sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
 
     return (
-        <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
-        <div className='flex justify-between items-baseline mb-1'>
-            <p className='text-xs uppercase tracking-widest text-neutral-500'>{prevMonth} → {thisMonth}</p>
-            <Link href='/dashboard' className='text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900'>Home</Link>
-        </div>
-        <h1 className='font-serif text-4xl mb-4'>Compared</h1>
-
-        <div className='border-b border-neutral-300 pb-4 mb-4'>
-            <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>You spent this month</p>
-            <p className='font-serif text-4xl'>${thisTotal}</p>
-            <p className={`text-sm mt-2 ${diff <= 0 ? 'text-[#5f7a5f]' : 'text-[#a3492f]'}`}>
-            {diff <= 0 ? '↓' : '↑'} ${Math.abs(diff)} {diff <= 0 ? 'less' : 'more'} than {prevMonth}
-            </p>
-        </div>
-
-        <p className='text-xs uppercase tracking-widest text-neutral-500 mb-3'>By category</p>
-        <div className='flex flex-col'>
-            {rows.map((r) => (
-            <div key={r.name} className='flex justify-between border-b border-neutral-200 py-3'>
-                <span>{r.name}</span>
-                <span className={`font-serif ${r.delta <= 0 ? 'text-[#5f7a5f]' : 'text-[#a3492f]'}`}>
-                {r.delta <= 0 ? '↓' : '↑'} ${Math.abs(r.delta)}
-                </span>
+        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '26px' }}>
+            <div>
+                <div className='lbl'>{monthShort(prevMonth)} → {monthShort(thisMonth)} {now.getFullYear()}</div>
+                <div className='h1'>Compared</div>
             </div>
-            ))}
-            {rows.length === 0 && <p className='text-neutral-500 text-sm'>No data to compare.</p>}
-        </div>
-        <Nav />
+
+            <div style={{ borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '18px 0' }}>
+                <div style={{ fontSize: '13px', color: '#9a9791', marginBottom: '2px' }}>You spent</div>
+                <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '52px', letterSpacing: '-1px', lineHeight: 1 }}>
+                    ${Math.trunc(thisTotal)}<span style={{ color: '#8a8783' }}>.{(thisTotal % 1).toFixed(2).slice(2)}</span>
+                </div>
+                <div style={{ fontSize: '14px', color: diff <= 0 ? '#2f6b52' : '#c15b4a', marginTop: '6px' }}>
+                    {diff <= 0 ? '↓' : '↑'} ${Math.abs(diff).toLocaleString('en-US')} {diff <= 0 ? 'less' : 'more'} than {monthShort(prevMonth)}
+                </div>
+            </div>
+
+            <div>
+                <div className='lbl' style={{ marginBottom: '6px' }}>By category</div>
+                {rows.map((r) => (
+                    <div key={r.name} className='row'>
+                        <span>{r.name}</span>
+                        <span style={{ color: r.delta <= 0 ? '#2f6b52' : '#c15b4a' }}>
+                            {r.delta <= 0 ? '↓' : '↑'} ${Math.abs(r.delta).toLocaleString('en-US')}
+                        </span>
+                    </div>
+                ))}
+                {rows.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No data to compare.</p>}
+            </div>
+            <div style={{ height: '80px' }} />
+            <Nav />
         </div>
     );
-
 }

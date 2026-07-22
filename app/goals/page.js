@@ -8,11 +8,11 @@ export default function GoalsPage() {
     const [name, setName] = useState('');
     const [target, setTarget] = useState('');
     const [saved, setSaved] = useState('');
-    const router =useRouter();
+    const router = useRouter();
 
     async function loadGoals() {
         const res = await fetch('/api/goals');
-        if (res.status === 401) {router.push('/login'); return;}
+        if (res.status === 401) { router.push('/login'); return; }
         const data = await res.json();
         setGoals(data.goals);
     }
@@ -25,52 +25,56 @@ export default function GoalsPage() {
         if (!name || !target) return;
         await fetch('/api/goals', {
             method: 'POST',
-            headers: {'Content-Type':'application/json'},
-            body:JSON.stringify({name,target,saved}),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, target, saved }),
         });
         setName(''); setTarget(''); setSaved('');
         loadGoals();
     }
 
+    const barColors = ['#2f6b52', '#5e6b73', '#a5735a', '#7a5c66'];
+
     return (
-        <div className='max-w-md mx-auto px-5 pt-5 pb-24'>
-        <p className='text-xs uppercase tracking-widest text-neutral-500 mb-1'>Toward the future</p>
-        <h1 className='font-serif text-4xl mb-4'>Goals</h1>
-
-        <div className='flex flex-col gap-6 mb-4'>
-            {goals.map((g) => {
-            const percent = g.target ? Math.min(100, Math.round((g.saved / g.target) * 100)) : 0;
-            return (
-                <div key={g.id}>
-                <div className='flex justify-between items-baseline mb-1'>
-                    <span className='font-serif text-lg'>{g.name}</span>
-                    <span className='text-xs uppercase tracking-wide text-neutral-500'>{g.targetDate || 'Ongoing'}</span>
-                </div>
-                <p className='font-serif text-2xl mb-1'>${g.saved} <span className='text-neutral-400 text-base'>/ ${g.target}</span></p>
-                <div className='w-full bg-neutral-200 rounded-full h-1.5'>
-                    <div className='h-1.5 rounded-full bg-[#5f7a5f]' style={{ width: `${percent}%` }}></div>
-                </div>
-                <p className='text-xs text-neutral-500 mt-1'>{percent}%</p>
-                </div>
-            );
-            })}
-            {goals.length === 0 && <p className='text-neutral-500 text-sm'>No goals yet.</p>}
-        </div>
-
-        {/* new goal */}
-        <form onSubmit={handleAdd} className='flex flex-col gap-3 border-t border-neutral-300 pt-6'>
-            <input type='text' placeholder='Goal name' value={name} onChange={(e) => setName(e.target.value)}
-            className='bg-transparent border-b border-neutral-300 py-2 focus:outline-none focus:border-neutral-900' />
-            <div className='flex gap-3'>
-            <input type='number' placeholder='Target' value={target} onChange={(e) => setTarget(e.target.value)}
-                className='bg-transparent border-b border-neutral-300 py-2 flex-1 focus:outline-none focus:border-neutral-900' />
-            <input type='number' placeholder='Saved' value={saved} onChange={(e) => setSaved(e.target.value)}
-                className='bg-transparent border-b border-neutral-300 py-2 flex-1 focus:outline-none focus:border-neutral-900' />
+        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div>
+                <div className='lbl'>Toward the future</div>
+                <div className='h1'>Goals</div>
             </div>
-            <button type='submit' className='bg-neutral-900 text-white rounded-full py-3 mt-2'>+ New goal</button>
-        </form>
 
-        <Nav />
+            {goals.map((g, i) => {
+                const percent = g.target ? Math.min(100, Math.round((g.saved / g.target) * 100)) : 0;
+                const color = barColors[i % barColors.length];
+                return (
+                    <div key={g.id} style={{ borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+                        <div className='flex items-baseline justify-between'>
+                            <div style={{ fontSize: '17px' }}>{g.name}</div>
+                            <div style={{ fontSize: '13px', color: '#a3a09a' }}>{g.targetDate || 'Ongoing'}</div>
+                        </div>
+                        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '34px', margin: '6px 0 10px' }}>
+                            ${g.saved.toLocaleString('en-US')} <span style={{ fontSize: '18px', color: '#a3a09a' }}>/ ${g.target.toLocaleString('en-US')}</span>
+                        </div>
+                        <div style={{ height: '6px', borderRadius: '6px', background: '#eeece7' }}>
+                            <div style={{ height: '100%', width: `${percent}%`, background: color, borderRadius: '6px' }} />
+                        </div>
+                        <div style={{ fontSize: '12px', color: '#a3a09a', marginTop: '8px' }}>{percent}% saved</div>
+                    </div>
+                );
+            })}
+            {goals.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No goals yet.</p>}
+
+            <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+                <input type='text' placeholder='Goal name' value={name} onChange={(e) => setName(e.target.value)}
+                    className='field' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
+                <div className='flex' style={{ gap: '12px' }}>
+                    <input type='number' placeholder='Target' value={target} onChange={(e) => setTarget(e.target.value)}
+                        className='field flex-1' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
+                    <input type='number' placeholder='Saved' value={saved} onChange={(e) => setSaved(e.target.value)}
+                        className='field flex-1' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
+                </div>
+                <button type='submit' className='btn' style={{ border: '1px solid #1a1a1a', marginTop: '6px' }}>+ New goal</button>
+            </form>
+            <div style={{ height: '80px' }} />
+            <Nav />
         </div>
     );
 }

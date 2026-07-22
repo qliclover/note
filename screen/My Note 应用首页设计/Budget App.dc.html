@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  body{margin:0;background:#e8e6e1;font-family:"Instrument Sans",system-ui,sans-serif}
+  a{color:#2a78d6}a:hover{color:#1a5fb4}
+  .dv-turn{padding:44px 48px 40px}
+  .dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 26px}
+  .dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}
+  .dv-tname{font:600 13px/1.2 "Instrument Sans",system-ui,sans-serif;color:#1a1a1a}
+  .dv-opts{display:flex;flex-wrap:wrap;gap:44px;align-items:flex-start}
+  .dv-opt{flex:none;display:flex;flex-direction:column;gap:12px;scroll-margin-top:16px}
+  .dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}
+  .dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 12px/1.35 "Instrument Sans",system-ui,sans-serif;color:rgba(0,0,0,.55);max-width:402px}
+  .dv-olabel b{color:rgba(0,0,0,.82);font-weight:600}
+  .dv-opt:target .dv-oid{background:#2a78d6;color:#fff}
+  .dv-next{margin:30px 0 0;font:13px/1.6 "Instrument Sans",system-ui,sans-serif;color:rgba(0,0,0,.5)}
+  .row{display:flex;align-items:center}
+</style>
+</helmet>
+
+<section class="dv-turn" id="t4">
+  <div class="dv-thd"><a class="dv-tid" href="#t4">4</a><span class="dv-tname">在 <a class="dv-oid" href="#3c">3c</a> Type-first 上深化 · 三个变体</span></div>
+  <div class="dv-opts">
+
+    <!-- ============ 4a  Serif Editorial ============ -->
+    <div class="dv-opt" id="4a">
+      <div class="dv-olabel"><a class="dv-oid" href="#4a">4a</a><span><b>Serif Editorial</b> — 保留 <a class="dv-oid" href="#3c">3c</a> 骨架，数字换成大衬线，像一本安静的账本，最有格调。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#faf9f7;color:#1a1a1a;font-family:-apple-system,system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:66px 26px 8px;display:flex;flex-direction:column;gap:28px">
+            <div class="row" style="justify-content:space-between;align-items:baseline">
+              <div style="font-size:13px;letter-spacing:1.5px;color:#9a9791">JULY 2026</div>
+              <div style="font-size:13px;color:#9a9791">Log out</div>
+            </div>
+
+            <div>
+              <div style="font-size:13px;letter-spacing:.5px;color:#9a9791;margin-bottom:2px">You have</div>
+              <div style="font-family:'Instrument Serif',serif;font-size:68px;letter-spacing:-1px;line-height:.95">$2,480<span style="font-style:italic;color:#8a8783">.50</span></div>
+              <div class="row" style="gap:20px;margin-top:14px">
+                <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a3a09a">In</div><div style="font-family:'Instrument Serif',serif;font-size:24px">$4,200</div></div>
+                <div style="width:1px;background:#e6e4df"></div>
+                <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a3a09a">Out</div><div style="font-family:'Instrument Serif',serif;font-size:24px">$1,719</div></div>
+              </div>
+            </div>
+
+            <div style="height:1px;background:#e6e4df"></div>
+
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#a3a09a">Entries</div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Kaya Toast</div><div style="font-size:12px;color:#a3a09a">Dining · Today</div></div><div style="font-family:'Instrument Serif',serif;font-size:21px">−$12.40</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Salary</div><div style="font-size:12px;color:#a3a09a">Income · Jul 1</div></div><div style="font-family:'Instrument Serif',serif;font-size:21px">+$4,200</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Dinner out</div><div style="font-size:12px;color:#a3a09a">Dining · Jul 10</div></div><div style="font-family:'Instrument Serif',serif;font-size:21px">−$48.50</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Metro card</div><div style="font-size:12px;color:#a3a09a">Transport · Yest.</div></div><div style="font-family:'Instrument Serif',serif;font-size:21px">−$30.00</div></div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-between;align-items:center;padding:16px 30px 34px;border-top:1px solid #eceae5">
+            <div style="font-size:14px;font-weight:600">Home</div>
+            <div style="font-size:14px;color:#b0ada7">Stats</div>
+            <div style="width:36px;height:36px;border-radius:18px;background:#1a1a1a;color:#faf9f7;font-family:'Instrument Serif',serif;font-size:24px;display:flex;align-items:center;justify-content:center;padding-bottom:2px">+</div>
+            <div style="font-size:14px;color:#b0ada7">Budget</div>
+            <div style="font-size:14px;color:#b0ada7">You</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 4b  Dark Type-first ============ -->
+    <div class="dv-opt" id="4b">
+      <div class="dv-olabel"><a class="dv-oid" href="#4b">4b</a><span><b>Dark Type-first</b> — 同样排版，墨黑底 + 象牙字，夜间安静，读数聚焦。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" dark="{{ true }}" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#141414;color:#efece5;font-family:-apple-system,system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:66px 26px 8px;display:flex;flex-direction:column;gap:30px">
+            <div class="row" style="justify-content:space-between;align-items:baseline">
+              <div style="font-size:13px;letter-spacing:1.5px;color:#7d7a73">JULY 2026</div>
+              <div style="font-size:13px;color:#7d7a73">Log out</div>
+            </div>
+
+            <div>
+              <div style="font-size:13px;letter-spacing:.5px;color:#7d7a73;margin-bottom:6px">You have</div>
+              <div style="font-size:56px;font-weight:300;letter-spacing:-2.5px;line-height:1">$2,480.50</div>
+              <div style="font-size:14px;color:#a09d95;margin-top:10px">+$4,200 in &nbsp;·&nbsp; −$1,719 out</div>
+            </div>
+
+            <div style="height:1px;background:#2a2a28"></div>
+
+            <div style="display:flex;flex-direction:column;gap:20px">
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Kaya Toast</div><div style="font-size:12px;color:#7d7a73">Dining · Today</div></div><div style="font-size:16px;font-weight:500">−12.40</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Salary</div><div style="font-size:12px;color:#7d7a73">Income · Jul 1</div></div><div style="font-size:16px;font-weight:500;color:#8fd39f">+4,200</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Dinner out</div><div style="font-size:12px;color:#7d7a73">Dining · Jul 10</div></div><div style="font-size:16px;font-weight:500">−48.50</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Metro card</div><div style="font-size:12px;color:#7d7a73">Transport · Yest.</div></div><div style="font-size:16px;font-weight:500">−30.00</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Textbooks</div><div style="font-size:12px;color:#7d7a73">School · Jul 8</div></div><div style="font-size:16px;font-weight:500">−120.00</div></div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-between;align-items:center;padding:16px 30px 34px;border-top:1px solid #262624">
+            <div style="font-size:14px;font-weight:600">Home</div>
+            <div style="font-size:14px;color:#6a6862">Stats</div>
+            <div style="width:36px;height:36px;border-radius:18px;border:1.5px solid #efece5;font-size:22px;font-weight:300;display:flex;align-items:center;justify-content:center;padding-bottom:2px">+</div>
+            <div style="font-size:14px;color:#6a6862">Budget</div>
+            <div style="font-size:14px;color:#6a6862">You</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 4c  Type-first + Accent ============ -->
+    <div class="dv-opt" id="4c">
+      <div class="dv-olabel"><a class="dv-oid" href="#4c">4c</a><span><b>Type + Accent</b> — 在 <a class="dv-oid" href="#3c">3c</a> 上加一抹绿：收支色区分、月度细趋势线、下划线强调，安静但有指向。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#faf9f7;color:#1a1a1a;font-family:-apple-system,system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:66px 26px 8px;display:flex;flex-direction:column;gap:26px">
+            <div class="row" style="justify-content:space-between;align-items:baseline">
+              <div style="font-size:13px;letter-spacing:1.5px;color:#9a9791">JULY 2026</div>
+              <div style="font-size:13px;color:#2f9e75;font-weight:600">This month ▾</div>
+            </div>
+
+            <div>
+              <div style="font-size:13px;letter-spacing:.5px;color:#9a9791;margin-bottom:6px">You have</div>
+              <div style="font-size:56px;font-weight:300;letter-spacing:-2.5px;line-height:1">$2,480<span style="color:#2f9e75">.50</span></div>
+              <div style="font-size:14px;color:#6a6a6a;margin-top:10px"><span style="color:#2f9e75;font-weight:600">+$4,200</span> in &nbsp;·&nbsp; <span style="color:#c15b4a;font-weight:600">−$1,719</span> out</div>
+              <svg viewBox="0 0 320 40" preserveAspectRatio="none" width="100%" height="34" style="display:block;margin-top:16px">
+                <polyline points="0,30 45,24 90,27 135,14 180,20 225,8 270,13 320,4" fill="none" stroke="#2f9e75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+
+            <div style="height:1px;background:#e6e4df"></div>
+
+            <div style="display:flex;flex-direction:column;gap:19px">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#a3a09a">Recent</div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px;border-bottom:2px solid #eae8e3;display:inline-block;padding-bottom:1px">Kaya Toast</div><div style="font-size:12px;color:#a3a09a;margin-top:2px">Dining · Today</div></div><div style="font-size:16px;font-weight:600;color:#c15b4a">−12.40</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Salary</div><div style="font-size:12px;color:#a3a09a;margin-top:2px">Income · Jul 1</div></div><div style="font-size:16px;font-weight:600;color:#2f9e75">+4,200</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Dinner out</div><div style="font-size:12px;color:#a3a09a;margin-top:2px">Dining · Jul 10</div></div><div style="font-size:16px;font-weight:600;color:#c15b4a">−48.50</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Metro card</div><div style="font-size:12px;color:#a3a09a;margin-top:2px">Transport · Yest.</div></div><div style="font-size:16px;font-weight:600;color:#c15b4a">−30.00</div></div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-between;align-items:center;padding:16px 30px 34px;border-top:1px solid #eceae5">
+            <div style="font-size:14px;font-weight:600;color:#2f9e75">Home</div>
+            <div style="font-size:14px;color:#b0ada7">Stats</div>
+            <div style="width:36px;height:36px;border-radius:18px;background:#2f9e75;color:#fff;font-size:24px;font-weight:300;display:flex;align-items:center;justify-content:center;padding-bottom:2px;box-shadow:0 6px 16px rgba(47,158,117,.4)">+</div>
+            <div style="font-size:14px;color:#b0ada7">Budget</div>
+            <div style="font-size:14px;color:#b0ada7">You</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+  </div>
+  <p class="dv-next">下一步可以说：「把 <a class="dv-oid" href="#4a">4a</a> 做成完整可交互原型」 · 「<a class="dv-oid" href="#4c">4c</a> 的绿换成暖橙」 · 「<a class="dv-oid" href="#4a">4a</a> 也来个深色版」 · 「再来几个新方向」</p>
+</section>
+
+<section class="dv-turn" id="t3">
+  <div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">简洁干净方向 · 记账主页</span></div>
+  <div class="dv-opts">
+
+    <!-- ============ 3a  Mono Minimal ============ -->
+    <div class="dv-opt" id="3a">
+      <div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a><span><b>Mono Minimal</b> — 纯黑白灰，大量留白，细线分隔，零多余色彩，极致克制。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#fff;color:#111;font-family:-apple-system,system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:64px 24px 8px;display:flex;flex-direction:column;gap:26px">
+            <div class="row" style="justify-content:space-between">
+              <div style="font-size:15px;font-weight:600">July 2026</div>
+              <div style="font-size:14px;color:#9a9a9a">Alex</div>
+            </div>
+
+            <div>
+              <div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#a0a0a0">Balance</div>
+              <div style="font-size:52px;font-weight:600;letter-spacing:-2px;margin-top:4px">$2,480.50</div>
+              <div class="row" style="gap:24px;margin-top:14px">
+                <div><span style="font-size:13px;color:#a0a0a0">Income</span> <span style="font-size:15px;font-weight:600;margin-left:6px">$4,200</span></div>
+                <div><span style="font-size:13px;color:#a0a0a0">Expense</span> <span style="font-size:15px;font-weight:600;margin-left:6px">$1,719</span></div>
+              </div>
+            </div>
+
+            <div style="height:1px;background:#ececec"></div>
+
+            <div>
+              <div class="row" style="justify-content:space-between;margin-bottom:6px"><div style="font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#a0a0a0">Recent</div><div style="font-size:13px;color:#111">All →</div></div>
+              <div class="row" style="justify-content:space-between;padding:15px 0;border-bottom:1px solid #f1f1f1"><div><div style="font-size:15px;font-weight:500">Kaya Toast</div><div style="font-size:12px;color:#a0a0a0">Dining · Today</div></div><div style="font-size:15px;font-weight:600">−$12.40</div></div>
+              <div class="row" style="justify-content:space-between;padding:15px 0;border-bottom:1px solid #f1f1f1"><div><div style="font-size:15px;font-weight:500">Salary</div><div style="font-size:12px;color:#a0a0a0">Income · Jul 1</div></div><div style="font-size:15px;font-weight:600">+$4,200</div></div>
+              <div class="row" style="justify-content:space-between;padding:15px 0;border-bottom:1px solid #f1f1f1"><div><div style="font-size:15px;font-weight:500">Groceries run</div><div style="font-size:12px;color:#a0a0a0">Groceries · Jul 12</div></div><div style="font-size:15px;font-weight:600">−$64.20</div></div>
+              <div class="row" style="justify-content:space-between;padding:15px 0"><div><div style="font-size:15px;font-weight:500">Metro card</div><div style="font-size:12px;color:#a0a0a0">Transport · Yest.</div></div><div style="font-size:15px;font-weight:600">−$30.00</div></div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-around;align-items:center;padding:16px 24px 32px;border-top:1px solid #ececec;position:relative">
+            <div style="font-size:13px;font-weight:600">Home</div>
+            <div style="font-size:13px;color:#b8b8b8">Stats</div>
+            <div style="width:44px"></div>
+            <div style="font-size:13px;color:#b8b8b8">Budget</div>
+            <div style="font-size:13px;color:#b8b8b8">You</div>
+            <div style="position:absolute;top:-18px;left:50%;transform:translateX(-50%);width:52px;height:52px;border-radius:26px;background:#111;color:#fff;font-size:28px;font-weight:300;display:flex;align-items:center;justify-content:center">+</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 3b  Soft Minimal ============ -->
+    <div class="dv-opt" id="3b">
+      <div class="dv-olabel"><a class="dv-oid" href="#3b">3b</a><span><b>Soft Minimal</b> — 通透白底 + 单一柔蓝点缀，圆角克制，呼吸感强，最百搭。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#fbfbfc;color:#1c1e26;font-family:-apple-system,system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:64px 22px 8px;display:flex;flex-direction:column;gap:20px">
+            <div class="row" style="justify-content:space-between">
+              <div><div style="font-size:13px;color:#9296a3">Good evening</div><div style="font-size:21px;font-weight:600;margin-top:1px">July 2026</div></div>
+              <div style="width:40px;height:40px;border-radius:20px;background:#eef2fb;color:#4b74e0;display:flex;align-items:center;justify-content:center;font-weight:600">A</div>
+            </div>
+
+            <div style="background:#fff;border:1px solid #eef0f4;border-radius:24px;padding:24px 22px">
+              <div style="font-size:13px;color:#9296a3">Total balance</div>
+              <div style="font-size:42px;font-weight:600;letter-spacing:-1px;margin:3px 0 16px">$2,480.50</div>
+              <div class="row" style="gap:12px">
+                <div style="flex:1;background:#f6f8fc;border-radius:16px;padding:12px 14px"><div style="font-size:12px;color:#9296a3">Income</div><div style="font-size:17px;font-weight:600;margin-top:2px;color:#3aa06e">$4,200</div></div>
+                <div style="flex:1;background:#f6f8fc;border-radius:16px;padding:12px 14px"><div style="font-size:12px;color:#9296a3">Expense</div><div style="font-size:17px;font-weight:600;margin-top:2px;color:#4b74e0">$1,719</div></div>
+              </div>
+            </div>
+
+            <div class="row" style="gap:9px;overflow:hidden">
+              <div style="flex:none;padding:9px 15px;border-radius:14px;background:#4b74e0;color:#fff;font-size:14px;font-weight:600">All</div>
+              <div style="flex:none;padding:9px 15px;border-radius:14px;background:#fff;border:1px solid #eef0f4;font-size:14px;color:#585c6b">Dining</div>
+              <div style="flex:none;padding:9px 15px;border-radius:14px;background:#fff;border:1px solid #eef0f4;font-size:14px;color:#585c6b">Transport</div>
+            </div>
+
+            <div>
+              <div class="row" style="justify-content:space-between;margin-bottom:8px"><div style="font-size:16px;font-weight:600">Recent</div><div style="font-size:13px;color:#4b74e0;font-weight:600">See all</div></div>
+              <div style="background:#fff;border:1px solid #eef0f4;border-radius:20px;padding:2px 16px">
+                <div class="row" style="gap:12px;padding:13px 0;border-bottom:1px solid #f3f4f7"><div style="width:40px;height:40px;border-radius:13px;background:#eef2fb;color:#4b74e0;display:flex;align-items:center;justify-content:center;font-weight:600">D</div><div style="flex:1"><div style="font-size:15px;font-weight:500">Kaya Toast</div><div style="font-size:12px;color:#9296a3">Dining · Today</div></div><div style="font-size:15px;font-weight:600">−$12.40</div></div>
+                <div class="row" style="gap:12px;padding:13px 0;border-bottom:1px solid #f3f4f7"><div style="width:40px;height:40px;border-radius:13px;background:#eafaf1;color:#3aa06e;display:flex;align-items:center;justify-content:center;font-weight:600">$</div><div style="flex:1"><div style="font-size:15px;font-weight:500">Salary</div><div style="font-size:12px;color:#9296a3">Income · Jul 1</div></div><div style="font-size:15px;font-weight:600;color:#3aa06e">+$4,200</div></div>
+                <div class="row" style="gap:12px;padding:13px 0"><div style="width:40px;height:40px;border-radius:13px;background:#eef2fb;color:#4b74e0;display:flex;align-items:center;justify-content:center;font-weight:600">T</div><div style="flex:1"><div style="font-size:15px;font-weight:500">Metro card</div><div style="font-size:12px;color:#9296a3">Transport · Yest.</div></div><div style="font-size:15px;font-weight:600">−$30.00</div></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-around;align-items:center;padding:14px 22px 30px;background:#fff;border-top:1px solid #eef0f4;position:relative">
+            <div style="font-size:21px;color:#4b74e0">⬤</div><div style="font-size:21px;color:#c6cad4">◫</div><div style="width:52px"></div><div style="font-size:21px;color:#c6cad4">◈</div><div style="font-size:21px;color:#c6cad4">☺</div>
+            <div style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:56px;height:56px;border-radius:28px;background:#4b74e0;color:#fff;font-size:30px;font-weight:300;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(75,116,224,.4)">+</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 3c  Type-first ============ -->
+    <div class="dv-opt" id="3c">
+      <div class="dv-olabel"><a class="dv-oid" href="#3c">3c</a><span><b>Type-first</b> — 无卡片，靠字号与细线建立层级，排版即界面，安静而精致。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#faf9f7;color:#1a1a1a;font-family:-apple-system,system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:66px 26px 8px;display:flex;flex-direction:column;gap:30px">
+            <div class="row" style="justify-content:space-between;align-items:baseline">
+              <div style="font-size:13px;letter-spacing:.5px;color:#9a9791">JULY 2026</div>
+              <div style="font-size:13px;color:#9a9791">Log out</div>
+            </div>
+
+            <div>
+              <div style="font-size:13px;letter-spacing:.5px;color:#9a9791;margin-bottom:6px">You have</div>
+              <div style="font-size:56px;font-weight:300;letter-spacing:-2.5px;line-height:1">$2,480.50</div>
+              <div style="font-size:14px;color:#6a6a6a;margin-top:10px">+$4,200 in &nbsp;·&nbsp; −$1,719 out</div>
+            </div>
+
+            <div style="height:1px;background:#e6e4df"></div>
+
+            <div style="display:flex;flex-direction:column;gap:20px">
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Kaya Toast</div><div style="font-size:12px;color:#a3a09a">Dining · Today</div></div><div style="font-size:16px;font-weight:500">−12.40</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Salary</div><div style="font-size:12px;color:#a3a09a">Income · Jul 1</div></div><div style="font-size:16px;font-weight:500">+4,200</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Dinner out</div><div style="font-size:12px;color:#a3a09a">Dining · Jul 10</div></div><div style="font-size:16px;font-weight:500">−48.50</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Metro card</div><div style="font-size:12px;color:#a3a09a">Transport · Yest.</div></div><div style="font-size:16px;font-weight:500">−30.00</div></div>
+              <div class="row" style="justify-content:space-between"><div><div style="font-size:16px">Textbooks</div><div style="font-size:12px;color:#a3a09a">School · Jul 8</div></div><div style="font-size:16px;font-weight:500">−120.00</div></div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-between;align-items:center;padding:16px 30px 34px">
+            <div style="font-size:14px;font-weight:600">Home</div>
+            <div style="font-size:14px;color:#b0ada7">Stats</div>
+            <div class="row" style="align-items:center;gap:7px"><div style="width:34px;height:34px;border-radius:17px;border:1.5px solid #1a1a1a;font-size:22px;font-weight:300;display:flex;align-items:center;justify-content:center;padding-bottom:2px">+</div></div>
+            <div style="font-size:14px;color:#b0ada7">Budget</div>
+            <div style="font-size:14px;color:#b0ada7">You</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+  </div>
+  <p class="dv-next">下一步可以说：「把 <a class="dv-oid" href="#3b">3b</a> 做成完整可交互原型」 · 「<a class="dv-oid" href="#3a">3a</a> 加一点点强调色」 · 「<a class="dv-oid" href="#3c">3c</a> 换深色」 · 「再来几个新方向」</p>
+</section>
+
+<section class="dv-turn" id="t2">
+  <div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">四种全新方向 · 记账主页</span></div>
+  <div class="dv-opts">
+
+    <!-- ============ 2a  Neo-Brutalist ============ -->
+    <div class="dv-opt" id="2a">
+      <div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a><span><b>Neo-Brutalist</b> — 粗黑描边 + 硬阴影 + 撞色方块，等宽字体，直接、有态度。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#f4efe1;color:#111;font-family:'Space Grotesk',ui-monospace,monospace">
+          <div style="flex:1;overflow:hidden;padding:64px 18px 8px;display:flex;flex-direction:column;gap:14px">
+            <div class="row" style="justify-content:space-between">
+              <div style="font-size:26px;font-weight:700;letter-spacing:-1px;text-transform:uppercase">My Note</div>
+              <div style="width:40px;height:40px;background:#ffd43b;border:2.5px solid #111;box-shadow:3px 3px 0 #111;display:flex;align-items:center;justify-content:center;font-weight:700">A</div>
+            </div>
+
+            <div style="background:#fff;border:2.5px solid #111;box-shadow:6px 6px 0 #111;padding:18px 18px">
+              <div style="font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555">Balance · Jul 2026</div>
+              <div style="font-size:44px;font-weight:700;letter-spacing:-1.5px;margin:2px 0 14px">$2,480.50</div>
+              <div class="row" style="gap:10px">
+                <div style="flex:1;background:#baff5b;border:2.5px solid #111;padding:9px 11px"><div style="font-size:11px;font-weight:700;text-transform:uppercase">Income</div><div style="font-size:18px;font-weight:700">$4,200</div></div>
+                <div style="flex:1;background:#ff8b6b;border:2.5px solid #111;padding:9px 11px"><div style="font-size:11px;font-weight:700;text-transform:uppercase">Expense</div><div style="font-size:18px;font-weight:700">$1,719</div></div>
+              </div>
+            </div>
+
+            <div class="row" style="gap:8px;overflow:hidden">
+              <div style="flex:none;padding:8px 13px;background:#2b4cff;color:#fff;border:2.5px solid #111;font-size:12px;font-weight:700;text-transform:uppercase">All</div>
+              <div style="flex:none;padding:8px 13px;background:#fff;border:2.5px solid #111;font-size:12px;font-weight:600;text-transform:uppercase">Dining</div>
+              <div style="flex:none;padding:8px 13px;background:#fff;border:2.5px solid #111;font-size:12px;font-weight:600;text-transform:uppercase">Transp</div>
+              <div style="flex:none;padding:8px 13px;background:#fff;border:2.5px solid #111;font-size:12px;font-weight:600;text-transform:uppercase">School</div>
+            </div>
+
+            <div style="font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-top:2px">Recent ↓</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div class="row" style="gap:11px;background:#fff;border:2.5px solid #111;padding:11px;box-shadow:3px 3px 0 #111">
+                <div style="width:38px;height:38px;background:#ffd43b;border:2px solid #111;display:flex;align-items:center;justify-content:center;font-weight:700">D</div>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Kaya Toast</div><div style="font-size:11px;color:#666;text-transform:uppercase">Dining · Today</div></div>
+                <div style="font-size:15px;font-weight:700">−$12.40</div>
+              </div>
+              <div class="row" style="gap:11px;background:#fff;border:2.5px solid #111;padding:11px;box-shadow:3px 3px 0 #111">
+                <div style="width:38px;height:38px;background:#baff5b;border:2px solid #111;display:flex;align-items:center;justify-content:center;font-weight:700">$</div>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Salary</div><div style="font-size:11px;color:#666;text-transform:uppercase">Income · Jul 1</div></div>
+                <div style="font-size:15px;font-weight:700;color:#1f8a3b">+$4,200</div>
+              </div>
+              <div class="row" style="gap:11px;background:#fff;border:2.5px solid #111;padding:11px;box-shadow:3px 3px 0 #111">
+                <div style="width:38px;height:38px;background:#7db6ff;border:2px solid #111;display:flex;align-items:center;justify-content:center;font-weight:700">T</div>
+                <div style="flex:1"><div style="font-size:14px;font-weight:700">Metro card</div><div style="font-size:11px;color:#666;text-transform:uppercase">Transport · Yest</div></div>
+                <div style="font-size:15px;font-weight:700">−$30.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-around;align-items:center;padding:12px 18px 30px;background:#fff;border-top:2.5px solid #111;position:relative">
+            <div style="font-weight:700;font-size:18px">◧</div>
+            <div style="font-weight:700;font-size:18px;color:#999">▤</div>
+            <div style="width:52px"></div>
+            <div style="font-weight:700;font-size:18px;color:#999">◈</div>
+            <div style="font-weight:700;font-size:18px;color:#999">≡</div>
+            <div style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:56px;height:56px;background:#ffd43b;border:2.5px solid #111;box-shadow:4px 4px 0 #111;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700">+</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 2b  Liquid Glass ============ -->
+    <div class="dv-opt" id="2b">
+      <div class="dv-olabel"><a class="dv-oid" href="#2b">2b</a><span><b>Liquid Glass</b> — iOS 26 磨砂玻璃卡片浮在彩色渐变壁纸上，通透、有光泽。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" dark="{{ true }}" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;color:#fff;font-family:-apple-system,system-ui,sans-serif;background:linear-gradient(160deg,#6a4bff 0%,#b44be0 42%,#ff7a4d 100%);position:relative;overflow:hidden">
+          <div style="position:absolute;top:120px;left:-40px;width:180px;height:180px;border-radius:90px;background:rgba(255,255,255,.25);filter:blur(20px)"></div>
+          <div style="position:absolute;bottom:180px;right:-30px;width:150px;height:150px;border-radius:75px;background:rgba(255,220,120,.4);filter:blur(20px)"></div>
+          <div style="flex:1;overflow:hidden;padding:64px 20px 8px;display:flex;flex-direction:column;gap:16px;position:relative">
+            <div class="row" style="justify-content:space-between">
+              <div><div style="font-size:13px;color:rgba(255,255,255,.8)">July 2026</div><div style="font-size:21px;font-weight:600">Hey, Alex</div></div>
+              <div style="width:42px;height:42px;border-radius:21px;background:rgba(255,255,255,.22);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.35);display:flex;align-items:center;justify-content:center;font-weight:700">A</div>
+            </div>
+
+            <div style="border-radius:28px;padding:24px 22px;background:rgba(255,255,255,.16);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border:1px solid rgba(255,255,255,.3);box-shadow:inset 1.5px 1.5px 1px rgba(255,255,255,.5),0 16px 40px rgba(60,20,90,.3)">
+              <div style="font-size:13px;color:rgba(255,255,255,.82)">Total balance</div>
+              <div style="font-size:44px;font-weight:700;letter-spacing:-1px;margin:4px 0 16px">$2,480.50</div>
+              <div class="row" style="gap:10px">
+                <div style="flex:1;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);border-radius:15px;padding:11px 13px"><div style="font-size:11px;color:rgba(255,255,255,.8)">▲ Income</div><div style="font-size:17px;font-weight:700;margin-top:2px">$4,200</div></div>
+                <div style="flex:1;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.25);border-radius:15px;padding:11px 13px"><div style="font-size:11px;color:rgba(255,255,255,.8)">▼ Expense</div><div style="font-size:17px;font-weight:700;margin-top:2px">$1,719</div></div>
+              </div>
+            </div>
+
+            <div class="row" style="gap:9px;overflow:hidden">
+              <div style="flex:none;padding:8px 15px;border-radius:13px;background:rgba(255,255,255,.9);color:#7a3fd0;font-size:13px;font-weight:700">All</div>
+              <div style="flex:none;padding:8px 15px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:500">Dining</div>
+              <div style="flex:none;padding:8px 15px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:500">Groceries</div>
+              <div style="flex:none;padding:8px 15px;border-radius:13px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);font-size:13px;font-weight:500">School</div>
+            </div>
+
+            <div style="font-size:15px;font-weight:700;margin-top:2px">Recent</div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div class="row" style="gap:12px;border-radius:18px;padding:12px;background:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22)">
+                <div style="width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-weight:700">D</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Kaya Toast</div><div style="font-size:12px;color:rgba(255,255,255,.7)">Dining · Today</div></div>
+                <div style="font-size:15px;font-weight:700">−$12.40</div>
+              </div>
+              <div class="row" style="gap:12px;border-radius:18px;padding:12px;background:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22)">
+                <div style="width:40px;height:40px;border-radius:13px;background:rgba(180,255,180,.35);display:flex;align-items:center;justify-content:center;font-weight:700">$</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Salary</div><div style="font-size:12px;color:rgba(255,255,255,.7)">Income · Jul 1</div></div>
+                <div style="font-size:15px;font-weight:700;color:#c9ffcf">+$4,200</div>
+              </div>
+              <div class="row" style="gap:12px;border-radius:18px;padding:12px;background:rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.22)">
+                <div style="width:40px;height:40px;border-radius:13px;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-weight:700">T</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Metro card</div><div style="font-size:12px;color:rgba(255,255,255,.7)">Transport · Yest.</div></div>
+                <div style="font-size:15px;font-weight:700">−$30.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="padding:10px 20px 30px;position:relative">
+            <div class="row" style="justify-content:space-around;align-items:center;border-radius:26px;padding:12px 8px;background:rgba(255,255,255,.16);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.28)">
+              <div style="font-size:20px">⬤</div><div style="font-size:20px;opacity:.55">◫</div><div style="width:44px"></div><div style="font-size:20px;opacity:.55">◈</div><div style="font-size:20px;opacity:.55">☺</div>
+            </div>
+            <div style="position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:58px;height:58px;border-radius:29px;background:rgba(255,255,255,.9);color:#7a3fd0;font-size:32px;font-weight:300;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(60,20,90,.35)">+</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 2c  Playful Pastel ============ -->
+    <div class="dv-opt" id="2c">
+      <div class="dv-olabel"><a class="dv-oid" href="#2c">2c</a><span><b>Playful Pastel</b> — 糖果柔色 + 大圆角 + 圆润气泡，轻松友好，年轻感强。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;color:#3a3550;font-family:-apple-system,system-ui,sans-serif;background:linear-gradient(180deg,#f3ecff 0%,#eafcf3 100%)">
+          <div style="flex:1;overflow:hidden;padding:64px 20px 8px;display:flex;flex-direction:column;gap:18px">
+            <div class="row" style="justify-content:space-between">
+              <div><div style="font-size:13px;color:#8f88a8">Hi there 🙂</div><div style="font-size:22px;font-weight:800;color:#5a4fd0">July 2026</div></div>
+              <div style="width:44px;height:44px;border-radius:22px;background:#ffd9c2;display:flex;align-items:center;justify-content:center;font-weight:800;color:#e0784a">A</div>
+            </div>
+
+            <div style="border-radius:32px;padding:24px 22px;background:linear-gradient(135deg,#8b7bf0,#a99bff);color:#fff;box-shadow:0 18px 36px rgba(139,123,240,.35)">
+              <div style="font-size:13px;color:rgba(255,255,255,.85)">Total balance</div>
+              <div style="font-size:44px;font-weight:800;letter-spacing:-1px;margin:4px 0 16px">$2,480.50</div>
+              <div class="row" style="gap:10px">
+                <div style="flex:1;background:rgba(255,255,255,.22);border-radius:18px;padding:12px 14px"><div style="font-size:12px">💚 Income</div><div style="font-size:18px;font-weight:800;margin-top:2px">$4,200</div></div>
+                <div style="flex:1;background:rgba(255,255,255,.22);border-radius:18px;padding:12px 14px"><div style="font-size:12px">🧡 Expense</div><div style="font-size:18px;font-weight:800;margin-top:2px">$1,719</div></div>
+              </div>
+            </div>
+
+            <div class="row" style="gap:10px;overflow:hidden">
+              <div style="flex:none;padding:10px 16px;border-radius:18px;background:#5a4fd0;color:#fff;font-size:14px;font-weight:700">All</div>
+              <div style="flex:none;padding:10px 16px;border-radius:18px;background:#fff;font-size:14px;font-weight:600;color:#6a6485">Dining</div>
+              <div style="flex:none;padding:10px 16px;border-radius:18px;background:#fff;font-size:14px;font-weight:600;color:#6a6485">Transport</div>
+            </div>
+
+            <div class="row" style="justify-content:space-between;margin-top:2px"><div style="font-size:17px;font-weight:800">Recent</div><div style="font-size:13px;color:#8b7bf0;font-weight:700">See all</div></div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <div class="row" style="gap:13px;background:#fff;border-radius:22px;padding:13px;box-shadow:0 8px 20px rgba(120,110,180,.1)">
+                <div style="width:46px;height:46px;border-radius:23px;background:#ffe1cf;color:#e0784a;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px">D</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:700">Kaya Toast</div><div style="font-size:12px;color:#a49dbb">Dining · Today</div></div>
+                <div style="font-size:16px;font-weight:800;color:#e0784a">−$12.40</div>
+              </div>
+              <div class="row" style="gap:13px;background:#fff;border-radius:22px;padding:13px;box-shadow:0 8px 20px rgba(120,110,180,.1)">
+                <div style="width:46px;height:46px;border-radius:23px;background:#d3f5e0;color:#3aa571;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px">$</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:700">Salary</div><div style="font-size:12px;color:#a49dbb">Income · Jul 1</div></div>
+                <div style="font-size:16px;font-weight:800;color:#3aa571">+$4,200</div>
+              </div>
+              <div class="row" style="gap:13px;background:#fff;border-radius:22px;padding:13px;box-shadow:0 8px 20px rgba(120,110,180,.1)">
+                <div style="width:46px;height:46px;border-radius:23px;background:#d9e6ff;color:#5b74d8;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:18px">T</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:700">Metro card</div><div style="font-size:12px;color:#a49dbb">Transport · Yest.</div></div>
+                <div style="font-size:16px;font-weight:800;color:#e0784a">−$30.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-around;align-items:center;padding:12px 20px 30px;background:#fff;border-radius:30px 30px 0 0;box-shadow:0 -6px 20px rgba(120,110,180,.1);position:relative">
+            <div style="font-size:22px;color:#5a4fd0">⬤</div><div style="font-size:22px;color:#c9c4dc">◫</div><div style="width:56px"></div><div style="font-size:22px;color:#c9c4dc">◈</div><div style="font-size:22px;color:#c9c4dc">☺</div>
+            <div style="position:absolute;top:-24px;left:50%;transform:translateX(-50%);width:62px;height:62px;border-radius:31px;background:linear-gradient(135deg,#4fd0a0,#3aa571);color:#fff;font-size:34px;font-weight:300;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 24px rgba(79,208,160,.45)">+</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 2d  Retro Print ============ -->
+    <div class="dv-opt" id="2d">
+      <div class="dv-olabel"><a class="dv-oid" href="#2d">2d</a><span><b>Retro Print</b> — 70 年代印刷感，米+锈红+芥末+青，粗衬线大标题、双线分隔、复古配色。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;color:#33261a;font-family:'Instrument Sans',system-ui,sans-serif;background:#f0e3c8">
+          <div style="flex:1;overflow:hidden;padding:60px 20px 8px;display:flex;flex-direction:column;gap:16px">
+            <div class="row" style="justify-content:space-between;align-items:flex-end">
+              <div><div style="font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#9a7d4a">Ledger · Jul '26</div><div style="font-family:'Instrument Serif',serif;font-size:34px;line-height:.95;margin-top:3px">My Note</div></div>
+              <div style="width:40px;height:40px;border-radius:20px;background:#b5432b;color:#f0e3c8;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:19px">A</div>
+            </div>
+
+            <div style="border-top:3px double #33261a;border-bottom:3px double #33261a;padding:16px 0">
+              <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9a7d4a">Balance</div>
+              <div style="font-family:'Instrument Serif',serif;font-size:56px;line-height:.95;margin:4px 0 14px">$2,480<span style="font-style:italic;color:#b5432b">.50</span></div>
+              <div class="row" style="gap:12px">
+                <div style="flex:1;background:#2f7d72;color:#f0e3c8;padding:10px 13px;border-radius:3px"><div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase">Income</div><div style="font-family:'Instrument Serif',serif;font-size:23px">$4,200</div></div>
+                <div style="flex:1;background:#d99a2b;color:#33261a;padding:10px 13px;border-radius:3px"><div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase">Expense</div><div style="font-family:'Instrument Serif',serif;font-size:23px">$1,719</div></div>
+              </div>
+            </div>
+
+            <div class="row" style="gap:8px;overflow:hidden">
+              <div style="flex:none;padding:7px 14px;border:1.5px solid #33261a;background:#33261a;color:#f0e3c8;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase">All</div>
+              <div style="flex:none;padding:7px 14px;border:1.5px solid #33261a;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase">Dining</div>
+              <div style="flex:none;padding:7px 14px;border:1.5px solid #33261a;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase">Transp</div>
+              <div style="flex:none;padding:7px 14px;border:1.5px solid #33261a;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase">School</div>
+            </div>
+
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#9a7d4a;margin-top:2px">Entries</div>
+            <div>
+              <div class="row" style="justify-content:space-between;padding:12px 0;border-bottom:1.5px solid #d8c297">
+                <div class="row" style="gap:11px"><div style="width:34px;height:34px;border-radius:17px;background:#d99a2b;color:#33261a;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif">D</div><div><div style="font-size:15px;font-weight:600">Kaya Toast</div><div style="font-size:11px;color:#9a7d4a;text-transform:uppercase;letter-spacing:.5px">Dining · Today</div></div></div>
+                <div style="font-family:'Instrument Serif',serif;font-size:20px;color:#b5432b">−$12.40</div>
+              </div>
+              <div class="row" style="justify-content:space-between;padding:12px 0;border-bottom:1.5px solid #d8c297">
+                <div class="row" style="gap:11px"><div style="width:34px;height:34px;border-radius:17px;background:#2f7d72;color:#f0e3c8;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif">$</div><div><div style="font-size:15px;font-weight:600">Salary</div><div style="font-size:11px;color:#9a7d4a;text-transform:uppercase;letter-spacing:.5px">Income · Jul 1</div></div></div>
+                <div style="font-family:'Instrument Serif',serif;font-size:20px;color:#2f7d72">+$4,200</div>
+              </div>
+              <div class="row" style="justify-content:space-between;padding:12px 0">
+                <div class="row" style="gap:11px"><div style="width:34px;height:34px;border-radius:17px;background:#b5432b;color:#f0e3c8;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif">T</div><div><div style="font-size:15px;font-weight:600">Metro card</div><div style="font-size:11px;color:#9a7d4a;text-transform:uppercase;letter-spacing:.5px">Transport · Yest.</div></div></div>
+                <div style="font-family:'Instrument Serif',serif;font-size:20px;color:#b5432b">−$30.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-between;align-items:center;padding:13px 24px 30px;border-top:3px double #33261a;background:#e8d8b6">
+            <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:600">Home</div>
+            <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#9a7d4a">Stats</div>
+            <div style="width:50px;height:50px;border-radius:25px;background:#b5432b;color:#f0e3c8;font-family:'Instrument Serif',serif;font-size:30px;display:flex;align-items:center;justify-content:center">+</div>
+            <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#9a7d4a">Budget</div>
+            <div style="font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#9a7d4a">You</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+  </div>
+  <p class="dv-next">下一步可以说：「把 <a class="dv-oid" href="#2b">2b</a> 做成完整可交互原型」 · 「<a class="dv-oid" href="#2d">2d</a> 配色用到我现在的 Ledger」 · 「<a class="dv-oid" href="#2a">2a</a> 换成深色」 · 「再来几个新方向」</p>
+</section>
+
+<section class="dv-turn" id="t1">
+  <div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">My Note → iPhone 记账 app · 三种风格主页</span></div>
+  <div class="dv-opts">
+
+    <!-- ============ 1a  Clean & Calm ============ -->
+    <div class="dv-opt" id="1a">
+      <div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a><span><b>Clean &amp; Calm</b> — 原生 iOS 质感，柔和留白，单一薄荷绿点缀，读数一目了然。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#f5f6f3;color:#1a1c1a;font-family:-apple-system,system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:64px 20px 8px;display:flex;flex-direction:column;gap:18px">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div style="font-size:13px;color:#8a908a;letter-spacing:.2px">Good evening, Alex</div>
+                <div style="font-size:22px;font-weight:700;margin-top:2px">July 2026</div>
+              </div>
+              <div style="width:40px;height:40px;border-radius:20px;background:#dfe7e0;color:#2f9e75;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px">A</div>
+            </div>
+
+            <div style="background:#fff;border-radius:28px;padding:24px 22px;box-shadow:0 1px 2px rgba(20,40,30,.05),0 12px 28px rgba(20,40,30,.06)">
+              <div style="font-size:13px;color:#8a908a">Total balance</div>
+              <div style="font-size:42px;font-weight:700;letter-spacing:-1px;margin:2px 0 16px">$2,480<span style="font-size:24px;color:#b6bcb6">.50</span></div>
+              <div style="height:8px;border-radius:8px;background:#eef1ee;overflow:hidden;display:flex">
+                <div style="width:41%;background:#d1594e"></div>
+              </div>
+              <div class="row" style="justify-content:space-between;margin-top:14px">
+                <div class="row" style="gap:9px">
+                  <div style="width:34px;height:34px;border-radius:10px;background:#e4f3eb;display:flex;align-items:center;justify-content:center;color:#2f9e75;font-size:18px;font-weight:700">↓</div>
+                  <div><div style="font-size:12px;color:#8a908a">Income</div><div style="font-size:16px;font-weight:600">$4,200</div></div>
+                </div>
+                <div class="row" style="gap:9px">
+                  <div style="width:34px;height:34px;border-radius:10px;background:#fbe8e6;display:flex;align-items:center;justify-content:center;color:#d1594e;font-size:18px;font-weight:700">↑</div>
+                  <div><div style="font-size:12px;color:#8a908a">Expense</div><div style="font-size:16px;font-weight:600">$1,719</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="gap:10px;overflow:hidden">
+              <div style="flex:none;padding:9px 15px;border-radius:14px;background:#2f9e75;color:#fff;font-size:14px;font-weight:600">All</div>
+              <div style="flex:none;padding:9px 15px;border-radius:14px;background:#fff;font-size:14px;font-weight:500;color:#4a504a">Dining</div>
+              <div style="flex:none;padding:9px 15px;border-radius:14px;background:#fff;font-size:14px;font-weight:500;color:#4a504a">Groceries</div>
+              <div style="flex:none;padding:9px 15px;border-radius:14px;background:#fff;font-size:14px;font-weight:500;color:#4a504a">Transp…</div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:2px">
+              <div class="row" style="justify-content:space-between;margin-bottom:6px">
+                <div style="font-size:16px;font-weight:700">Recent</div>
+                <div style="font-size:13px;color:#2f9e75;font-weight:600">See all</div>
+              </div>
+              <div class="row" style="gap:12px;padding:11px 0">
+                <div style="width:42px;height:42px;border-radius:13px;background:#f1e9dd;color:#b58a4a;display:flex;align-items:center;justify-content:center;font-weight:700">D</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Lunch · Kaya Toast</div><div style="font-size:12px;color:#9aa09a">Dining · Today</div></div>
+                <div style="font-size:15px;font-weight:700;color:#d1594e">−$12.40</div>
+              </div>
+              <div style="height:1px;background:#eceeeb;margin-left:54px"></div>
+              <div class="row" style="gap:12px;padding:11px 0">
+                <div style="width:42px;height:42px;border-radius:13px;background:#e0efe6;color:#2f9e75;display:flex;align-items:center;justify-content:center;font-weight:700">S</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Salary</div><div style="font-size:12px;color:#9aa09a">Income · Jul 1</div></div>
+                <div style="font-size:15px;font-weight:700;color:#2f9e75">+$4,200</div>
+              </div>
+              <div style="height:1px;background:#eceeeb;margin-left:54px"></div>
+              <div class="row" style="gap:12px;padding:11px 0">
+                <div style="width:42px;height:42px;border-radius:13px;background:#e7ecf5;color:#5b74b8;display:flex;align-items:center;justify-content:center;font-weight:700">T</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Metro card</div><div style="font-size:12px;color:#9aa09a">Transport · Yesterday</div></div>
+                <div style="font-size:15px;font-weight:700;color:#d1594e">−$30.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-around;padding:12px 20px 30px;background:#fff;border-top:1px solid #eceeeb;position:relative">
+            <div style="color:#2f9e75;font-size:22px">◉</div>
+            <div style="color:#b6bcb6;font-size:22px">◫</div>
+            <div style="width:54px"></div>
+            <div style="color:#b6bcb6;font-size:22px">◈</div>
+            <div style="color:#b6bcb6;font-size:22px">☺</div>
+            <div style="position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:58px;height:58px;border-radius:29px;background:#2f9e75;color:#fff;font-size:32px;font-weight:300;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(47,158,117,.4)">+</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 1b  Bold & Dark ============ -->
+    <div class="dv-opt" id="1b">
+      <div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a><span><b>Bold &amp; Dark</b> — 新派 fintech，深色 + 电光紫渐变余额卡 + 柠檬绿动作，高对比、有能量。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" dark="{{ true }}" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#0c0c10;color:#fff;font-family:'Space Grotesk',system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:64px 20px 8px;display:flex;flex-direction:column;gap:18px">
+            <div class="row" style="justify-content:space-between">
+              <div>
+                <div style="font-size:13px;color:#8b8b96">Balance · July 2026</div>
+                <div style="font-size:20px;font-weight:600;margin-top:2px">Hey, Alex 👋</div>
+              </div>
+              <div style="width:40px;height:40px;border-radius:14px;background:#1b1b22;border:1px solid #2a2a34;display:flex;align-items:center;justify-content:center;font-weight:700;color:#d4ff3f">A</div>
+            </div>
+
+            <div style="border-radius:26px;padding:24px 22px;background:linear-gradient(135deg,#7b6bff 0%,#5a3fe0 55%,#4b2fc9 100%);position:relative;overflow:hidden;box-shadow:0 16px 34px rgba(90,63,224,.4)">
+              <div style="position:absolute;top:-40px;right:-30px;width:150px;height:150px;border-radius:75px;background:rgba(255,255,255,.12)"></div>
+              <div style="font-size:13px;color:rgba(255,255,255,.75);position:relative">Total balance</div>
+              <div style="font-size:44px;font-weight:700;letter-spacing:-1.5px;margin:4px 0 18px;position:relative">$2,480.50</div>
+              <div class="row" style="gap:10px;position:relative">
+                <div style="flex:1;background:rgba(255,255,255,.14);border-radius:14px;padding:11px 13px">
+                  <div style="font-size:11px;color:rgba(255,255,255,.7)">▲ Income</div>
+                  <div style="font-size:17px;font-weight:700;margin-top:3px">$4,200</div>
+                </div>
+                <div style="flex:1;background:rgba(255,255,255,.14);border-radius:14px;padding:11px 13px">
+                  <div style="font-size:11px;color:rgba(255,255,255,.7)">▼ Expense</div>
+                  <div style="font-size:17px;font-weight:700;margin-top:3px">$1,719</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" style="gap:9px;overflow:hidden">
+              <div style="flex:none;padding:8px 15px;border-radius:12px;background:#d4ff3f;color:#0c0c10;font-size:13px;font-weight:700">All</div>
+              <div style="flex:none;padding:8px 15px;border-radius:12px;background:#1b1b22;color:#c9c9d2;font-size:13px;font-weight:500">Dining</div>
+              <div style="flex:none;padding:8px 15px;border-radius:12px;background:#1b1b22;color:#c9c9d2;font-size:13px;font-weight:500">Groceries</div>
+              <div style="flex:none;padding:8px 15px;border-radius:12px;background:#1b1b22;color:#c9c9d2;font-size:13px;font-weight:500">School</div>
+            </div>
+
+            <div class="row" style="justify-content:space-between;margin-top:2px">
+              <div style="font-size:16px;font-weight:700">Transactions</div>
+              <div style="font-size:13px;color:#d4ff3f;font-weight:600">See all</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div class="row" style="gap:12px;background:#15151b;border-radius:18px;padding:13px">
+                <div style="width:42px;height:42px;border-radius:13px;background:#241f10;color:#d4ff3f;display:flex;align-items:center;justify-content:center;font-weight:700">D</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Kaya Toast</div><div style="font-size:12px;color:#7d7d88">Dining · Today</div></div>
+                <div style="font-size:15px;font-weight:700">−$12.40</div>
+              </div>
+              <div class="row" style="gap:12px;background:#15151b;border-radius:18px;padding:13px">
+                <div style="width:42px;height:42px;border-radius:13px;background:#12241a;color:#48e08a;display:flex;align-items:center;justify-content:center;font-weight:700">S</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Salary</div><div style="font-size:12px;color:#7d7d88">Income · Jul 1</div></div>
+                <div style="font-size:15px;font-weight:700;color:#48e08a">+$4,200</div>
+              </div>
+              <div class="row" style="gap:12px;background:#15151b;border-radius:18px;padding:13px">
+                <div style="width:42px;height:42px;border-radius:13px;background:#191d2b;color:#7d92ff;display:flex;align-items:center;justify-content:center;font-weight:700">T</div>
+                <div style="flex:1"><div style="font-size:15px;font-weight:600">Metro card</div><div style="font-size:12px;color:#7d7d88">Transport · Yest.</div></div>
+                <div style="font-size:15px;font-weight:700">−$30.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-around;padding:14px 24px 30px;position:relative">
+            <div style="color:#d4ff3f;font-size:22px">◉</div>
+            <div style="color:#5a5a66;font-size:22px">◫</div>
+            <div style="width:54px"></div>
+            <div style="color:#5a5a66;font-size:22px">◈</div>
+            <div style="color:#5a5a66;font-size:22px">☺</div>
+            <div style="position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:60px;height:60px;border-radius:20px;background:#d4ff3f;color:#0c0c10;font-size:34px;font-weight:400;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(212,255,63,.4)">+</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+    <!-- ============ 1c  Editorial / Paper ============ -->
+    <div class="dv-opt" id="1c">
+      <div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a><span><b>Editorial</b> — 暖纸底 + 衬线大数字，杂志式排版、细线分隔、七日趋势条，克制而高级。</span></div>
+      <x-import component-from-global-scope="IOSDevice" from="./ios-frame.jsx" width="402" height="874" hint-size="402px,874px">
+        <div style="height:100%;display:flex;flex-direction:column;background:#f7f2e9;color:#26221b;font-family:'Instrument Sans',system-ui,sans-serif">
+          <div style="flex:1;overflow:hidden;padding:64px 22px 8px;display:flex;flex-direction:column;gap:20px">
+            <div class="row" style="justify-content:space-between;align-items:flex-end">
+              <div>
+                <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#a89b82">July 2026</div>
+                <div style="font-family:'Instrument Serif',serif;font-size:30px;line-height:1;margin-top:4px">My Ledger</div>
+              </div>
+              <div style="width:38px;height:38px;border-radius:19px;border:1px solid #ddd2bd;display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:18px">A</div>
+            </div>
+
+            <div style="border-top:1px solid #e3d9c6;border-bottom:1px solid #e3d9c6;padding:18px 0">
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#a89b82">Balance</div>
+              <div style="font-family:'Instrument Serif',serif;font-size:54px;line-height:1;margin:6px 0 14px">$2,480<span style="font-style:italic;color:#b0653f">.50</span></div>
+              <div class="row" style="gap:24px">
+                <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a89b82">Income</div><div style="font-family:'Instrument Serif',serif;font-size:22px;margin-top:2px">$4,200</div></div>
+                <div style="width:1px;background:#e3d9c6"></div>
+                <div><div style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#a89b82">Expense</div><div style="font-family:'Instrument Serif',serif;font-size:22px;margin-top:2px;color:#b0653f">$1,719</div></div>
+              </div>
+            </div>
+
+            <div>
+              <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#a89b82;margin-bottom:10px">Last 7 days</div>
+              <div class="row" style="align-items:flex-end;gap:8px;height:56px">
+                <div style="flex:1;height:40%;background:#e0d4bd;border-radius:3px 3px 0 0"></div>
+                <div style="flex:1;height:70%;background:#e0d4bd;border-radius:3px 3px 0 0"></div>
+                <div style="flex:1;height:30%;background:#e0d4bd;border-radius:3px 3px 0 0"></div>
+                <div style="flex:1;height:85%;background:#b0653f;border-radius:3px 3px 0 0"></div>
+                <div style="flex:1;height:55%;background:#e0d4bd;border-radius:3px 3px 0 0"></div>
+                <div style="flex:1;height:45%;background:#e0d4bd;border-radius:3px 3px 0 0"></div>
+                <div style="flex:1;height:65%;background:#e0d4bd;border-radius:3px 3px 0 0"></div>
+              </div>
+            </div>
+
+            <div style="flex:1">
+              <div class="row" style="justify-content:space-between;margin-bottom:4px">
+                <div style="font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:#a89b82">Entries</div>
+                <div style="font-size:12px;color:#b0653f">View all →</div>
+              </div>
+              <div class="row" style="justify-content:space-between;padding:13px 0;border-bottom:1px solid #ece3d2">
+                <div><div style="font-size:16px">Kaya Toast</div><div style="font-size:12px;color:#a89b82">Dining · Today</div></div>
+                <div style="font-family:'Instrument Serif',serif;font-size:19px;color:#b0653f">−$12.40</div>
+              </div>
+              <div class="row" style="justify-content:space-between;padding:13px 0;border-bottom:1px solid #ece3d2">
+                <div><div style="font-size:16px">Salary</div><div style="font-size:12px;color:#a89b82">Income · Jul 1</div></div>
+                <div style="font-family:'Instrument Serif',serif;font-size:19px">+$4,200</div>
+              </div>
+              <div class="row" style="justify-content:space-between;padding:13px 0">
+                <div><div style="font-size:16px">Metro card</div><div style="font-size:12px;color:#a89b82">Transport · Yest.</div></div>
+                <div style="font-family:'Instrument Serif',serif;font-size:19px;color:#b0653f">−$30.00</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="justify-content:space-between;align-items:center;padding:14px 26px 30px;border-top:1px solid #e3d9c6">
+            <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#26221b">Home</div>
+            <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#a89b82">Stats</div>
+            <div style="width:52px;height:52px;border-radius:26px;background:#26221b;color:#f7f2e9;font-size:28px;font-weight:300;display:flex;align-items:center;justify-content:center">+</div>
+            <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#a89b82">Budget</div>
+            <div style="font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#a89b82">You</div>
+          </div>
+        </div>
+      </x-import>
+    </div>
+
+  </div>
+  <p class="dv-next">下一步可以说：「深入做 <a class="dv-oid" href="#1b">1b</a>，加上记账弹窗 + 统计页」 · 「<a class="dv-oid" href="#1a">1a</a> 换成深色」 · 「把 <a class="dv-oid" href="#1c">1c</a> 的衬线数字用到 <a class="dv-oid" href="#1a">1a</a>」 · 「再来几个新方向」</p>
+</section>
+</x-dc>
+</body>
+</html>

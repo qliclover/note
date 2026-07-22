@@ -24,47 +24,59 @@ export default function TransactionDetail() {
         router.push('/dashboard');
     }
 
-    if (notFound) return <p className='p-8 text-neutral-500'>Not found.</p>;
-    if (!tx) return <p className='p-8 text-neutral-500'>Loading...</p>;
+    async function handleDuplicate() {
+        const res = await fetch('/api/transactions', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ amount: tx.amount, type: tx.type, note: tx.note, categoryId: tx.categoryId || '' }),
+        });
+        const data = await res.json();
+        router.push(`/transaction/${data.transaction.id}`);
+    }
+
+    if (notFound) return <p className='p-8' style={{ color: '#a3a09a' }}>Not found.</p>;
+    if (!tx) return <p className='p-8' style={{ color: '#a3a09a' }}>Loading...</p>;
 
     const isIncome = tx.type === 'income';
-    const date = new Date(tx.date).toLocaleDateString();
+    const date = new Date(tx.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
 
     return (
-        <div className='max-w-md mx-auto px-5 py-5'>
-            <div className='flex justify-between items-baseline'>
-                <Link href='/dashboard' className='text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900'>Back</Link>
-                <Link href={`/transaction/${id}/edit`} className='text-xs uppercase tracking-wide text-neutral-500 hover:text-neutral-900'>Edit</Link>
-            </div>
-            <div className='text-center my-6'>
-                <p className='text-xs uppercase tracking-widest text-neutral-500 mb-3'>
-                    {tx.category ? tx.category.name:(isIncome ? 'Income' : 'Expense')}
-                </p>
-                <p className={`font-serif text-4xl ${isIncome ? 'text-[#5f7a5f]' : 'text-[#a3492f]'}`}>
-                    {isIncome ? '+' : '-'}${tx.amount}
-                </p>
-                {tx.note && <p className='text-neutral-600 mt-2'>{tx.note}</p>}
+        <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px', minHeight: '100dvh' }}>
+            <div className='flex justify-between'>
+                <Link href='/dashboard' style={{ fontSize: '15px', color: '#6a6a6a' }}>‹ Back</Link>
+                <Link href={`/transaction/${id}/edit`} style={{ fontSize: '15px', color: '#6a6a6a' }}>Edit</Link>
             </div>
 
-            <div className='flex flex-col'>
-                <Row label='Date' value={date}/>
-                <Row label='Type' value={tx.type}/>
-                <Row label='Category' value={tx.category ? tx.category.name : '-'}/>
-                <Row label='Note' value={tx.note || '-'}/>
+            <div style={{ textAlign: 'center', padding: '14px 0' }}>
+                <div className='flex items-center justify-center' style={{ gap: '8px', marginBottom: '10px' }}>
+                    <span className='dot' style={{ background: isIncome ? '#6f7a4e' : '#a5735a' }} />
+                    <span className='lbl'>{tx.category ? tx.category.name : (isIncome ? 'Income' : 'Expense')}</span>
+                </div>
+                <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '64px', letterSpacing: '-1px' }}>
+                    {isIncome ? '+' : '−'}${tx.amount}
+                </div>
+                <div style={{ fontSize: '15px', color: '#6a6a6a', marginTop: '6px' }}>{tx.note || (isIncome ? 'Income' : 'Expense')}</div>
             </div>
 
-            <button onClick={handleDelete}
-                className='w-full border border-[#a3492f] text-[#a3492f] rounded-full py-3 mt-10 hover:bg-[#a3492f] hover:text-white'>
-                    Delete
-                </button>
+            <div style={{ borderTop: '1px solid #e6e4df' }}>
+                <Row label='Date' value={date} />
+                <Row label='Category' value={tx.category ? tx.category.name : '-'} />
+                <Row label='Note' value={tx.note || '-'} last />
+            </div>
+
+            <div style={{ flex: 1 }} />
+            <div className='flex' style={{ gap: '12px', paddingBottom: '14px' }}>
+                <button onClick={handleDuplicate} className='btn flex-1' style={{ border: '1px solid #1a1a1a' }}>Duplicate</button>
+                <button onClick={handleDelete} className='btn flex-1' style={{ background: '#f0e2df', color: '#c15b4a' }}>Delete</button>
+            </div>
         </div>
     );
 }
 
-function Row({label, value}) {
+function Row({label, value, last}) {
     return (
-        <div className='flex justify-between border-b border-neutral-200 py-3'>
-            <span className='text-xs uppercase tracking-wide text-neutral-500'>{label}</span>
+        <div className='row' style={last ? { borderBottom: 'none' } : undefined}>
+            <span style={{ color: '#a3a09a' }}>{label}</span>
             <span>{value}</span>
         </div>
     );
