@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
+import SubTabs, { PLANNING_TABS } from '@/app/SubTabs'
 
 export default function GoalsPage() {
     const [goals, setGoals] = useState([]);
@@ -40,6 +41,8 @@ export default function GoalsPage() {
                 <div className='lbl'>Toward the future</div>
                 <div className='h1'>Goals</div>
             </div>
+
+            <SubTabs tabs={PLANNING_TABS} />
 
             {goals.map((g, i) => {
                 const percent = g.target ? Math.min(100, Math.round((g.saved / g.target) * 100)) : 0;

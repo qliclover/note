@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
+import SubTabs, { MANAGE_TABS } from '@/app/SubTabs'
 
 export default function SettingsPage() {
   const [user, setUser] = useState(null);
@@ -25,6 +26,8 @@ export default function SettingsPage() {
 
   return (
     <div className='max-w-md mx-auto' style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '24px' }}>
+      <SubTabs tabs={MANAGE_TABS} />
+
       <div className='flex items-center' style={{ gap: '14px' }}>
         <div style={{ width: '52px', height: '52px', borderRadius: '26px', background: '#1a1a1a', color: '#faf9f7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-serif), serif', fontSize: '24px' }}>
           {(user.name || user.email)[0].toUpperCase()}

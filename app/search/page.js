@@ -3,6 +3,7 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
 import Nav from '@/app/Nav'
+import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
 import { categoryColor } from '@/app/categoryColor'
 
 const FILTERS = [
@@ -48,6 +49,8 @@ export default function SearchPage() {
     return (
         <div className="max-w-md mx-auto" style={{ padding: '62px 26px 24px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
             <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '40px' }}>Search</div>
+
+            <SubTabs tabs={INSIGHTS_TABS} />
 
             <input type="text" placeholder="coffee, salary…" value={query} onChange={(e) => setQuery(e.target.value)}
                 style={{ borderBottom: '1px solid #d9d6cf', padding: '10px 0', fontSize: '17px', background: 'transparent', outline: 'none', width: '100%' }} />

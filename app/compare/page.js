@@ -2,6 +2,7 @@
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
+import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
 
 export default function ComparePage() {
     const [transactions, setTransactions] = useState([]);
@@ -50,7 +51,9 @@ export default function ComparePage() {
                 <div className='h1'>Compared</div>
             </div>
 
-            <div style={{ borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '18px 0' }}>
+            <SubTabs tabs={INSIGHTS_TABS} />
+
+            <div style={{ borderBottom: '1px solid #e6e4df', paddingBottom: '18px' }}>
                 <div style={{ fontSize: '13px', color: '#9a9791', marginBottom: '2px' }}>You spent</div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '52px', letterSpacing: '-1px', lineHeight: 1 }}>
                     ${Math.trunc(thisTotal)}<span style={{ color: '#8a8783' }}>.{(thisTotal % 1).toFixed(2).slice(2)}</span>

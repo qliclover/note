@@ -2,6 +2,7 @@
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
+import SubTabs, { MANAGE_TABS } from '@/app/SubTabs'
 import { colorForIndex } from '@/app/categoryColor'
 
 export default function CategoriesPage() {
@@ -54,6 +55,8 @@ export default function CategoriesPage() {
                 <div className='lbl'>Manage</div>
                 <div className='h1'>Categories</div>
             </div>
+
+            <SubTabs tabs={MANAGE_TABS} />
 
             <form onSubmit={handleAddCategory} className='flex items-center' style={{ gap: '14px', borderBottom: '1px solid #d9d6cf', paddingBottom: '9px' }}>
                 <input type='text' placeholder='New category name' value={newCatName}

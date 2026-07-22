@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
+import SubTabs, { PLANNING_TABS } from '@/app/SubTabs'
 import { categoryColor } from '@/app/categoryColor'
 
 export default function BudgetsPage() {
@@ -49,6 +50,8 @@ export default function BudgetsPage() {
         <div className='lbl'>{monthLabel}</div>
         <div className='h1'>Budgets</div>
       </div>
+
+      <SubTabs tabs={PLANNING_TABS} />
 
       <div>
         {budgets.map((b) => {

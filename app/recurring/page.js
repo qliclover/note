@@ -2,6 +2,7 @@
 import {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '../Nav'
+import SubTabs, { PLANNING_TABS } from '../SubTabs'
 
 export default function RecurringPage() {
     const [items, setItems] = useState([]);
@@ -50,7 +51,9 @@ export default function RecurringPage() {
                 <div className='h1'>Recurring</div>
             </div>
 
-            <div style={{ borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '16px 0' }}>
+            <SubTabs tabs={PLANNING_TABS} />
+
+            <div style={{ borderBottom: '1px solid #e6e4df', paddingBottom: '16px' }}>
                 <div style={{ fontSize: '13px', color: '#9a9791' }}>Monthly commitments</div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '40px' }}>
                     ${monthlyTotal.toFixed(2)}<span style={{ fontSize: '18px', color: '#a3a09a' }}>/mo</span>

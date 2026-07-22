@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
+import SubTabs, { MANAGE_TABS } from '@/app/SubTabs'
 
 export default function AccountsPage() {
   const [accounts, setAccounts] = useState([]);
@@ -40,7 +41,9 @@ export default function AccountsPage() {
         <div className='h1'>Accounts</div>
       </div>
 
-      <div style={{ borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '16px 0' }}>
+      <SubTabs tabs={MANAGE_TABS} />
+
+      <div style={{ borderBottom: '1px solid #e6e4df', paddingBottom: '16px' }}>
         <div style={{ fontSize: '13px', color: '#9a9791' }}>Net worth</div>
         <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '48px', letterSpacing: '-1px' }}>${netWorth.toFixed(2)}</div>
       </div>

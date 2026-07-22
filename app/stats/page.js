@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Nav from '@/app/Nav'
+import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
 import { categoryColor } from '@/app/categoryColor'
 
 export default function StatsPage() {
@@ -50,7 +51,9 @@ export default function StatsPage() {
                 <div className="h1">Statistics</div>
             </div>
 
-            <div style={{ borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+            <SubTabs tabs={INSIGHTS_TABS} />
+
+            <div>
                 <div className="flex items-baseline justify-between" style={{ marginBottom: '22px' }}>
                     <div className="lbl">Spent this month</div>
                     <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '34px' }}>${spent.toLocaleString('en-US')}</div>
