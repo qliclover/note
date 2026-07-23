@@ -24,14 +24,14 @@ export const MANAGE_TABS = [
 export default function SubTabs({ tabs }) {
     const pathname = usePathname();
     return (
-        <div className='flex items-center' style={{ gap: '18px', borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '12px 0', fontSize: '14px' }}>
+        <div className='flex items-center' style={{ gap: '18px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '12px 0', fontSize: '14px' }}>
             {tabs.map((t) => {
                 const active = pathname === t.href;
                 return (
                     <Link key={t.href} href={t.href} style={{
                         textShadow: activeShadow(active),
-                        color: active ? '#1a1a1a' : '#a3a09a',
-                        borderBottom: active ? '2px solid #1a1a1a' : '2px solid transparent',
+                        color: active ? 'var(--fg)' : 'var(--muted)',
+                        borderBottom: active ? '2px solid var(--fg)' : '2px solid transparent',
                         paddingBottom: '2px',
                     }}>{t.label}</Link>
                 );

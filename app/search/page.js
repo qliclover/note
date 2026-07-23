@@ -45,22 +45,22 @@ export default function SearchPage() {
             <SubTabs tabs={INSIGHTS_TABS} />
 
             <input type="text" placeholder="coffee, salary…" value={query} onChange={(e) => setQuery(e.target.value)}
-                style={{ borderBottom: '1px solid #d9d6cf', padding: '10px 0', fontSize: '17px', background: 'transparent', outline: 'none', width: '100%' }} />
+                style={{ borderBottom: '1px solid var(--border-2)', padding: '10px 0', fontSize: '17px', background: 'transparent', outline: 'none', width: '100%' }} />
 
             <div className="flex flex-wrap" style={{ gap: '10px' }}>
                 {FILTERS.map((f) => (
                     <button key={f.id} onClick={() => toggle(f.id)}
                         style={{
                             fontSize: '13px', padding: '7px 13px', borderRadius: '2px',
-                            border: active.includes(f.id) ? '1px solid #1a1a1a' : '1px solid #e0ddd5',
-                            color: active.includes(f.id) ? '#1a1a1a' : '#a3a09a',
+                            border: active.includes(f.id) ? '1px solid var(--fg)' : '1px solid var(--border-2)',
+                            color: active.includes(f.id) ? 'var(--fg)' : 'var(--muted)',
                         }}>
                         {f.label}
                     </button>
                 ))}
             </div>
 
-            <div style={{ borderTop: '1px solid #e6e4df', paddingTop: '4px' }}>
+            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '4px' }}>
                 <div className="lbl" style={{ margin: '8px 0' }}>{results.length} results · ${total.toLocaleString('en-US')}</div>
                 {results.map((t) => (
                     <Link key={t.id} href={`/transaction/${t.id}`} className="row">
@@ -68,7 +68,7 @@ export default function SearchPage() {
                             <span className="dot" style={{ background: t.type === 'income' ? '#6f7a4e' : categoryColor(t.category, categories) }} />
                             <div>
                                 <div style={{ fontSize: '16px' }}>{t.note || 'Untitled'}</div>
-                                <div style={{ fontSize: '12px', color: '#a3a09a' }}>
+                                <div style={{ fontSize: '12px', color: 'var(--muted)' }}>
                                     {t.category ? t.category.name : (t.type === 'income' ? 'Income' : 'Uncategorized')} · {new Date(t.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                 </div>
                             </div>
@@ -78,7 +78,7 @@ export default function SearchPage() {
                         </div>
                     </Link>
                 ))}
-                {results.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px', padding: '14px 0' }}>No results.</p>}
+                {results.length === 0 && <p style={{ color: 'var(--muted)', fontSize: '14px', padding: '14px 0' }}>No results.</p>}
             </div>
             <div style={{ height: '80px' }} />
             <Nav />

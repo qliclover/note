@@ -1,4 +1,5 @@
 import { Geist_Mono, Instrument_Serif } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { AddEntryProvider } from "./AddEntrySheet";
 import { DataProvider } from "./DataContext";
@@ -31,8 +32,12 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       className={`${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}`}
+        </Script>
         <DataProvider>
           <AddEntryProvider>{children}</AddEntryProvider>
         </DataProvider>

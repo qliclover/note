@@ -58,28 +58,28 @@ export default function StatsPage() {
                                 <div className="flex items-center justify-between" style={{ marginBottom: '7px' }}>
                                     <div className="flex items-center" style={{ gap: '9px' }}>
                                         <span className="dot" style={{ background: c.color }} />
-                                        {c.name} <span style={{ color: '#a3a09a', fontSize: '12px', marginLeft: '4px' }}>{percent}%</span>
+                                        {c.name} <span style={{ color: 'var(--muted)', fontSize: '12px', marginLeft: '4px' }}>{percent}%</span>
                                     </div>
                                     <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>${c.value.toLocaleString('en-US')}</div>
                                 </div>
-                                <div style={{ height: '4px', borderRadius: '4px', background: '#eeece7' }}>
+                                <div style={{ height: '4px', borderRadius: '4px', background: 'var(--track)' }}>
                                     <div style={{ height: '100%', width: `${percent}%`, background: c.color, borderRadius: '4px' }} />
                                 </div>
                             </div>
                         );
                     })}
-                    {cats.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No expenses this month.</p>}
+                    {cats.length === 0 && <p style={{ color: 'var(--muted)', fontSize: '14px' }}>No expenses this month.</p>}
                 </div>
             </div>
 
-            <div style={{ borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+            <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
                 <div className="flex items-center justify-between" style={{ marginBottom: '18px' }}>
                     <div className="lbl">This week</div>
-                    <div style={{ fontSize: '13px', color: '#a3a09a' }}>avg ${avgDay.toFixed(0)}/day</div>
+                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>avg ${avgDay.toFixed(0)}/day</div>
                 </div>
                 <div className="flex items-end" style={{ gap: '12px', height: '80px' }}>
                     {dayTotals.map((v, i) => (
-                        <div key={i} style={{ flex: 1, height: `${Math.max(4, Math.round((v / maxDay) * 100))}%`, background: i === 6 ? '#1a1a1a' : '#ddd9cf', borderRadius: '3px 3px 0 0' }} />
+                        <div key={i} style={{ flex: 1, height: `${Math.max(4, Math.round((v / maxDay) * 100))}%`, background: i === 6 ? 'var(--fg)' : 'var(--track)', borderRadius: '3px 3px 0 0' }} />
                     ))}
                 </div>
             </div>

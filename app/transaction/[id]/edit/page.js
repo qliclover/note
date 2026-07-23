@@ -46,7 +46,7 @@ export default function EditEntry() {
     return (
         <div className="max-w-md mx-auto" style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '22px' }}>
             <div className="flex items-center justify-between">
-                <Link href={`/transaction/${id}`} style={{ fontSize: '15px', color: '#6a6a6a' }}>Cancel</Link>
+                <Link href={`/transaction/${id}`} style={{ fontSize: '15px', color: 'var(--muted)' }}>Cancel</Link>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px' }}>Edit</div>
                 <button onClick={handleSave} style={{ fontSize: '15px', fontWeight: 600 }}>Save</button>
             </div>
@@ -61,8 +61,8 @@ export default function EditEntry() {
                 <div className="field">
                     <div className="flabel">Type</div>
                     <div className="flex" style={{ gap: '20px', fontSize: '16px' }}>
-                        <button type="button" onClick={() => setType('expense')} style={{ textShadow: activeShadow(type === 'expense'), borderBottom: type === 'expense' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'expense' ? '#1a1a1a' : '#a3a09a' }}>Expense</button>
-                        <button type="button" onClick={() => setType('income')} style={{ textShadow: activeShadow(type === 'income'), borderBottom: type === 'income' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px', color: type === 'income' ? '#1a1a1a' : '#a3a09a' }}>Income</button>
+                        <button type="button" onClick={() => setType('expense')} style={{ textShadow: activeShadow(type === 'expense'), borderBottom: type === 'expense' ? '2px solid var(--fg)' : '2px solid transparent', paddingBottom: '2px', color: type === 'expense' ? 'var(--fg)' : 'var(--muted)' }}>Expense</button>
+                        <button type="button" onClick={() => setType('income')} style={{ textShadow: activeShadow(type === 'income'), borderBottom: type === 'income' ? '2px solid var(--fg)' : '2px solid transparent', paddingBottom: '2px', color: type === 'income' ? 'var(--fg)' : 'var(--muted)' }}>Income</button>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@ export default function EditEntry() {
                         style={{ fontSize: '16px', background: 'transparent', border: 'none', outline: 'none', width: '100%' }} />
                 </div>
 
-                <button type="submit" className="btn" style={{ background: '#1a1a1a', color: '#faf9f7', marginTop: '8px' }}>Save changes</button>
+                <button type="submit" className="btn" style={{ background: 'var(--fg)', color: 'var(--bg)', marginTop: '8px' }}>Save changes</button>
             </form>
         </div>
     )

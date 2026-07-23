@@ -69,10 +69,10 @@ export default function RecurringPage() {
 
             <SubTabs tabs={PLANNING_TABS} />
 
-            <div style={{ borderBottom: '1px solid #e6e4df', paddingBottom: '16px' }}>
-                <div style={{ fontSize: '13px', color: '#9a9791' }}>Monthly commitments</div>
+            <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
+                <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Monthly commitments</div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '40px' }}>
-                    ${monthlyTotal.toFixed(2)}<span style={{ fontSize: '18px', color: '#a3a09a' }}>/mo</span>
+                    ${monthlyTotal.toFixed(2)}<span style={{ fontSize: '18px', color: 'var(--muted)' }}>/mo</span>
                 </div>
             </div>
 
@@ -81,21 +81,21 @@ export default function RecurringPage() {
                     <div key={r.id} className='row'>
                         <div>
                             <div style={{ fontSize: '16px' }}>{r.name}</div>
-                            <div style={{ fontSize: '12px', color: '#a3a09a' }}>{r.cycle}{r.nextDate ? ' · ' + r.nextDate : ''}</div>
+                            <div style={{ fontSize: '12px', color: 'var(--muted)' }}>{r.cycle}{r.nextDate ? ' · ' + r.nextDate : ''}</div>
                         </div>
                         <div className='flex items-center' style={{ gap: '14px' }}>
                             <button onClick={() => handleEdit(r)} style={{ textAlign: 'right' }}>
                                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>−${r.amount}</div>
-                                {daysUntil(r.nextDate) && <div style={{ fontSize: '11px', color: '#a3a09a' }}>{daysUntil(r.nextDate)}</div>}
+                                {daysUntil(r.nextDate) && <div style={{ fontSize: '11px', color: 'var(--muted)' }}>{daysUntil(r.nextDate)}</div>}
                             </button>
-                            <button onClick={() => handleDelete(r.id)} style={{ fontSize: '18px', color: '#c0bdb5' }}>×</button>
+                            <button onClick={() => handleDelete(r.id)} style={{ fontSize: '18px', color: 'var(--faint)' }}>×</button>
                         </div>
                     </div>
                 ))}
-                {items.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No recurring items.</p>}
+                {items.length === 0 && <p style={{ color: 'var(--muted)', fontSize: '14px' }}>No recurring items.</p>}
             </div>
 
-            <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+            <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
                 <input type='text' placeholder='Name (Rent, Netflix...)' value={name} onChange={(e) => setName(e.target.value)}
                     className='field' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
                 <div className='flex' style={{ gap: '12px' }}>
@@ -104,7 +104,7 @@ export default function RecurringPage() {
                     <input type='date' value={nextDate} onChange={(e) => setNextDate(e.target.value)}
                         className='field flex-1' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
                 </div>
-                <button type='submit' className='btn' style={{ background: '#1a1a1a', color: '#faf9f7', marginTop: '6px' }}>+ Add recurring</button>
+                <button type='submit' className='btn' style={{ background: 'var(--fg)', color: 'var(--bg)', marginTop: '6px' }}>+ Add recurring</button>
             </form>
             <div style={{ height: '80px' }} />
             <Nav />

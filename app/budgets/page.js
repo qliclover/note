@@ -74,29 +74,29 @@ export default function BudgetsPage() {
           const over = spent > b.amount;
           const color = categoryColor(b.category, categories);
           return (
-            <div key={b.id} style={{ padding: '18px 0', borderTop: '1px solid #e6e4df' }}>
+            <div key={b.id} style={{ padding: '18px 0', borderTop: '1px solid var(--border)' }}>
               <div className='flex items-center justify-between' style={{ marginBottom: '9px' }}>
                 <div className='flex items-center' style={{ gap: '9px' }}>
                   <span className='dot' style={{ background: color }} />
                   {b.category?.name || 'Unknown'}
                 </div>
-                <button onClick={() => handleEdit(b)} style={{ fontSize: '13px', color: over ? '#c15b4a' : '#a3a09a' }}>
-                  <span style={{ fontFamily: 'var(--font-serif), serif', fontSize: '18px', color: over ? '#c15b4a' : '#1a1a1a' }}>${spent}</span> / ${b.amount}
+                <button onClick={() => handleEdit(b)} style={{ fontSize: '13px', color: over ? 'var(--danger)' : 'var(--muted)' }}>
+                  <span style={{ fontFamily: 'var(--font-serif), serif', fontSize: '18px', color: over ? 'var(--danger)' : 'var(--fg)' }}>${spent}</span> / ${b.amount}
                 </button>
               </div>
-              <div style={{ height: '4px', borderRadius: '4px', background: '#eeece7' }}>
-                <div style={{ height: '100%', width: `${percent}%`, background: over ? '#c15b4a' : color, borderRadius: '4px' }} />
+              <div style={{ height: '4px', borderRadius: '4px', background: 'var(--track)' }}>
+                <div style={{ height: '100%', width: `${percent}%`, background: over ? 'var(--danger)' : color, borderRadius: '4px' }} />
               </div>
               <div className='flex justify-end' style={{ marginTop: '6px' }}>
-                <button onClick={() => handleDelete(b.id)} style={{ fontSize: '12px', color: '#c0bdb5' }}>Remove</button>
+                <button onClick={() => handleDelete(b.id)} style={{ fontSize: '12px', color: 'var(--faint)' }}>Remove</button>
               </div>
             </div>
           );
         })}
-        {budgets.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No budgets yet.</p>}
+        {budgets.length === 0 && <p style={{ color: 'var(--muted)', fontSize: '14px' }}>No budgets yet.</p>}
       </div>
 
-      <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+      <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
         <select value={categoryId} onChange={(e) => setCategoryId(e.target.value)} className='field'
           style={{ background: 'transparent', outline: 'none', fontSize: '16px' }}>
           <option value=''>Pick a category</option>
@@ -104,7 +104,7 @@ export default function BudgetsPage() {
         </select>
         <input type='number' placeholder='Monthly limit' value={amount} onChange={(e) => setAmount(e.target.value)}
           className='field' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
-        <button type='submit' className='btn' style={{ background: '#1a1a1a', color: '#faf9f7', marginTop: '6px' }}>+ Set budget</button>
+        <button type='submit' className='btn' style={{ background: 'var(--fg)', color: 'var(--bg)', marginTop: '6px' }}>+ Set budget</button>
       </form>
       <div style={{ height: '80px' }} />
       <Nav />

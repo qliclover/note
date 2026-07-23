@@ -43,12 +43,12 @@ export default function CategoriesPage() {
 
             <SubTabs tabs={MANAGE_TABS} />
 
-            <form onSubmit={handleAddCategory} className='flex items-center' style={{ gap: '14px', borderBottom: '1px solid #d9d6cf', paddingBottom: '9px' }}>
+            <form onSubmit={handleAddCategory} className='flex items-center' style={{ gap: '14px', borderBottom: '1px solid var(--border-2)', paddingBottom: '9px' }}>
                 <input type='text' placeholder='New category name' value={newCatName}
                     onChange={(e) => setNewCatName(e.target.value)}
                     style={{ flex: 1, fontSize: '16px', background: 'transparent', border: 'none', outline: 'none' }} />
                 <select value={newCatType} onChange={(e) => setNewCatType(e.target.value)}
-                    style={{ background: 'transparent', border: 'none', outline: 'none', fontSize: '14px', color: '#a3a09a' }}>
+                    style={{ background: 'transparent', border: 'none', outline: 'none', fontSize: '14px', color: 'var(--muted)' }}>
                     <option value='expense'>Expense</option>
                     <option value='income'>Income</option>
                 </select>
@@ -63,13 +63,13 @@ export default function CategoriesPage() {
                             <span className='dot' style={{ width: '10px', height: '10px', background: colorForIndex(i) }} />
                             <div style={{ flex: 1, marginLeft: '12px' }}>
                                 <div style={{ fontSize: '16px' }}>{c.name}</div>
-                                <div style={{ fontSize: '12px', color: '#a3a09a' }}>{n} {n === 1 ? 'entry' : 'entries'}</div>
+                                <div style={{ fontSize: '12px', color: 'var(--muted)' }}>{n} {n === 1 ? 'entry' : 'entries'}</div>
                             </div>
-                            <button onClick={() => handleDeleteCategory(c.id)} style={{ fontSize: '20px', color: '#c0bdb5' }}>×</button>
+                            <button onClick={() => handleDeleteCategory(c.id)} style={{ fontSize: '20px', color: 'var(--faint)' }}>×</button>
                         </div>
                     );
                 })}
-                {categories.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No categories yet.</p>}
+                {categories.length === 0 && <p style={{ color: 'var(--muted)', fontSize: '14px' }}>No categories yet.</p>}
             </div>
             <div style={{ height: '80px' }} />
             <Nav />

@@ -59,8 +59,8 @@ export default function AccountsPage() {
 
       <SubTabs tabs={MANAGE_TABS} />
 
-      <div style={{ borderBottom: '1px solid #e6e4df', paddingBottom: '16px' }}>
-        <div style={{ fontSize: '13px', color: '#9a9791' }}>Net worth</div>
+      <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
+        <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Net worth</div>
         <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '48px', letterSpacing: '-1px' }}>${netWorth.toFixed(2)}</div>
       </div>
 
@@ -69,20 +69,20 @@ export default function AccountsPage() {
           <div key={a.id} className='row'>
             <div>
               <div style={{ fontSize: '16px' }}>{a.name}</div>
-              <div style={{ fontSize: '12px', color: '#a3a09a' }}>{a.type}</div>
+              <div style={{ fontSize: '12px', color: 'var(--muted)' }}>{a.type}</div>
             </div>
             <div className='flex items-center' style={{ gap: '14px' }}>
-              <button onClick={() => handleEdit(a)} style={{ fontFamily: 'var(--font-serif), serif', fontSize: '21px', color: a.balance < 0 ? '#c15b4a' : '#1a1a1a' }}>
+              <button onClick={() => handleEdit(a)} style={{ fontFamily: 'var(--font-serif), serif', fontSize: '21px', color: a.balance < 0 ? 'var(--danger)' : 'var(--fg)' }}>
                 {a.balance < 0 ? '−' : ''}${Math.abs(a.balance).toFixed(2)}
               </button>
-              <button onClick={() => handleDelete(a.id)} style={{ fontSize: '18px', color: '#c0bdb5' }}>×</button>
+              <button onClick={() => handleDelete(a.id)} style={{ fontSize: '18px', color: 'var(--faint)' }}>×</button>
             </div>
           </div>
         ))}
-        {accounts.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px' }}>No accounts yet.</p>}
+        {accounts.length === 0 && <p style={{ color: 'var(--muted)', fontSize: '14px' }}>No accounts yet.</p>}
       </div>
 
-      <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid #e6e4df', paddingTop: '20px' }}>
+      <form onSubmit={handleAdd} className='flex flex-col' style={{ gap: '12px', borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
         <input type='text' placeholder='Account name' value={name} onChange={(e) => setName(e.target.value)}
           className='field' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
         <div className='flex' style={{ gap: '12px' }}>
@@ -95,7 +95,7 @@ export default function AccountsPage() {
           <input type='number' placeholder='Balance' value={balance} onChange={(e) => setBalance(e.target.value)}
             className='field flex-1' style={{ background: 'transparent', outline: 'none', fontSize: '16px' }} />
         </div>
-        <button type='submit' className='btn' style={{ border: '1px solid #1a1a1a', marginTop: '6px' }}>+ Add account</button>
+        <button type='submit' className='btn' style={{ border: '1px solid var(--fg)', marginTop: '6px' }}>+ Add account</button>
       </form>
       <div style={{ height: '80px' }} />
       <Nav />

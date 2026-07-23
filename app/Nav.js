@@ -19,11 +19,11 @@ export default function Nav() {
 
     function tabStyle(href) {
         const active = pathname === href;
-        return { color: active ? '#1a1a1a' : '#b0ada7', textShadow: activeShadow(active) };
+        return { color: active ? 'var(--fg)' : 'var(--muted)', textShadow: activeShadow(active) };
     }
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0" style={{ borderTop: '1px solid #eceae5', background: '#faf9f7' }}>
+        <nav className="fixed bottom-0 left-0 right-0" style={{ borderTop: '1px solid var(--border)', background: 'var(--bg)' }}>
             <div className="max-w-md mx-auto flex items-center justify-between"
                 style={{ padding: '16px 26px', paddingBottom: 'calc(30px + env(safe-area-inset-bottom))' }}>
                 {TABS_LEFT.map((t) => (
@@ -31,12 +31,12 @@ export default function Nav() {
                 ))}
                 <button onClick={openAddEntry} aria-label="Add entry"
                     style={{
-                        position: 'relative', width: '56px', height: '56px', borderRadius: '28px', background: '#1a1a1a',
+                        position: 'relative', width: '56px', height: '56px', borderRadius: '28px', background: 'var(--fg)',
                         transform: 'translateY(-14px)', boxShadow: '0 8px 20px rgba(26,26,26,.28)',
                         flex: 'none',
                     }}>
-                    <span style={{ position: 'absolute', top: '50%', left: '50%', width: '18px', height: '2px', background: '#faf9f7', transform: 'translate(-50%,-50%)', borderRadius: '1px' }} />
-                    <span style={{ position: 'absolute', top: '50%', left: '50%', width: '2px', height: '18px', background: '#faf9f7', transform: 'translate(-50%,-50%)', borderRadius: '1px' }} />
+                    <span style={{ position: 'absolute', top: '50%', left: '50%', width: '18px', height: '2px', background: 'var(--bg)', transform: 'translate(-50%,-50%)', borderRadius: '1px' }} />
+                    <span style={{ position: 'absolute', top: '50%', left: '50%', width: '2px', height: '18px', background: 'var(--bg)', transform: 'translate(-50%,-50%)', borderRadius: '1px' }} />
                 </button>
                 {TABS_RIGHT.map((t) => (
                     <Link key={t.href} href={t.href} style={{ fontSize: '13px', ...tabStyle(t.href) }}>{t.label}</Link>

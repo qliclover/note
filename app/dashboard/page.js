@@ -48,13 +48,13 @@ export default function Dashboard() {
                         style={{ position: 'absolute', inset: 0, opacity: 0, width: '100%', cursor: 'pointer' }} />
                 </label>
                 <div className='flex items-center' style={{ gap: '18px' }}>
-                    <Link href='/search' aria-label='Search' style={{ fontSize: '17px', color: '#6a6a6a' }}>⌕</Link>
-                    <button onClick={handleLogout} style={{ fontSize: '13px', color: '#6a6a6a' }}>Log out</button>
+                    <Link href='/search' aria-label='Search' style={{ fontSize: '17px', color: 'var(--muted)' }}>⌕</Link>
+                    <button onClick={handleLogout} style={{ fontSize: '13px', color: 'var(--muted)' }}>Log out</button>
                 </div>
             </div>
 
             <div>
-                <div style={{ fontSize: '13px', color: '#9a9791', marginBottom: '2px' }}>You have</div>
+                <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '2px' }}>You have</div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '66px', letterSpacing: '-1px', lineHeight: .95 }}>
                     {balance < 0 ? '−' : ''}${Math.abs(balance).toLocaleString('en-US', { minimumFractionDigits: balance % 1 !== 0 ? 2 : 0, maximumFractionDigits: 2 })}
                 </div>
@@ -63,7 +63,7 @@ export default function Dashboard() {
                         <div className='lbl' style={{ fontSize: '10px' }}>In</div>
                         <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px', marginTop: '1px' }}>${income.toLocaleString('en-US')}</div>
                     </div>
-                    <div style={{ width: '1px', height: '34px', background: '#e6e4df' }} />
+                    <div style={{ width: '1px', height: '34px', background: 'var(--border)' }} />
                     <div>
                         <div className='lbl' style={{ fontSize: '10px' }}>Out</div>
                         <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px', marginTop: '1px' }}>${expense.toLocaleString('en-US')}</div>
@@ -71,10 +71,10 @@ export default function Dashboard() {
                 </div>
             </div>
 
-            <div className='flex items-center overflow-x-auto' style={{ gap: '18px', borderTop: '1px solid #e6e4df', borderBottom: '1px solid #e6e4df', padding: '12px 0', fontSize: '14px' }}>
-                <button onClick={() => setFilter('all')} className='flex-none' style={{ whiteSpace: 'nowrap', textShadow: activeShadow(filter === 'all'), color: filter === 'all' ? '#1a1a1a' : '#a3a09a', borderBottom: filter === 'all' ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px' }}>All</button>
+            <div className='flex items-center overflow-x-auto' style={{ gap: '18px', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)', padding: '12px 0', fontSize: '14px' }}>
+                <button onClick={() => setFilter('all')} className='flex-none' style={{ whiteSpace: 'nowrap', textShadow: activeShadow(filter === 'all'), color: filter === 'all' ? 'var(--fg)' : 'var(--muted)', borderBottom: filter === 'all' ? '2px solid var(--fg)' : '2px solid transparent', paddingBottom: '2px' }}>All</button>
                 {categories.map((c) => (
-                    <button key={c.id} onClick={() => setFilter(String(c.id))} className='flex-none' style={{ whiteSpace: 'nowrap', textShadow: activeShadow(filter === String(c.id)), color: filter === String(c.id) ? '#1a1a1a' : '#a3a09a', borderBottom: filter === String(c.id) ? '2px solid #1a1a1a' : '2px solid transparent', paddingBottom: '2px' }}>{c.name}</button>
+                    <button key={c.id} onClick={() => setFilter(String(c.id))} className='flex-none' style={{ whiteSpace: 'nowrap', textShadow: activeShadow(filter === String(c.id)), color: filter === String(c.id) ? 'var(--fg)' : 'var(--muted)', borderBottom: filter === String(c.id) ? '2px solid var(--fg)' : '2px solid transparent', paddingBottom: '2px' }}>{c.name}</button>
                 ))}
             </div>
 
@@ -85,7 +85,7 @@ export default function Dashboard() {
                             <span className='dot' style={{ background: t.type === 'income' ? '#6f7a4e' : categoryColor(t.category, categories) }} />
                             <div>
                                 <div style={{ fontSize: '16px' }}>{t.note || 'Untitled'}</div>
-                                <div style={{ fontSize: '12px', color: '#a3a09a' }}>
+                                <div style={{ fontSize: '12px', color: 'var(--muted)' }}>
                                     {t.category ? t.category.name : (t.type === 'income' ? 'Income' : 'Uncategorized')} · {fmtDate(t.date)}
                                 </div>
                             </div>
@@ -95,7 +95,7 @@ export default function Dashboard() {
                         </div>
                     </Link>
                 ))}
-                {shown.length === 0 && <p style={{ color: '#a3a09a', fontSize: '14px', padding: '14px 0' }}>No entries yet.</p>}
+                {shown.length === 0 && <p style={{ color: 'var(--muted)', fontSize: '14px', padding: '14px 0' }}>No entries yet.</p>}
             </div>
             <div style={{ height: '96px' }} />
             <Nav />
