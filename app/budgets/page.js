@@ -34,6 +34,22 @@ export default function BudgetsPage() {
     loadBudgets();
   }
 
+  async function handleEdit(b) {
+    const value = prompt('Monthly limit', b.amount);
+    if (value == null || value === '') return;
+    await fetch(`/api/budgets/${b.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ amount: value }),
+    });
+    loadBudgets();
+  }
+
+  async function handleDelete(id) {
+    await fetch(`/api/budgets/${id}`, { method: 'DELETE' });
+    loadBudgets();
+  }
+
   const month = new Date().toISOString().slice(0, 7);
   const monthLabel = new Date(month + '-02').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
   function spentFor(catId) {
@@ -64,12 +80,15 @@ export default function BudgetsPage() {
                   <span className='dot' style={{ background: color }} />
                   {b.category?.name || 'Unknown'}
                 </div>
-                <div style={{ fontSize: '13px', color: over ? '#c15b4a' : '#a3a09a' }}>
+                <button onClick={() => handleEdit(b)} style={{ fontSize: '13px', color: over ? '#c15b4a' : '#a3a09a' }}>
                   <span style={{ fontFamily: 'var(--font-serif), serif', fontSize: '18px', color: over ? '#c15b4a' : '#1a1a1a' }}>${spent}</span> / ${b.amount}
-                </div>
+                </button>
               </div>
               <div style={{ height: '4px', borderRadius: '4px', background: '#eeece7' }}>
                 <div style={{ height: '100%', width: `${percent}%`, background: over ? '#c15b4a' : color, borderRadius: '4px' }} />
+              </div>
+              <div className='flex justify-end' style={{ marginTop: '6px' }}>
+                <button onClick={() => handleDelete(b.id)} style={{ fontSize: '12px', color: '#c0bdb5' }}>Remove</button>
               </div>
             </div>
           );

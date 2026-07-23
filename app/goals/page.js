@@ -33,6 +33,24 @@ export default function GoalsPage() {
         loadGoals();
     }
 
+    async function handleEdit(g) {
+        const savedValue = prompt('Saved so far', g.saved);
+        if (savedValue == null || savedValue === '') return;
+        const targetValue = prompt('Target amount', g.target);
+        if (targetValue == null || targetValue === '') return;
+        await fetch(`/api/goals/${g.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ saved: savedValue, target: targetValue }),
+        });
+        loadGoals();
+    }
+
+    async function handleDelete(id) {
+        await fetch(`/api/goals/${id}`, { method: 'DELETE' });
+        loadGoals();
+    }
+
     const barColors = ['#2f6b52', '#5e6b73', '#a5735a', '#7a5c66'];
 
     return (
@@ -53,13 +71,16 @@ export default function GoalsPage() {
                             <div style={{ fontSize: '17px' }}>{g.name}</div>
                             <div style={{ fontSize: '13px', color: '#a3a09a' }}>{g.targetDate || 'Ongoing'}</div>
                         </div>
-                        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '34px', margin: '6px 0 10px' }}>
+                        <button onClick={() => handleEdit(g)} style={{ display: 'block', textAlign: 'left', fontFamily: 'var(--font-serif), serif', fontSize: '34px', margin: '6px 0 10px' }}>
                             ${g.saved.toLocaleString('en-US')} <span style={{ fontSize: '18px', color: '#a3a09a' }}>/ ${g.target.toLocaleString('en-US')}</span>
-                        </div>
+                        </button>
                         <div style={{ height: '6px', borderRadius: '6px', background: '#eeece7' }}>
                             <div style={{ height: '100%', width: `${percent}%`, background: color, borderRadius: '6px' }} />
                         </div>
-                        <div style={{ fontSize: '12px', color: '#a3a09a', marginTop: '8px' }}>{percent}% saved</div>
+                        <div className='flex items-center justify-between' style={{ marginTop: '8px' }}>
+                            <div style={{ fontSize: '12px', color: '#a3a09a' }}>{percent}% saved</div>
+                            <button onClick={() => handleDelete(g.id)} style={{ fontSize: '12px', color: '#c0bdb5' }}>Remove</button>
+                        </div>
                     </div>
                 );
             })}

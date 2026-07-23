@@ -33,6 +33,22 @@ export default function RecurringPage() {
         load();
     }
 
+    async function handleEdit(r) {
+        const value = prompt('Amount', r.amount);
+        if (value == null || value === '') return;
+        await fetch(`/api/recurring/${r.id}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ amount: value }),
+        });
+        load();
+    }
+
+    async function handleDelete(id) {
+        await fetch(`/api/recurring/${id}`, { method: 'DELETE' });
+        load();
+    }
+
     function daysUntil(dateStr) {
         if (!dateStr) return null;
         const diff = Math.ceil((new Date(dateStr) - new Date()) / 86400000);
@@ -67,9 +83,12 @@ export default function RecurringPage() {
                             <div style={{ fontSize: '16px' }}>{r.name}</div>
                             <div style={{ fontSize: '12px', color: '#a3a09a' }}>{r.cycle}{r.nextDate ? ' · ' + r.nextDate : ''}</div>
                         </div>
-                        <div style={{ textAlign: 'right' }}>
-                            <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>−${r.amount}</div>
-                            {daysUntil(r.nextDate) && <div style={{ fontSize: '11px', color: '#a3a09a' }}>{daysUntil(r.nextDate)}</div>}
+                        <div className='flex items-center' style={{ gap: '14px' }}>
+                            <button onClick={() => handleEdit(r)} style={{ textAlign: 'right' }}>
+                                <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>−${r.amount}</div>
+                                {daysUntil(r.nextDate) && <div style={{ fontSize: '11px', color: '#a3a09a' }}>{daysUntil(r.nextDate)}</div>}
+                            </button>
+                            <button onClick={() => handleDelete(r.id)} style={{ fontSize: '18px', color: '#c0bdb5' }}>×</button>
                         </div>
                     </div>
                 ))}

@@ -32,6 +32,22 @@ export default function AccountsPage() {
     load();
   }
 
+  async function handleEdit(a) {
+    const value = prompt('Balance', a.balance);
+    if (value == null || value === '') return;
+    await fetch(`/api/accounts/${a.id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ balance: value }),
+    });
+    load();
+  }
+
+  async function handleDelete(id) {
+    await fetch(`/api/accounts/${id}`, { method: 'DELETE' });
+    load();
+  }
+
   const netWorth = accounts.reduce((s, a) => s + a.balance, 0);
 
   return (
@@ -55,8 +71,11 @@ export default function AccountsPage() {
               <div style={{ fontSize: '16px' }}>{a.name}</div>
               <div style={{ fontSize: '12px', color: '#a3a09a' }}>{a.type}</div>
             </div>
-            <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '21px', color: a.balance < 0 ? '#c15b4a' : '#1a1a1a' }}>
-              {a.balance < 0 ? '−' : ''}${Math.abs(a.balance).toFixed(2)}
+            <div className='flex items-center' style={{ gap: '14px' }}>
+              <button onClick={() => handleEdit(a)} style={{ fontFamily: 'var(--font-serif), serif', fontSize: '21px', color: a.balance < 0 ? '#c15b4a' : '#1a1a1a' }}>
+                {a.balance < 0 ? '−' : ''}${Math.abs(a.balance).toFixed(2)}
+              </button>
+              <button onClick={() => handleDelete(a.id)} style={{ fontSize: '18px', color: '#c0bdb5' }}>×</button>
             </div>
           </div>
         ))}
