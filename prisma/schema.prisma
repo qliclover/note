@@ -18,6 +18,8 @@ model User {
   email         String       @unique
   password      String
   name          String?
+  currency      String       @default("USD")
+  monthStartDay Int          @default(1)
   createdAt     DateTime     @default(now())
 
   transactions  Transaction[]
