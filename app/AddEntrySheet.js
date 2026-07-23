@@ -31,7 +31,7 @@ export function AddEntryProvider({ children }) {
     const [note, setNote] = useState('');
     const [scanning, setScanning] = useState(false);
     const [scanError, setScanError] = useState('');
-    const { categories, ensureLoaded, refetch } = useData();
+    const { categories, symbol, ensureLoaded, refetch } = useData();
 
     function openAddEntry() {
         setType('expense');
@@ -126,7 +126,7 @@ export function AddEntryProvider({ children }) {
 
                         <div style={{ textAlign: 'center', marginBottom: '10px' }}>
                             <span style={{ fontFamily: 'var(--font-serif), serif', fontSize: '66px', letterSpacing: '-1px', color: amount ? 'var(--fg)' : 'var(--faint)' }}>
-                                $<span style={{ color: amount ? 'var(--fg)' : 'var(--faint)' }}>{amount || '0'}</span>
+                                {symbol}<span style={{ color: amount ? 'var(--fg)' : 'var(--faint)' }}>{amount || '0'}</span>
                             </span>
                         </div>
 

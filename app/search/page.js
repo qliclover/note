@@ -6,15 +6,14 @@ import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
 import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
 
-const FILTERS = [
-    { id: 'expense', label: 'Expense' },
-    { id: 'income', label: 'Income' },
-    { id: 'thisMonth', label: 'This month' },
-    { id: 'over50', label: '> $50' },
-];
-
 export default function SearchPage() {
-    const { transactions, categories, ensureLoaded } = useData();
+    const { transactions, categories, symbol, ensureLoaded } = useData();
+    const FILTERS = [
+        { id: 'expense', label: 'Expense' },
+        { id: 'income', label: 'Income' },
+        { id: 'thisMonth', label: 'This month' },
+        { id: 'over50', label: `> ${symbol}50` },
+    ];
     const [query, setQuery] = useState('');
     const [active, setActive] = useState([]);
 
@@ -61,7 +60,7 @@ export default function SearchPage() {
             </div>
 
             <div style={{ borderTop: '1px solid var(--border)', paddingTop: '4px' }}>
-                <div className="lbl" style={{ margin: '8px 0' }}>{results.length} results · ${total.toLocaleString('en-US')}</div>
+                <div className="lbl" style={{ margin: '8px 0' }}>{results.length} results · {symbol}{total.toLocaleString('en-US')}</div>
                 {results.map((t) => (
                     <Link key={t.id} href={`/transaction/${t.id}`} className="row">
                         <div className="flex items-center" style={{ gap: '11px' }}>
@@ -74,7 +73,7 @@ export default function SearchPage() {
                             </div>
                         </div>
                         <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '20px' }}>
-                            {t.type === 'income' ? '+' : '−'}${t.amount.toLocaleString('en-US')}
+                            {t.type === 'income' ? '+' : '−'}{symbol}{t.amount.toLocaleString('en-US')}
                         </div>
                     </Link>
                 ))}

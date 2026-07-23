@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
 import SubTabs, { MANAGE_TABS } from '@/app/SubTabs'
+import { useData } from '@/app/DataContext'
 
 export default function AccountsPage() {
+  const { symbol } = useData();
   const [accounts, setAccounts] = useState([]);
   const [name, setName] = useState('');
   const [balance, setBalance] = useState('');
@@ -61,7 +63,7 @@ export default function AccountsPage() {
 
       <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
         <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Net worth</div>
-        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '48px', letterSpacing: '-1px' }}>${netWorth.toFixed(2)}</div>
+        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '48px', letterSpacing: '-1px' }}>{symbol}{netWorth.toFixed(2)}</div>
       </div>
 
       <div>
@@ -73,7 +75,7 @@ export default function AccountsPage() {
             </div>
             <div className='flex items-center' style={{ gap: '14px' }}>
               <button onClick={() => handleEdit(a)} style={{ fontFamily: 'var(--font-serif), serif', fontSize: '21px', color: a.balance < 0 ? 'var(--danger)' : 'var(--fg)' }}>
-                {a.balance < 0 ? '−' : ''}${Math.abs(a.balance).toFixed(2)}
+                {a.balance < 0 ? '−' : ''}{symbol}{Math.abs(a.balance).toFixed(2)}
               </button>
               <button onClick={() => handleDelete(a.id)} style={{ fontSize: '18px', color: 'var(--faint)' }}>×</button>
             </div>

@@ -6,6 +6,7 @@ import Nav from '@/app/Nav'
 import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
 import { activeShadow } from '@/app/tabStyle'
+import { inPeriod } from '@/app/period'
 
 function fmtDate(iso) {
     const d = new Date(iso);
@@ -18,7 +19,7 @@ function fmtDate(iso) {
 }
 
 export default function Dashboard() {
-    const { transactions, categories, ensureLoaded } = useData();
+    const { transactions, categories, symbol, monthStartDay, ensureLoaded } = useData();
     const [month, setMonth] = useState(() => new Date().toISOString().slice(0, 7));
     const [filter, setFilter] = useState('all');
     const router = useRouter();
@@ -31,7 +32,12 @@ export default function Dashboard() {
         router.push('/');
     }
 
-    const monthTx = transactions.filter(t => t.date.slice(0, 7) === month);
+    // the selected "YYYY-MM" anchors a period starting on monthStartDay,
+    // so e.g. monthStartDay=25 makes "July" mean Jul 25 – Aug 24.
+    const [year, mo] = month.split('-').map(Number);
+    const start = new Date(year, mo - 1, monthStartDay);
+    const period = { start, end: new Date(start.getFullYear(), start.getMonth() + 1, monthStartDay) };
+    const monthTx = transactions.filter(t => inPeriod(t.date, period));
     const income = monthTx.filter(t => t.type === 'income').reduce((s, t) => s + t.amount, 0);
     const expense = monthTx.filter(t => t.type === 'expense').reduce((s, t) => s + t.amount, 0);
     const balance = income - expense;
@@ -56,17 +62,17 @@ export default function Dashboard() {
             <div>
                 <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '2px' }}>You have</div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '66px', letterSpacing: '-1px', lineHeight: .95 }}>
-                    {balance < 0 ? '−' : ''}${Math.abs(balance).toLocaleString('en-US', { minimumFractionDigits: balance % 1 !== 0 ? 2 : 0, maximumFractionDigits: 2 })}
+                    {balance < 0 ? '−' : ''}{symbol}{Math.abs(balance).toLocaleString('en-US', { minimumFractionDigits: balance % 1 !== 0 ? 2 : 0, maximumFractionDigits: 2 })}
                 </div>
                 <div className='flex items-center' style={{ gap: '22px', marginTop: '14px' }}>
                     <div>
                         <div className='lbl' style={{ fontSize: '10px' }}>In</div>
-                        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px', marginTop: '1px' }}>${income.toLocaleString('en-US')}</div>
+                        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px', marginTop: '1px' }}>{symbol}{income.toLocaleString('en-US')}</div>
                     </div>
                     <div style={{ width: '1px', height: '34px', background: 'var(--border)' }} />
                     <div>
                         <div className='lbl' style={{ fontSize: '10px' }}>Out</div>
-                        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px', marginTop: '1px' }}>${expense.toLocaleString('en-US')}</div>
+                        <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '24px', marginTop: '1px' }}>{symbol}{expense.toLocaleString('en-US')}</div>
                     </div>
                 </div>
             </div>
@@ -91,7 +97,7 @@ export default function Dashboard() {
                             </div>
                         </div>
                         <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '21px' }}>
-                            {t.type === 'income' ? '+' : '−'}${t.amount.toLocaleString('en-US')}
+                            {t.type === 'income' ? '+' : '−'}{symbol}{t.amount.toLocaleString('en-US')}
                         </div>
                     </Link>
                 ))}

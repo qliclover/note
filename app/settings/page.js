@@ -5,6 +5,7 @@ import Nav from '@/app/Nav'
 import SubTabs, { MANAGE_TABS } from '@/app/SubTabs'
 import { useData } from '@/app/DataContext'
 import { getTheme, setTheme } from '@/app/theme'
+import { CURRENCIES } from '@/app/currency'
 
 const THEME_CYCLE = ['system', 'light', 'dark'];
 const THEME_LABEL = { system: 'System', light: 'Light', dark: 'Dark' };
@@ -12,7 +13,7 @@ const THEME_LABEL = { system: 'System', light: 'Light', dark: 'Dark' };
 export default function SettingsPage() {
   const [user, setUser] = useState(null);
   const [theme, setThemeState] = useState('system');
-  const { transactions } = useData();
+  const { transactions, currency, monthStartDay, symbol, ensureLoaded, updatePrefs } = useData();
   const router = useRouter();
 
   useEffect(() => {
@@ -23,12 +24,27 @@ export default function SettingsPage() {
         setUser(data.user);
       });
     setThemeState(getTheme());
+    ensureLoaded();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
   function cycleTheme() {
     const next = THEME_CYCLE[(THEME_CYCLE.indexOf(theme) + 1) % THEME_CYCLE.length];
     setTheme(next);
     setThemeState(next);
+  }
+
+  function cycleCurrency() {
+    const idx = CURRENCIES.findIndex((c) => c.code === currency);
+    const next = CURRENCIES[(idx + 1) % CURRENCIES.length];
+    updatePrefs({ currency: next.code });
+  }
+
+  function editStartDay() {
+    const value = prompt('Monthly start day (1–28)', monthStartDay);
+    if (value == null || value === '') return;
+    const day = Math.min(28, Math.max(1, parseInt(value) || 1));
+    updatePrefs({ monthStartDay: day });
   }
 
   async function handleLogout() {
@@ -62,7 +78,7 @@ export default function SettingsPage() {
         <td>${t.type}</td>
         <td>${t.category?.name || ''}</td>
         <td>${(t.note || '').replace(/</g, '&lt;')}</td>
-        <td style="text-align:right">${t.type === 'income' ? '+' : '−'}$${t.amount.toFixed(2)}</td>
+        <td style="text-align:right">${t.type === 'income' ? '+' : '−'}${symbol}${t.amount.toFixed(2)}</td>
       </tr>`).join('');
     win.document.write(`<!DOCTYPE html><html><head><title>Nook — Transactions</title><style>
       body{font-family:-apple-system,system-ui,sans-serif;padding:40px;color:#1a1a1a}
@@ -100,8 +116,14 @@ export default function SettingsPage() {
 
       <div>
         <div className='lbl' style={{ marginBottom: '4px' }}>Preferences</div>
-        <Row label='Currency' value='USD $' />
-        <Row label='Monthly start day' value='1st' />
+        <button onClick={cycleCurrency} className='row' style={{ width: '100%', background: 'none', border: 'none', textAlign: 'left' }}>
+          <span>Currency</span>
+          <span style={{ color: 'var(--muted)' }}>{currency} {CURRENCIES.find((c) => c.code === currency)?.symbol} ›</span>
+        </button>
+        <button onClick={editStartDay} className='row' style={{ width: '100%', background: 'none', border: 'none', textAlign: 'left' }}>
+          <span>Monthly start day</span>
+          <span style={{ color: 'var(--muted)' }}>{ordinal(monthStartDay)} ›</span>
+        </button>
         <button onClick={cycleTheme} className='row' style={{ width: '100%', borderBottom: 'none', background: 'none', border: 'none', textAlign: 'left' }}>
           <span>Appearance</span>
           <span style={{ color: 'var(--muted)' }}>{THEME_LABEL[theme]} ›</span>
@@ -128,11 +150,8 @@ export default function SettingsPage() {
   );
 }
 
-function Row({ label, value, valueColor, last }) {
-  return (
-    <div className='row' style={last ? { borderBottom: 'none' } : undefined}>
-      <span>{label}</span>
-      <span style={{ color: valueColor || 'var(--muted)' }}>{value}</span>
-    </div>
-  );
+function ordinal(n) {
+  const s = ['th', 'st', 'nd', 'rd'];
+  const v = n % 100;
+  return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }

@@ -3,8 +3,10 @@ import {useState, useEffect} from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '../Nav'
 import SubTabs, { PLANNING_TABS } from '../SubTabs'
+import { useData } from '../DataContext'
 
 export default function RecurringPage() {
+    const { symbol } = useData();
     const [items, setItems] = useState([]);
     const [name, setName] = useState('');
     const [amount, setAmount] = useState('');
@@ -72,7 +74,7 @@ export default function RecurringPage() {
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '16px' }}>
                 <div style={{ fontSize: '13px', color: 'var(--muted)' }}>Monthly commitments</div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '40px' }}>
-                    ${monthlyTotal.toFixed(2)}<span style={{ fontSize: '18px', color: 'var(--muted)' }}>/mo</span>
+                    {symbol}{monthlyTotal.toFixed(2)}<span style={{ fontSize: '18px', color: 'var(--muted)' }}>/mo</span>
                 </div>
             </div>
 
@@ -85,7 +87,7 @@ export default function RecurringPage() {
                         </div>
                         <div className='flex items-center' style={{ gap: '14px' }}>
                             <button onClick={() => handleEdit(r)} style={{ textAlign: 'right' }}>
-                                <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>−${r.amount}</div>
+                                <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>−{symbol}{r.amount}</div>
                                 {daysUntil(r.nextDate) && <div style={{ fontSize: '11px', color: 'var(--muted)' }}>{daysUntil(r.nextDate)}</div>}
                             </button>
                             <button onClick={() => handleDelete(r.id)} style={{ fontSize: '18px', color: 'var(--faint)' }}>×</button>

@@ -3,31 +3,30 @@ import { useEffect } from 'react'
 import Nav from '@/app/Nav'
 import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
 import { useData } from '@/app/DataContext'
+import { currentPeriod, previousPeriod, inPeriod } from '@/app/period'
 
 export default function ComparePage() {
-    const { transactions, ensureLoaded } = useData();
+    const { transactions, symbol, monthStartDay, ensureLoaded } = useData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { ensureLoaded(); }, []);
 
-    const now = new Date();
-    const thisMonth = now.toISOString().slice(0, 7);
-    const prev = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-    const prevMonth = prev.toISOString().slice(0, 7);
-    const monthShort = (ym) => new Date(ym + '-02').toLocaleDateString('en-US', { month: 'short' });
+    const thisPeriod = currentPeriod(monthStartDay);
+    const prevPeriod = previousPeriod(monthStartDay);
+    const monthShort = (d) => d.toLocaleDateString('en-US', { month: 'short' });
 
-    function expenseByCat(ym) {
+    function expenseByCat(period) {
         const map = {};
         transactions
-            .filter((t) => t.type === 'expense' && t.date.slice(0, 7) === ym)
+            .filter((t) => t.type === 'expense' && inPeriod(t.date, period))
             .forEach((t) => {
                 const key = t.category ? t.category.name : 'Uncategorized';
                 map[key] = (map[key] || 0) + t.amount;
             });
         return map;
     }
-    const thisCat = expenseByCat(thisMonth);
-    const prevCat = expenseByCat(prevMonth);
+    const thisCat = expenseByCat(thisPeriod);
+    const prevCat = expenseByCat(prevPeriod);
 
     const thisTotal = Object.values(thisCat).reduce((s, v) => s + v, 0);
     const prevTotal = Object.values(prevCat).reduce((s, v) => s + v, 0);
@@ -41,7 +40,7 @@ export default function ComparePage() {
     return (
         <div className='max-w-md mx-auto' style={{ padding: 'calc(20px + env(safe-area-inset-top)) 26px 24px', display: 'flex', flexDirection: 'column', gap: '26px' }}>
             <div>
-                <div className='lbl'>{monthShort(prevMonth)} → {monthShort(thisMonth)} {now.getFullYear()}</div>
+                <div className='lbl'>{monthShort(prevPeriod.start)} → {monthShort(thisPeriod.start)} {thisPeriod.start.getFullYear()}</div>
                 <div className='h1'>Compared</div>
             </div>
 
@@ -50,10 +49,10 @@ export default function ComparePage() {
             <div style={{ borderBottom: '1px solid var(--border)', paddingBottom: '18px' }}>
                 <div style={{ fontSize: '13px', color: 'var(--muted)', marginBottom: '2px' }}>You spent</div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '52px', letterSpacing: '-1px', lineHeight: 1 }}>
-                    ${Math.trunc(thisTotal)}<span style={{ color: 'var(--muted)' }}>.{(thisTotal % 1).toFixed(2).slice(2)}</span>
+                    {symbol}{Math.trunc(thisTotal)}<span style={{ color: 'var(--muted)' }}>.{(thisTotal % 1).toFixed(2).slice(2)}</span>
                 </div>
                 <div style={{ fontSize: '14px', color: diff <= 0 ? 'var(--success)' : 'var(--danger)', marginTop: '6px' }}>
-                    {diff <= 0 ? '↓' : '↑'} ${Math.abs(diff).toLocaleString('en-US')} {diff <= 0 ? 'less' : 'more'} than {monthShort(prevMonth)}
+                    {diff <= 0 ? '↓' : '↑'} {symbol}{Math.abs(diff).toLocaleString('en-US')} {diff <= 0 ? 'less' : 'more'} than {monthShort(prevPeriod.start)}
                 </div>
             </div>
 
@@ -63,7 +62,7 @@ export default function ComparePage() {
                     <div key={r.name} className='row'>
                         <span>{r.name}</span>
                         <span style={{ color: r.delta <= 0 ? 'var(--success)' : 'var(--danger)' }}>
-                            {r.delta <= 0 ? '↓' : '↑'} ${Math.abs(r.delta).toLocaleString('en-US')}
+                            {r.delta <= 0 ? '↓' : '↑'} {symbol}{Math.abs(r.delta).toLocaleString('en-US')}
                         </span>
                     </div>
                 ))}

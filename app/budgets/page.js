@@ -5,9 +5,10 @@ import Nav from '@/app/Nav'
 import SubTabs, { PLANNING_TABS } from '@/app/SubTabs'
 import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
+import { currentPeriod, inPeriod, periodLabel } from '@/app/period'
 
 export default function BudgetsPage() {
-  const { transactions, categories, ensureLoaded } = useData();
+  const { transactions, categories, symbol, monthStartDay, ensureLoaded } = useData();
   const [budgets, setBudgets] = useState([]);
   const [categoryId, setCategoryId] = useState('');
   const [amount, setAmount] = useState('');
@@ -50,11 +51,11 @@ export default function BudgetsPage() {
     loadBudgets();
   }
 
-  const month = new Date().toISOString().slice(0, 7);
-  const monthLabel = new Date(month + '-02').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+  const period = currentPeriod(monthStartDay);
+  const monthLabel = periodLabel(period);
   function spentFor(catId) {
     return transactions
-      .filter(t => t.type === 'expense' && t.categoryId === catId && t.date.slice(0, 7) === month)
+      .filter(t => t.type === 'expense' && t.categoryId === catId && inPeriod(t.date, period))
       .reduce((s, t) => s + t.amount, 0);
   }
 
@@ -81,7 +82,7 @@ export default function BudgetsPage() {
                   {b.category?.name || 'Unknown'}
                 </div>
                 <button onClick={() => handleEdit(b)} style={{ fontSize: '13px', color: over ? 'var(--danger)' : 'var(--muted)' }}>
-                  <span style={{ fontFamily: 'var(--font-serif), serif', fontSize: '18px', color: over ? 'var(--danger)' : 'var(--fg)' }}>${spent}</span> / ${b.amount}
+                  <span style={{ fontFamily: 'var(--font-serif), serif', fontSize: '18px', color: over ? 'var(--danger)' : 'var(--fg)' }}>{symbol}{spent}</span> / {symbol}{b.amount}
                 </button>
               </div>
               <div style={{ height: '4px', borderRadius: '4px', background: 'var(--track)' }}>

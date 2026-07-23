@@ -3,8 +3,10 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Nav from '@/app/Nav'
 import SubTabs, { PLANNING_TABS } from '@/app/SubTabs'
+import { useData } from '@/app/DataContext'
 
 export default function GoalsPage() {
+    const { symbol } = useData();
     const [goals, setGoals] = useState([]);
     const [name, setName] = useState('');
     const [target, setTarget] = useState('');
@@ -72,7 +74,7 @@ export default function GoalsPage() {
                             <div style={{ fontSize: '13px', color: 'var(--muted)' }}>{g.targetDate || 'Ongoing'}</div>
                         </div>
                         <button onClick={() => handleEdit(g)} style={{ display: 'block', textAlign: 'left', fontFamily: 'var(--font-serif), serif', fontSize: '34px', margin: '6px 0 10px' }}>
-                            ${g.saved.toLocaleString('en-US')} <span style={{ fontSize: '18px', color: 'var(--muted)' }}>/ ${g.target.toLocaleString('en-US')}</span>
+                            {symbol}{g.saved.toLocaleString('en-US')} <span style={{ fontSize: '18px', color: 'var(--muted)' }}>/ {symbol}{g.target.toLocaleString('en-US')}</span>
                         </button>
                         <div style={{ height: '6px', borderRadius: '6px', background: 'var(--track)' }}>
                             <div style={{ height: '100%', width: `${percent}%`, background: color, borderRadius: '6px' }} />

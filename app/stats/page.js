@@ -4,16 +4,17 @@ import Nav from '@/app/Nav'
 import SubTabs, { INSIGHTS_TABS } from '@/app/SubTabs'
 import { useData } from '@/app/DataContext'
 import { categoryColor } from '@/app/categoryColor'
+import { currentPeriod, inPeriod, periodLabel } from '@/app/period'
 
 export default function StatsPage() {
-    const { transactions, categories, ensureLoaded } = useData();
+    const { transactions, categories, symbol, monthStartDay, ensureLoaded } = useData();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => { ensureLoaded(); }, []);
 
-    const month = new Date().toISOString().slice(0, 7);
-    const monthLabel = new Date(month + '-02').toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
-    const monthExpenses = transactions.filter(t => t.type === 'expense' && t.date.slice(0, 7) === month);
+    const period = currentPeriod(monthStartDay);
+    const monthLabel = periodLabel(period);
+    const monthExpenses = transactions.filter(t => t.type === 'expense' && inPeriod(t.date, period));
     const spent = monthExpenses.reduce((s, t) => s + t.amount, 0);
 
     const byCat = {};
@@ -48,7 +49,7 @@ export default function StatsPage() {
             <div>
                 <div className="flex items-baseline justify-between" style={{ marginBottom: '22px' }}>
                     <div className="lbl">Spent this month</div>
-                    <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '34px' }}>${spent.toLocaleString('en-US')}</div>
+                    <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '34px' }}>{symbol}{spent.toLocaleString('en-US')}</div>
                 </div>
                 <div className="flex flex-col" style={{ gap: '20px' }}>
                     {cats.map((c) => {
@@ -60,7 +61,7 @@ export default function StatsPage() {
                                         <span className="dot" style={{ background: c.color }} />
                                         {c.name} <span style={{ color: 'var(--muted)', fontSize: '12px', marginLeft: '4px' }}>{percent}%</span>
                                     </div>
-                                    <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>${c.value.toLocaleString('en-US')}</div>
+                                    <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '19px' }}>{symbol}{c.value.toLocaleString('en-US')}</div>
                                 </div>
                                 <div style={{ height: '4px', borderRadius: '4px', background: 'var(--track)' }}>
                                     <div style={{ height: '100%', width: `${percent}%`, background: c.color, borderRadius: '4px' }} />
@@ -75,7 +76,7 @@ export default function StatsPage() {
             <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
                 <div className="flex items-center justify-between" style={{ marginBottom: '18px' }}>
                     <div className="lbl">This week</div>
-                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>avg ${avgDay.toFixed(0)}/day</div>
+                    <div style={{ fontSize: '13px', color: 'var(--muted)' }}>avg {symbol}{avgDay.toFixed(0)}/day</div>
                 </div>
                 <div className="flex items-end" style={{ gap: '12px', height: '80px' }}>
                     {dayTotals.map((v, i) => (

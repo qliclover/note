@@ -7,7 +7,7 @@ import { useData } from '@/app/DataContext'
 export default function TransactionDetail() {
     const {id} = useParams();
     const router = useRouter();
-    const { refetch } = useData();
+    const { symbol, refetch } = useData();
     const [tx, setTx] = useState(null);
     const [notFound, setNotFound] = useState(false);
 
@@ -57,7 +57,7 @@ export default function TransactionDetail() {
                     <span className='lbl'>{tx.category ? tx.category.name : (isIncome ? 'Income' : 'Expense')}</span>
                 </div>
                 <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '64px', letterSpacing: '-1px' }}>
-                    {isIncome ? '+' : '−'}${tx.amount}
+                    {isIncome ? '+' : '−'}{symbol}{tx.amount}
                 </div>
                 <div style={{ fontSize: '15px', color: 'var(--muted)', marginTop: '6px' }}>{tx.note || (isIncome ? 'Income' : 'Expense')}</div>
             </div>
