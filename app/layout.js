@@ -16,7 +16,7 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "Ledger",
+  title: "Nook",
   description: "Keep a beautiful record.",
 };
 

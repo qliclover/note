@@ -30,7 +30,7 @@ export default function RegisterPage() {
 
     return (
         <div className="max-w-md mx-auto min-h-dvh flex flex-col justify-center" style={{ padding: '0 30px' }}>
-            <div className="lbl" style={{ marginBottom: '8px' }}>Ledger · Est. 2026</div>
+            <div className="lbl" style={{ marginBottom: '8px' }}>Nook · Est. 2026</div>
             <h1 style={{ fontFamily: 'var(--font-serif), serif', fontSize: '44px', letterSpacing: '-.5px', marginBottom: '30px' }}>Create account</h1>
             {error && <p style={{ color: '#c15b4a', fontSize: '14px', marginBottom: '16px' }}>{error}</p>}
             <form onSubmit={handleSubmit} className="flex flex-col" style={{ gap: '18px' }}>

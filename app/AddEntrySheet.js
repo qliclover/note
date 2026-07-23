@@ -3,6 +3,7 @@ import { createContext, useContext, useState, useEffect } from 'react'
 import { colorForIndex } from './categoryColor'
 import { activeShadow } from './tabStyle'
 import { useData } from './DataContext'
+import { receiptSummary } from './receiptSummary'
 
 const AddEntryContext = createContext(null);
 
@@ -64,7 +65,7 @@ export function AddEntryProvider({ children }) {
             const { receipt } = await res.json();
             setType('expense');
             setAmount(receipt.total ? String(receipt.total) : '');
-            setNote(receipt.merchant || '');
+            setNote(receiptSummary(receipt));
             const match = categories.find((c) => c.type === 'expense' && c.name.toLowerCase() === (receipt.merchant || '').toLowerCase());
             if (match) setCategoryId(String(match.id));
         } catch {

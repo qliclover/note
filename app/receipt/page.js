@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useData } from '@/app/DataContext';
 import { colorForIndex } from '@/app/categoryColor';
+import { receiptSummary } from '@/app/receiptSummary';
 
 export default function ReceiptPage() {
     const { categories: allCategories, ensureLoaded, refetch } = useData();
@@ -67,7 +68,7 @@ export default function ReceiptPage() {
             body: JSON.stringify({
                 amount: receipt.total,
                 type: 'expense',
-                note: receipt.merchant,
+                note: receiptSummary(receipt),
                 categoryId,
             }),
         });

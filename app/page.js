@@ -32,7 +32,7 @@ export default function Home() {
           </h1>
           <div className="flex flex-col" style={{ gap: '16px' }}>
             <Link href="/dashboard" className="btn" style={{ background: '#1a1a1a', color: '#faf9f7' }}>
-              Go to My Note
+              Go to Nook
             </Link>
             <button onClick={handleLogout} style={{ textAlign: 'center', fontSize: '15px', color: '#6a6a6a' }}>
               Logout
@@ -42,7 +42,10 @@ export default function Home() {
       ) : (
         <>
           <div className="flex-1 flex flex-col justify-center" style={{ gap: '30px' }}>
-            <div className="lbl">Ledger · Est. 2026</div>
+            <div>
+              <img src="/nook-logo.png" alt="" width={44} height={44} style={{ borderRadius: '11px', display: 'block', marginBottom: '14px' }} />
+              <div className="lbl">Nook · Est. 2026</div>
+            </div>
             <div>
               <div style={{ fontFamily: 'var(--font-serif), serif', fontSize: '60px', lineHeight: .98, letterSpacing: '-.5px' }}>
                 Keep a<br />beautiful<br /><span style={{ fontStyle: 'italic' }}>record.</span>
