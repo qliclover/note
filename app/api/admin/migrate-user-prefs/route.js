@@ -5,7 +5,7 @@ import { getUserIdFromRequest } from "@/lib/auth";
 // One-time migration helper: adds the currency/monthStartDay columns to
 // User on databases (like the hosted Turso instance) that `prisma migrate
 // deploy` can't reach from this environment. Safe to call more than once.
-export async function POST(request) {
+async function runMigration(request) {
     const userId = getUserIdFromRequest(request);
     if (!userId) return NextResponse.json({error: 'not logged in'}, {status: 401});
 
@@ -25,3 +25,6 @@ export async function POST(request) {
     }
     return NextResponse.json({results});
 }
+
+export const POST = runMigration;
+export const GET = runMigration;
